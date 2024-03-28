@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34714.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalSuiteWeb", "MedicalSuiteWeb\MedicalSuiteWeb.csproj", "{3E8A3907-83A6-4DA0-B63E-AE9D0B631BEB}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MedicalSuiteDB", "MedicalSuiteDB\MedicalSuiteDB.sqlproj", "{54B64496-6F99-44A0-AB1B-55D75FEDA86A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3E8A3907-83A6-4DA0-B63E-AE9D0B631BEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E8A3907-83A6-4DA0-B63E-AE9D0B631BEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E8A3907-83A6-4DA0-B63E-AE9D0B631BEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E8A3907-83A6-4DA0-B63E-AE9D0B631BEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54B64496-6F99-44A0-AB1B-55D75FEDA86A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54B64496-6F99-44A0-AB1B-55D75FEDA86A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54B64496-6F99-44A0-AB1B-55D75FEDA86A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{54B64496-6F99-44A0-AB1B-55D75FEDA86A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54B64496-6F99-44A0-AB1B-55D75FEDA86A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54B64496-6F99-44A0-AB1B-55D75FEDA86A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {33F04BA8-8076-4614-A231-3ECB07D58EC5}
+	EndGlobalSection
+EndGlobal
