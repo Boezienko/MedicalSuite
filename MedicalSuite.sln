@@ -4,13 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.9.34714.143
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalSuiteWeb", "MedicalSuiteWeb\MedicalSuiteWeb.csproj", "{3E8A3907-83A6-4DA0-B63E-AE9D0B631BEB}"
-	ProjectSection(ProjectDependencies) = postProject
-		{FC8A54D8-B84D-438E-A8CC-0EACF907BCB2} = {FC8A54D8-B84D-438E-A8CC-0EACF907BCB2}
-	EndProjectSection
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MedicalSuiteDB", "MedicalSuiteDB\MedicalSuiteDB.sqlproj", "{54B64496-6F99-44A0-AB1B-55D75FEDA86A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalSuiteBusiness", "MedicalSuiteBusiness\MedicalSuiteBusiness.csproj", "{FC8A54D8-B84D-438E-A8CC-0EACF907BCB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalSuiteBusiness", "MedicalSuiteBusiness\MedicalSuiteBusiness.csproj", "{FC8A54D8-B84D-438E-A8CC-0EACF907BCB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
