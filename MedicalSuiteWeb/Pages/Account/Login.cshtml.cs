@@ -8,5 +8,9 @@ namespace MedicalSuiteWeb.Pages.Account
         public void OnGet()
         {
         }
+        public void OnPost()
+        {
+
+        }
     }
 }
