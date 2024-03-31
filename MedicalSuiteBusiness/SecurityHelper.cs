@@ -3,7 +3,7 @@ namespace MedicalSuiteBusiness
 {
     public class SecurityHelper
     {
-        public static string GeneratrPasswordHash(string password)
+        public static string GeneratePasswordHash(string password)
         {
             return BCrypt.Net.BCrypt.EnhancedHashPassword(password, 13);
         }
