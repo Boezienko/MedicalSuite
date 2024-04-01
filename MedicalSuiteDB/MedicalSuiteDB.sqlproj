@@ -72,5 +72,6 @@
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="PopulateDB_CategoryTable.sql" />
+    <None Include="Script.PostDeployment1.sql" />
   </ItemGroup>
 </Project>

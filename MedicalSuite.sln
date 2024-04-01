@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalSuiteWeb", "MedicalS
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MedicalSuiteDB", "MedicalSuiteDB\MedicalSuiteDB.sqlproj", "{54B64496-6F99-44A0-AB1B-55D75FEDA86A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalSuiteBusiness", "MedicalSuiteBusiness\MedicalSuiteBusiness.csproj", "{FC8A54D8-B84D-438E-A8CC-0EACF907BCB2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalSuiteBusiness", "MedicalSuiteBusiness\MedicalSuiteBusiness.csproj", "{0930F9D9-E2E1-4400-9DE6-7A616982158A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +25,10 @@ Global
 		{54B64496-6F99-44A0-AB1B-55D75FEDA86A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54B64496-6F99-44A0-AB1B-55D75FEDA86A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{54B64496-6F99-44A0-AB1B-55D75FEDA86A}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{FC8A54D8-B84D-438E-A8CC-0EACF907BCB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FC8A54D8-B84D-438E-A8CC-0EACF907BCB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FC8A54D8-B84D-438E-A8CC-0EACF907BCB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FC8A54D8-B84D-438E-A8CC-0EACF907BCB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0930F9D9-E2E1-4400-9DE6-7A616982158A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0930F9D9-E2E1-4400-9DE6-7A616982158A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0930F9D9-E2E1-4400-9DE6-7A616982158A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0930F9D9-E2E1-4400-9DE6-7A616982158A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
