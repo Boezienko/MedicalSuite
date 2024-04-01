@@ -3,20 +3,23 @@
 @{
 }
 <form method="post">
+    <div class="row text-danger" asp-validation-summary="All"></div>
     <div class="row m-2">
         <div class="col-2">
-            <label class="form-label">Email</label>
+            <label class="form-label" asp-for="LoginUser.Email"></label>
         </div>
         <div class="col-10">
-            <input type="email" class="form-control"/>
+            <input type="email" class="form-control" asp-for="LoginUser.Email"/>
+            <span asp-validation-for="LoginUser.Email" class="text-danger"></span>
         </div>
     </div>
     <div class="row m-2">
         <div class="col-2">
-            <label class="form-label">Password</label>
+            <label class="form-label" asp-for="LoginUser.Password"></label>
         </div>
         <div class="col-10">
-             <input type="password" class="form-control" />
+             <input type="password" class="form-control" asp-for="LoginUser.Password"/>
+             <span asp-validation-for="LoginUser.Password" class="text-danger"></span>
         </div>
     </div>
     <div class="row m-2">

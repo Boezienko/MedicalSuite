@@ -32,15 +32,15 @@ namespace MedicalSuiteWeb.Pages.Account
                 int personId = GeneratePersonId();
                 //Insert data into database
                 //1. Creat a database connection string
-                string connString = "Server=(localdb)\\MSSQLLocalDB;Database=MedicalSuiteDB;Trusted_Connection=true;";
+                string connString = "Server=(localdb)\\MSSQLLocalDB;Database=MedicalDB;Trusted_Connection=true;";
                 SqlConnection conn = new SqlConnection(connString);
                 //2. Create a insert command
                 string cmdText = "INSERT INTO Person(PersonId, FirstName, LastName, Email, PasswordHash, Telephone, LasLoginTime, PrescriptionId, RoleId)" +
-                    "VALUES(@personId, @firstName, @lastName, @email, @password, @telephone, @lastLoginTime, 2, 2)";
+                    "VALUES(@personId, @firstName, @lastName, @email, @password, @telephone, @lastLoginTime, 1, 1)";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 cmd.Parameters.AddWithValue("@firstName", NewPerson.FirstName);
                 cmd.Parameters.AddWithValue("@lastName", NewPerson.LastName);
-                cmd.Parameters.AddWithValue("@password", SecurityHelper.GeneratePasswordHash(NewPerson.Password));
+                cmd.Parameters.AddWithValue("@password", SecurityHelper.generatePasswordHash(NewPerson.Password));
                 cmd.Parameters.AddWithValue("@email", NewPerson.Email);
                 cmd.Parameters.AddWithValue("@telephone", NewPerson.Telephone);
                 cmd.Parameters.AddWithValue("@lastLoginTime", DateTime.Now.ToString());
