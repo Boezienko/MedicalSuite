@@ -40,7 +40,7 @@ namespace MedicalSuiteWeb.Pages.Account
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 cmd.Parameters.AddWithValue("@firstName", NewPerson.FirstName);
                 cmd.Parameters.AddWithValue("@lastName", NewPerson.LastName);
-                cmd.Parameters.AddWithValue("@password", SecurityHelper.GeneratePasswordHash(NewPerson.Password));
+                cmd.Parameters.AddWithValue("@password", SecurityHelper.generatePasswordHash(NewPerson.Password));
                 cmd.Parameters.AddWithValue("@email", NewPerson.Email);
                 cmd.Parameters.AddWithValue("@telephone", NewPerson.Telephone);
                 cmd.Parameters.AddWithValue("@lastLoginTime", DateTime.Now.ToString());
