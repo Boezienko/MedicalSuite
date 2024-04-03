@@ -29,6 +29,18 @@ namespace MedicalSuiteWeb.Pages.Account
         {
             if (ModelState.IsValid)
             {
+                // Check if email already exists in DB
+
+                if (EmailDNE(NewPerson.Email)) //DNE - Does Not Exist
+                {
+                    RegisterUser();
+                    return RedirectToPage("Login");
+                }
+                else
+                {
+                    ModelState.AddModelError("RegisterError", "The email address already exists, please try another.");
+                    return Page();
+                }
                 int personId = GeneratePersonId();
                 //Insert data into database
                 //1. Creat a database connection string
@@ -56,6 +68,26 @@ namespace MedicalSuiteWeb.Pages.Account
             else
             {
                 return Page();
+            }
+        }
+
+        private bool EmailDNE(string email) // Check given email. If it already exists ret false. Otherwise ret true
+        {
+            using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
+            {
+                string cmdText = "SELECT * FROM Person WHERE Email=@email";
+                SqlCommand cmd = new SqlCommand(cmdText, conn);
+                cmd.Parameters.AddWithValue("@email", email);
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
         }
     }
