@@ -41,12 +41,19 @@ namespace MedicalSuiteWeb.Pages.Account
                     ModelState.AddModelError("RegisterError", "The email address already exists, please try another.");
                     return Page();
                 }
+                
+            }
+            else
+            {
+                return Page();
+            }
+        }
+
+        private void RegisterUser()
+        {
+            using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
+            {
                 int personId = GeneratePersonId();
-                //Insert data into database
-                //1. Creat a database connection string
-                //string connString = "Server=(localdb)\\MSSQLLocalDB;Database=MedicalDB;Trusted_Connection=true;";
-                SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString());
-                //2. Create a insert command
                 string cmdText = "INSERT INTO Person(PersonId, FirstName, LastName, Email, PasswordHash, Telephone, LasLoginTime, PrescriptionId, RoleId)" +
                     "VALUES(@personId, @firstName, @lastName, @email, @password, @telephone, @lastLoginTime, 1, 1)";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
@@ -63,15 +70,10 @@ namespace MedicalSuiteWeb.Pages.Account
                 cmd.ExecuteNonQuery();
                 //5. Close the database
                 conn.Close();
-                return RedirectToPage("Login");
-            }
-            else
-            {
-                return Page();
             }
         }
 
-        private bool EmailDNE(string email) // Check given email. If it already exists ret false. Otherwise ret true
+        private bool EmailDNE(string email) // Check given email. If it already exists ret false. Otherwise ret true.
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
