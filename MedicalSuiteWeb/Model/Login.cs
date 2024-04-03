@@ -4,9 +4,13 @@ namespace MedicalSuiteWeb.Model
 {
     public class Login
     {
-        [Required]
+        [Required(ErrorMessage = "email is required.")]
+        [Display(Name = "Email: ")]
+
         public string Email { get; set; }
-        [Required]
+        [Required(ErrorMessage = "password is required.")]
+        [Display(Name = "Password: ")]
+
         public string Password { get; set; }
     }
 }

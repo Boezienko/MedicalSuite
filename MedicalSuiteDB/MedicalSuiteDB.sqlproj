@@ -62,16 +62,15 @@
     <Folder Include="dbo\Tables\" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Tables\Person.sql" />
     <Build Include="dbo\Tables\Role.sql" />
     <Build Include="dbo\Tables\Prescription.sql" />
     <Build Include="dbo\Tables\DoctorsOffice.sql" />
     <Build Include="dbo\Tables\InventoryCategory.sql" />
     <Build Include="dbo\Tables\Inventory.sql" />
     <Build Include="dbo\Tables\Category.sql" />
+    <Build Include="dbo\Tables\Person.sql" />
   </ItemGroup>
   <ItemGroup>
-    <PostDeploy Include="PopulateDB_CategoryTable.sql" />
-    <None Include="Script.PostDeployment1.sql" />
+    <PostDeploy Include="dbo\Script.PostDeployment1.sql" />
   </ItemGroup>
 </Project>
