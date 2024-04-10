@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using MedicalSuiteWeb.Model;
 using Microsoft.Data.SqlClient;
 using MedicalSuiteBusiness;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 
 namespace MedicalSuiteWeb.Pages.Account
 {
@@ -35,6 +38,25 @@ namespace MedicalSuiteWeb.Pages.Account
                         string passwordHash = reader.GetString(0);
                         if(SecurityHelper.verifyPassword(LoginUser.Password, passwordHash))
                         {
+                            int personId = reader.GetInt32(1);
+                            UpdatePersonLoginTime(personId);
+
+                            //create a prncipal
+                            string name = reader.GetString(2);
+                            string roleName = reader.GetString(3);
+
+                            //create a list of claims
+                            Claim emailClaim = new Claim(ClaimTypes.Email, LoginUser.Email);
+                            Claim nameClaim = new Claim(ClaimTypes.Name, name);
+                            Claim roleClaim = new Claim(ClaimTypes.Role,roleName);
+                            List<Claim> claims = new List<Claim> { emailClaim, nameClaim, roleClaim };
+                            // add list of claims to claimsIdentity
+                            ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                            //add the identity to a ClaimsPrincipal
+                            ClaimsPrincipal principal = new ClaimsPrincipal(identity);
+                            // call httpContext.signInAsync() method to encrypt the principal
+                            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+
                             return RedirectToPage("Profile");
                         }
                         else

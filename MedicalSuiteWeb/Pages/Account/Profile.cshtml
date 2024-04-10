@@ -1,6 +1,14 @@
 ﻿@page
 @model MedicalSuiteWeb.Pages.Account.ProfileModel
 @{
+    if (HttpContext.User.Identity.IsAuthenticated)
+    {
+        Layout = "_LayoutAuthenticated";
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
 }
 <div class="row m-2">
     <div class="col-2">
