@@ -75,6 +75,9 @@ namespace MedicalSuiteWeb.Pages.Account
                     reader.Read();
                     if (!reader.IsDBNull(0))
                     {
+                        return false;
+                    }
+                    else { 
                         string passwordHash = reader.GetString(0);
                         if (SecurityHelper.verifyPassword(LoginUser.Password, passwordHash))
                         {
@@ -89,10 +92,7 @@ namespace MedicalSuiteWeb.Pages.Account
                         }
                     
                     }
-                    else
-                    {
-                        return false;
-                    }
+                    
 
                 }
                 else

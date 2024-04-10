@@ -1,0 +1,51 @@
+﻿@page
+@model MedicalSuiteWeb.Pages.Inventories.AddInventoryItemModel
+@{
+}
+<form method=" post" class=" form-group">
+    <div class="row m-2">
+        <div class=" col-2">
+            <label asp-for="newInventoryItem.InventoryItemCode"></label>
+        </div>
+        <div class="col-10">
+            <input type="text" class="formcontrol" asp-for = "newInventoryItem.InventoryItemCode"/>
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class=" col-2">
+            <label asp-for="newInventoryItem.InventoryItemName"></label>
+        </div>
+        <div class="col-10">
+            <input type="text" class="formcontrol" asp-for="newInventoryItem.InventoryItemName" />
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class=" col-2">
+            <label asp-for="newInventoryItem.InventoryItemDescription"></label>
+        </div>
+        <div class="col-10">
+            <textarea class="formcontrol" asp-for="newInventoryItem.InventoryItemDescription"></textarea>
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class=" col-2">
+            <label asp-for="newInventoryItem.InventoryItemPrice"></label>
+        </div>
+        <div class="col-10">
+            <input type="text" class="formcontrol" asp-for="newInventoryItem.InventoryItemPrice" />
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class=" col-2">
+            <label asp-for="newInventoryItem.CategoryId"></label>
+        </div>
+        <div class="col-10">
+            <select class="formcontrol" asp-for="newInventoryItem.CategoryId" asp-items="@Model.Categories"></select>
+        </div>
+    </div>
+    <div class="row m-2"> 
+        <div class="col-2">
+            <button id="btnAdd" class="btn btn-primary">Add Inventory Item</button>
+        </div>
+    </div>
+</form>
