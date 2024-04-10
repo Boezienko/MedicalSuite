@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalSuiteWeb", "MedicalS
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MedicalSuiteDB", "MedicalSuiteDB\MedicalSuiteDB.sqlproj", "{54B64496-6F99-44A0-AB1B-55D75FEDA86A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalSuiteBusiness", "MedicalSuiteBusiness\MedicalSuiteBusiness.csproj", "{0930F9D9-E2E1-4400-9DE6-7A616982158A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalSuiteBusiness", "MedicalSuiteBusiness\MedicalSuiteBusiness.csproj", "{0930F9D9-E2E1-4400-9DE6-7A616982158A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

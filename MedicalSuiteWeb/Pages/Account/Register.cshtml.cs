@@ -29,12 +29,39 @@ namespace MedicalSuiteWeb.Pages.Account
         {
             if (ModelState.IsValid)
             {
+                // Make sure the email does not exist before registering the user
+
+                if (EmailDNE(NewPerson.Email))  // EmailDNE = Email does not exist.
+                {
+                    RegisterUser();
+                    return RedirectToPage("Login");
+
+                }
+                else
+                {
+                    ModelState.AddModelError("RegisterError", "The email address alreadt. try a different one.");
+                    return Page();
+                }
+
+            }
+            else
+            {
+                return Page();
+            }
+        }
+
+        private void RegisterUser()
+        {
+            using(SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
+            {
                 int personId = GeneratePersonId();
+
                 //Insert data into database
                 //1. Creat a database connection string
                 //string connString = "Server=(localdb)\\MSSQLLocalDB;Database=MedicalDB;Trusted_Connection=true;";
-                SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString());
+                //SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString());
                 //2. Create a insert command
+
                 string cmdText = "INSERT INTO Person(PersonId, FirstName, LastName, Email, PasswordHash, Telephone, LasLoginTime, PrescriptionId, RoleId)" +
                     "VALUES(@personId, @firstName, @lastName, @email, @password, @telephone, @lastLoginTime, 1, 1)";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
@@ -49,13 +76,27 @@ namespace MedicalSuiteWeb.Pages.Account
                 conn.Open();
                 //4.Execute the command 
                 cmd.ExecuteNonQuery();
-                //5. Close the database
-                conn.Close();
-                return RedirectToPage("Login");
             }
-            else
+        }
+
+        private bool EmailDNE(string email)
+        {
+
+            using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-                return Page();
+                string cmdText = "SELECT * FROM Peron WHERE Email=@email";
+                SqlCommand cmd = new SqlCommand(cmdText, conn);
+                cmd.Parameters.AddWithValue("@email", email);
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if(reader.HasRows)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
         }
     }
