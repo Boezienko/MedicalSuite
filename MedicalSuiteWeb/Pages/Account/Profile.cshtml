@@ -2,6 +2,25 @@
 @model MedicalSuiteWeb.Pages.Account.ProfileModel
 @{
 }
+<div class="row m-2">
+    <div class="col-2">
+        First Name:
+        <label asp-for="profile.FirstName"></label>
+    </div>
+</div>
+<div class="row m-2">
+    <div class="col-2">
+        Last Name:
+        <label asp-for="profile.LastName"></label>
+    </div>
+</div>
+<div class="row m-2">
+    <div class="col-2">
+        Email:
+        <label asp-for="profile.Email"></label>
+    </div>
+</div>
+
 <style>
     body {
         background: linear-gradient(130deg, #103bfc, #10ffff );
