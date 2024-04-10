@@ -13,5 +13,11 @@ namespace MedicalSuiteBusiness
         {
             return BCrypt.Net.BCrypt.EnhancedVerify(password, passwordHash);
         }
+
+        public static string GetDBConnectionString()
+        {
+            string connString = "Server=(localdb)\\MSSQLLocalDB;Database=MedicalDB;Trusted_Connection=true;";
+            return connString;
+        }
     }
 }

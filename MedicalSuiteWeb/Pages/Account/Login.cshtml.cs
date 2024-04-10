@@ -17,29 +17,40 @@ namespace MedicalSuiteWeb.Pages.Account
         {
             
             if (ModelState.IsValid)
-            {
-                // Check login credentials
-                if (ValidateCredentials())
+            {   
+                SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString());
+                string cmdText = "SELECT PasswordHash FROM Person WHERE Email=@email";
+                SqlCommand cmd = new SqlCommand(cmdText, conn);
+
+                // Add the @email parameter
+                cmd.Parameters.AddWithValue("@email", LoginUser.Email);
+
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if(reader.HasRows)
                 {
-                    return RedirectToPage("Profile");
+                    reader.Read();
+                    if (!reader.IsDBNull(0))
+                    {
+                        string passwordHash = reader.GetString(0);
+                        if(SecurityHelper.verifyPassword(LoginUser.Password, passwordHash))
+                        {
+                            return RedirectToPage("Profile");
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("LoginError", "Invalid credentials. Try again.");
+                            return Page();
+                        }
+                    }
+                    else
+                    {
+                        return Page();
+                    }
                 }
-                else
-                {
-                    ModelState.AddModelError("LoginError", "Invalid credentials. Try again.");
-                    return Page();
-                }
+                conn.Close();
+                return RedirectToPage("Profile");
 
-                // If the credential are valid
-
-                // redirect user to prfile page
-
-                // Otherwise, display error
-
-
-               
-
-                
-                
             } else
             {
                 return Page();
