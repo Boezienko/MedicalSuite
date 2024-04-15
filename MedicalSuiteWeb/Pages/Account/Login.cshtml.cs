@@ -15,24 +15,9 @@ namespace MedicalSuiteWeb.Pages.Account
         }
         public ActionResult OnPost()
         {
-            
             if (ModelState.IsValid)
-<<<<<<< Updated upstream
-            {   
-=======
             {
-                
->>>>>>> Stashed changes
-                SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString());
-                string cmdText = "SELECT PasswordHash FROM Person WHERE Email=@email";
-                SqlCommand cmd = new SqlCommand(cmdText, conn);
-
-                // Add the @email parameter
-                cmd.Parameters.AddWithValue("@email", LoginUser.Email);
-
-                conn.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
-                if(reader.HasRows)
+                if (ValidateCredentials())
                 {
                     reader.Read();
                     if (!reader.IsDBNull(0))
@@ -52,11 +37,12 @@ namespace MedicalSuiteWeb.Pages.Account
                     {
                         return Page();
                     }
-                }
-                conn.Close();
-                return RedirectToPage("Profile");
 
-            } else
+                    return Redirect
+
+                }
+            }
+            else
             {
                 return Page();
             }
@@ -67,7 +53,8 @@ namespace MedicalSuiteWeb.Pages.Account
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-                string cmdText = "SELECT PasswordHash, PersonId FROM Person WHERE Email=@email";
+                string cmdText = "SELECT PasswordHash, PersonId, FirstName, Email FROM Person " +
+                    " INNER JOIN [Role] ON Person.RoleId = [Role].RoleId WHERE Email=@email";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
 
                 // Add the @email parameter
@@ -89,6 +76,29 @@ namespace MedicalSuiteWeb.Pages.Account
                             //Get the PersonId, and use it to update the Person record
                             int personId = reader.GetInt32(1);
                             UpdatePersonLoginTime(personId);
+
+                            // Create a principle
+                            string name = reader.GetString(2);
+                            string roleName = reader.GetString(4);
+
+                            // Create a list of Claims
+                            Claim emailClaim = new Claim(ClaimTypes.Email, LoginUser.Email);
+                            Claim nameClaim = new Claim(ClaimTypes.Name, name);
+                            Claim roleClaim = new Claim(ClaimTypes.Role, roleName);
+
+                            List<Claim> claims = new List<Claim> { emailClaim, nameClaim, roleClaim };
+
+                            // Add the list of claims to ClaimIdentity
+                            ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                            // 3. Add the identity to a ClaimsPrinciple
+                            ClaimsPrincipal principal = new ClaimsPrincipal(identity);
+
+                            // 4. Call HttpContext.SigninAsync() method to encrypt the principal
+                            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+
+
+
                             return true;
                         }
                         else
@@ -97,7 +107,6 @@ namespace MedicalSuiteWeb.Pages.Account
                         }
                     
                     }
-                    
 
                 }
                 else
