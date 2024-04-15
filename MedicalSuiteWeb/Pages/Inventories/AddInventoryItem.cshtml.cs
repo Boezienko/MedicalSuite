@@ -34,7 +34,7 @@ namespace MedicalSuiteWeb.Pages.Inventories
         }
         public void OnGet()
         {
-            PopulateCategoryDDl();
+            PopulateCategoryDDL();
         }
         public void OnPost()
         {
