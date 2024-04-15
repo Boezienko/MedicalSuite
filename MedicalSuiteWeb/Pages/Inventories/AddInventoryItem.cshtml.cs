@@ -36,8 +36,15 @@ namespace MedicalSuiteWeb.Pages.Inventories
         {
             PopulateCategoryDDl();
         }
+        public void OnPost()
+        {
+            using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
+            {
+                string cmdText = "INSERT INTO Inventory(Id, InventoryItemCode, InventoryItemName, InventoryItemDescription, InventoryItemPrice, CategoryId) " + "VALUES (@itemId, doctorsOfficeId, @itemName, @itemDescription, "
+            }
+        }
 
-        private void PopulateCategoryDDl()
+        private void PopulateCategoryDDL()
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
@@ -54,6 +61,7 @@ namespace MedicalSuiteWeb.Pages.Inventories
                         category.Text = reader.GetString(1).ToString();
                         Categories.Add(category);
                     }
+
                 }
             }
         }

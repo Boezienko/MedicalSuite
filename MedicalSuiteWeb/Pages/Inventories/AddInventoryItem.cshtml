@@ -40,6 +40,7 @@
             <label asp-for="newInventoryItem.CategoryId"></label>
         </div>
         <div class="col-10">
+            @* we use 'select' to make a dropdown, its contents are the asp-items, which are poopulated from the @Model.Categories *@
             <select class="formcontrol" asp-for="newInventoryItem.CategoryId" asp-items="@Model.Categories"></select>
         </div>
     </div>

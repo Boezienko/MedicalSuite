@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
 using System.Security.Claims;
+using Microsoft.Data.SqlClient;
 
 namespace MedicalSuiteWeb.Pages.Account
 {
@@ -15,10 +16,10 @@ namespace MedicalSuiteWeb.Pages.Account
         public UserProfile profile { get; set; }
         public void OnGet()
         {
-
+            PopulateProfile();
         }
 
-        private void populateProfile()
+        private void PopulateProfile()
         {
             // query the person table to populate "profile" object
 

@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[DoctorsOffice] (
-    [DoctorsOfficeId]   INT           NOT NULL,
+    [DoctorsOfficeId]   VARCHAR (5)   NOT NULL,
     [DoctorsOfficeName] VARCHAR (200) NOT NULL,
     [StreetAddress]     VARCHAR (100) NOT NULL,
     [City]              VARCHAR (50)  NOT NULL,
@@ -10,4 +10,6 @@
     CONSTRAINT [PK_DoctorsOffice] PRIMARY KEY CLUSTERED ([DoctorsOfficeId] ASC),
     CONSTRAINT [FK_DoctorsOffice_Person] FOREIGN KEY ([PersonId]) REFERENCES [dbo].[Person] ([PersonId])
 );
+
+
 
