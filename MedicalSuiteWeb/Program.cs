@@ -1,13 +1,15 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme);
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
-    {
-        options.Cookie.Name = "MedicalSuiteCookie";
-       
-    }
+{
+    options.Cookie.Name = "MedicalSuiteCookie";
+ 
+});
 
 var app = builder.Build();
 

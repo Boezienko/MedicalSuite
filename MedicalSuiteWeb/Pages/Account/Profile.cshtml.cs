@@ -37,7 +37,7 @@ namespace MedicalSuiteWeb.Pages.Account
                     profile.LastName = reader.GetString(1);
                     profile.Email = reader.GetString(2);
                     profile.Telephone = reader.GetString(3);
-                    profile.LastLoginTime = reader.GetString(4);
+                    profile.LastLoginTime = reader.GetDateTime(4);
                 }
             }
         }

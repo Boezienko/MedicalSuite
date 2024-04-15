@@ -17,15 +17,9 @@ namespace MedicalSuiteWeb.Pages.Account
         {
         }
         public ActionResult OnPost()
-        {
-            
-            if (ModelState.IsValid)
-<<<<<<< Updated upstream
-            {   
-=======
+        {   
+            if (ModelState.IsValid) 
             {
-                
->>>>>>> Stashed changes
                 SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString());
                 string cmdText = "SELECT PasswordHash FROM Person WHERE Email=@email";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
