@@ -69,7 +69,6 @@
     <Build Include="dbo\Tables\Inventory.sql" />
     <Build Include="dbo\Tables\Category.sql" />
     <Build Include="dbo\Tables\Person.sql" />
-    <Build Include="dbo\Tables\InventoryItem.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="dbo\Script.PostDeployment1.sql" />
