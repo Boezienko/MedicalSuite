@@ -75,6 +75,7 @@ namespace MedicalSuiteWeb.Pages.Account
 
             } else
             {
+                ModelState.AddModelError("loginError", "Invalid credentials, please try again bruh.");
                 return Page();
             }
 
