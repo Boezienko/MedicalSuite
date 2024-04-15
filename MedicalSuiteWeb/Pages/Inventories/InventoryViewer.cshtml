@@ -1,0 +1,27 @@
+﻿@page
+@model MedicalSuiteWeb.Pages.Inventories.InventoryViewerModel
+@{
+}
+<form methods="post" class="form-group">
+    <div class="row m-2">
+        <div class="col-2">
+            <label class="form-label">Category</label>
+        </div>
+        <div class="col-8">
+            <select asp-for="SelectedCategoryId" asp-items="Model.Categories"></select>
+
+        </div>
+        <div class="col-2">
+            <button class="btn btn-primary" id="btnView">Display</button>
+        </div>
+    </div>
+    @foreach (var inventoryItem on Model.InventoryItems){
+        <div class="row m-2 border">
+            <div class="row m-2">
+                <div class="col-2">
+                    <label class="form-label" asp-for="@inventoryItem."></label>
+                </div>
+            </div>
+        </div>
+    }
+</form>
