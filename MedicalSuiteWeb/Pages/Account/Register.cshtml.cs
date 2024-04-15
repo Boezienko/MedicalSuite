@@ -24,22 +24,21 @@ namespace MedicalSuiteWeb.Pages.Account
             return random.Next(3, 100);
         }
 
-        public ActionResult OnPost() 
+        public ActionResult OnPost()
 
         {
             if (ModelState.IsValid)
             {
-                // Make sure the email does not exist before registering the user
+                // Check if email already exists in DB
 
-                if (EmailDNE(NewPerson.Email))  // EmailDNE = Email does not exist.
+                if (EmailDNE(NewPerson.Email)) //DNE - Does Not Exist
                 {
                     RegisterUser();
                     return RedirectToPage("Login");
-
                 }
                 else
                 {
-                    ModelState.AddModelError("RegisterError", "The email address alreadt. try a different one.");
+                    ModelState.AddModelError("RegisterError", "The email address already exists, please try another.");
                     return Page();
                 }
 
@@ -52,7 +51,7 @@ namespace MedicalSuiteWeb.Pages.Account
 
         private void RegisterUser()
         {
-            using(SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
+            using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
                 int personId = GeneratePersonId();
 
@@ -76,20 +75,21 @@ namespace MedicalSuiteWeb.Pages.Account
                 conn.Open();
                 //4.Execute the command 
                 cmd.ExecuteNonQuery();
+                //5. Close the database
+                conn.Close();
             }
         }
 
-        private bool EmailDNE(string email)
+        private bool EmailDNE(string email) // Check given email. If it already exists ret false. Otherwise ret true.
         {
-
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-                string cmdText = "SELECT * FROM Peron WHERE Email=@email";
+                string cmdText = "SELECT * FROM Person WHERE Email=@email";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 cmd.Parameters.AddWithValue("@email", email);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
-                if(reader.HasRows)
+                if (reader.HasRows)
                 {
                     return false;
                 }

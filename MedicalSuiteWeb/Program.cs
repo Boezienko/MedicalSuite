@@ -4,13 +4,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme);
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(Options =>
      {
          options.Cookie.Name = "MedicalSuiteCookie";
          options.LoginPath = "/Account/Login";
      });
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
