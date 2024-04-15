@@ -1,12 +1,12 @@
+using MedicalSuiteBusiness;
 using MedicalSuiteWeb.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-<<<<<<< Updated upstream
-=======
+
 using Microsoft.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Security.Claims;
->>>>>>> Stashed changes
+
 
 namespace MedicalSuiteWeb.Pages.Account
 {
@@ -18,8 +18,7 @@ namespace MedicalSuiteWeb.Pages.Account
         {
             PopulateProfile();
         }
-<<<<<<< Updated upstream
-=======
+
 
         private void PopulateProfile()
         {
@@ -40,6 +39,6 @@ namespace MedicalSuiteWeb.Pages.Account
                 }
             }
         }
->>>>>>> Stashed changes
+
     }
 }
