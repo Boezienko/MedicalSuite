@@ -5,7 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
 using System.Security.Claims;
+
 using Microsoft.Data.SqlClient;
+
 
 namespace MedicalSuiteWeb.Pages.Account
 {
@@ -18,6 +20,7 @@ namespace MedicalSuiteWeb.Pages.Account
         {
             PopulateProfile();
         }
+
 
         private void PopulateProfile()
         {
