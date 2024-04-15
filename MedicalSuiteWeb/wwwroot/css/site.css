@@ -19,5 +19,22 @@ html {
 
 body {
     margin-bottom: 60px;
-    background: linear-gradient(130deg, #103bfc, #10ffff ) !important;
+    background: linear-gradient(130deg, #103bfc, #10ffff );
+}
+
+
+
+.form-label, form-control {
+    color: white;
+}
+
+.text-danger {
+    color: yellow !important;
+}
+.btn{
+    background-color: purple;
+}
+
+#btnLogin {
+    background-color: green;
 }
