@@ -71,6 +71,6 @@
     <Build Include="dbo\Tables\Person.sql" />
   </ItemGroup>
   <ItemGroup>
-    <PostDeploy Include="dbo\Script.PostDeployment1.sql" />
+    <None Include="dbo\PopulateDatabase.sql" />
   </ItemGroup>
 </Project>
