@@ -30,7 +30,7 @@ namespace MedicalSuiteWeb.Pages.Inventories
         private void PopulateInventoryItem(int id)
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString())) {
-                string cmdText = "SELECT InventoryItemCode, InventoryItemName, InventoryItemDescription, InventoryItemPrice, InventoryItemId FROM InventoryItem WHERE CategoryId=@itemId");
+                string cmdText = "SELECT InventoryItemCode, InventoryItemName, InventoryItemDescription, InventoryItemPrice, InventoryItemId FROM InventoryItem WHERE CategoryId=@itemId";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 cmd.Parameters.AddWithValue("@itemId", id);
                 conn.Open();
