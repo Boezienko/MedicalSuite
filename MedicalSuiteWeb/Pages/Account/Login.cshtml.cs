@@ -20,7 +20,12 @@ namespace MedicalSuiteWeb.Pages.Account
         {
             
             if (ModelState.IsValid)
+<<<<<<< Updated upstream
             {   
+=======
+            {
+                
+>>>>>>> Stashed changes
                 SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString());
                 string cmdText = "SELECT PasswordHash FROM Person WHERE Email=@email";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
@@ -98,6 +103,9 @@ namespace MedicalSuiteWeb.Pages.Account
                     reader.Read();
                     if (!reader.IsDBNull(0))
                     {
+                        return false;
+                    }
+                    else { 
                         string passwordHash = reader.GetString(0);
                         if (SecurityHelper.verifyPassword(LoginUser.Password, passwordHash))
                         {
@@ -112,10 +120,7 @@ namespace MedicalSuiteWeb.Pages.Account
                         }
                     
                     }
-                    else
-                    {
-                        return false;
-                    }
+                    
 
                 }
                 else
