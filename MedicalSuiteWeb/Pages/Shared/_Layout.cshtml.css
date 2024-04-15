@@ -50,4 +50,11 @@ button.accept-policy {
     color: wheat;
 }
 
+.text-danger {
+    color: yellow !important;
+}
+
+body {
+    background: linear-gradient(130deg, #103bfc, #10ffff ) !important;
+}
 

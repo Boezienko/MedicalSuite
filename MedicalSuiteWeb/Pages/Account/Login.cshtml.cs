@@ -15,12 +15,10 @@ namespace MedicalSuiteWeb.Pages.Account
         }
         public ActionResult OnPost()
         {
-
             if (ModelState.IsValid)
             {
                 if (ValidateCredentials())
                 {
-<<<<<<< Updated upstream
                     reader.Read();
                     if (!reader.IsDBNull(0))
                     {
@@ -39,9 +37,9 @@ namespace MedicalSuiteWeb.Pages.Account
                     {
                         return Page();
                     }
-=======
+
                     return Redirect
->>>>>>> Stashed changes
+
                 }
             }
             else
@@ -109,10 +107,6 @@ namespace MedicalSuiteWeb.Pages.Account
                         }
                     
                     }
-<<<<<<< Updated upstream
-                    
-=======
->>>>>>> Stashed changes
 
                 }
                 else
