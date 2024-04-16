@@ -1,15 +1,17 @@
+using MedicalSuiteBusiness;
 using MedicalSuiteWeb.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-<<<<<<< Updated upstream
-=======
 using Microsoft.Data.SqlClient;
-using System.Data.SqlTypes;
 using System.Security.Claims;
->>>>>>> Stashed changes
+
+using Microsoft.Data.SqlClient;
+
 
 namespace MedicalSuiteWeb.Pages.Account
 {
+    [Authorize]
     public class ProfileModel : PageModel
     {
         [BindProperty]
@@ -18,17 +20,16 @@ namespace MedicalSuiteWeb.Pages.Account
         {
             PopulateProfile();
         }
-<<<<<<< Updated upstream
-=======
+
 
         private void PopulateProfile()
         {
-            //Query the person table to populate "profile" object
+            // query the person table to populate "profile" object
 
             string email = HttpContext.User.FindFirstValue(ClaimValueTypes.Email);
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-                string cmdText = "SELECT FirstName, LastName, Email, Phone, LastLoginTime FROM Person WHERE Email=@email";
+                string cmdText = "SELECT FirstName, LastName, Email, Telephone, LastLoginTime FROM Person WHERE Email=@email";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 cmd.Parameters.AddWithValue("@email", email);
                 conn.Open();
@@ -37,9 +38,12 @@ namespace MedicalSuiteWeb.Pages.Account
                 {
                     reader.Read();
                     profile.FirstName = reader.GetString(0);
+                    profile.LastName = reader.GetString(1);
+                    profile.Email = reader.GetString(2);
+                    profile.Telephone = reader.GetString(3);
+                    profile.LastLoginTime = reader.GetDateTime(4);
                 }
             }
         }
->>>>>>> Stashed changes
     }
 }
