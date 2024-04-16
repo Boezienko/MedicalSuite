@@ -34,13 +34,13 @@ namespace MedicalSuiteWeb.Pages.Inventories
         }
         public void OnGet()
         {
-            PopulateCategoryDDl();
+            PopulateCategoryDDL();
         }
         public void OnPost()
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-                string cmdText = "INSERT INTO Inventory(Id, InventoryItemCode, InventoryItemName, InventoryItemDescription, InventoryItemPrice, CategoryId) " + "VALUES (@itemId, doctorsOfficeId, @itemName, @itemDescription, "
+                string cmdText = "INSERT INTO Inventory(Id, InventoryItemCode, InventoryItemName, InventoryItemDescription, InventoryItemPrice, CategoryId) " + "VALUES (@itemId, doctorsOfficeId, @itemName, @itemDescription, ";
             }
         }
 
