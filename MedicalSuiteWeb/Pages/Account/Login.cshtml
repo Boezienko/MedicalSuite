@@ -1,6 +1,7 @@
 ﻿@page
 @model MedicalSuiteWeb.Pages.Account.LoginModel
 @{
+    Layout = HttpContext.User.Identity.IsAuthenticated ? "_LayoutAuthenticated" : "_Layout";
 }
 
 <form method="post">
