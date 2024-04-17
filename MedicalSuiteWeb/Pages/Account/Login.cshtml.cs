@@ -92,9 +92,7 @@ namespace MedicalSuiteWeb.Pages.Account
                     return null;
                 }
             }
-        }
-
-
+        
         private void UpdatePersonLoginTime(int personId)
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
