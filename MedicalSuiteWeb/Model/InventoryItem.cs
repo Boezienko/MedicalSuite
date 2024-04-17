@@ -7,13 +7,13 @@ namespace MedicalSuiteWeb.Model
         public int InventoryItemId { get; set; }
         [Required]
         [Display(Name = "Item Code")]
-        public string InventoryItemCode { get; set; }
+        public string? InventoryItemCode { get; set; }
         [Required]
         [Display(Name = "Item Name")]
-        public string InventoryItemName { get; set; }
+        public string? InventoryItemName { get; set; }
         [Required]
         [Display(Name = "Description")]
-        public string InventoryItemDescription { get; set;}
+        public string? InventoryItemDescription { get; set;}
         [Required]
         [Display(Name = "Price")]
         public decimal InventoryItemPrice { get; set; }
