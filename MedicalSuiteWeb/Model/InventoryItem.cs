@@ -7,9 +7,6 @@ namespace MedicalSuiteWeb.Model
         public int InventoryItemId { get; set; }
         [Required]
         [Display(Name = "Item Code")]
-        public int DoctorsOfficeId { get; set; }
-        [Required]
-        [Display(Name = "Office Code")]
         public string InventoryItemCode { get; set; }
         [Required]
         [Display(Name = "Item Name")]
