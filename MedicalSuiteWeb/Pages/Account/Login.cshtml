@@ -4,29 +4,59 @@
     Layout = HttpContext.User.Identity.IsAuthenticated ? "_LayoutAuthenticated" : "_Layout";
 }
 
+<style>
+    form {
+        max-width: 400px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        font-weight: bold;
+    }
+
+    .form-control {
+        margin-bottom: 10px;
+    }
+
+    .btn-login {
+        width: 100%;
+    }
+
+    .text-danger {
+        color: red;
+    }
+</style>
+
+<h2>Login</h2>
+
 <form method="post">
     <div class="row text-danger" asp-validation-summary="All"></div>
     <div class="row m-2">
-        <div class="col-2">
-            <label class="form-label" asp-for="LoginUser.Email"></label>
-        </div>
-        <div class="col-5">
-            <input type="email" class="form-control" asp-for="LoginUser.Email"/>
+        <div class="col-12">
+            <label class="form-label" asp-for="LoginUser.Email">Email</label>
+            <input type="email" class="form-control" asp-for="LoginUser.Email" placeholder="Enter your email" />
             <span asp-validation-for="LoginUser.Email" class="text-danger"></span>
         </div>
     </div>
     <div class="row m-2">
-        <div class="col-2">
-            <label class="form-label" asp-for="LoginUser.Password"></label>
-        </div>
-        <div class="col-5">
-             <input type="password" class="form-control" asp-for="LoginUser.Password"/>
-             <span asp-validation-for="LoginUser.Password" class="text-danger"></span>
+        <div class="col-12">
+            <label class="form-label" asp-for="LoginUser.Password">Password</label>
+            <input type="password" class="form-control" asp-for="LoginUser.Password" placeholder="Enter your password" />
+            <span asp-validation-for="LoginUser.Password" class="text-danger"></span>
         </div>
     </div>
     <div class="row m-2">
-        <div class="col-2">
-            <button id="btnLogin" class="btn btn-primary">Login </button>
+        <div class="col-12">
+            <button id="btnLogin" class="btn btn-primary btn-login">Login</button>
         </div>
     </div>
-</form> 
+</form>
