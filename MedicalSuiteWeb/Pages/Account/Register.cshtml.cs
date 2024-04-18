@@ -16,7 +16,7 @@ namespace MedicalSuiteWeb.Pages.Account
             //NewPerson.FirstName = "Please enter your first name";
         }      
 
-        public ActionResult OnPost()
+        public IActionResult OnPost()
 
         {
             if (ModelState.IsValid)
