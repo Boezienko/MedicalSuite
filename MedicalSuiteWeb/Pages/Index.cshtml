@@ -5,35 +5,6 @@
     Layout = HttpContext.User.Identity.IsAuthenticated ? "_LayoutAuthenticated" : "_Layout";
 }
 
-<style>
-    .jumbotron {
-        background-color: #f8f9fa;
-        padding: 4rem 2rem;
-        margin-bottom: 2rem;
-        border-radius: 0.3rem;
-    }
-
-    h1 {
-        color: #007bff;
-        font-size: 3rem;
-    }
-
-    p {
-        font-size: 1.25rem;
-        line-height: 1.6;
-    }
-
-    .btn-primary {
-        background-color: purple;
-        border-color: purple;
-    }
-
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-        }
-</style>
-
 <div class="jumbotron">
     <div class="container">
         <h1 class="display-4">Welcome to Medical Suite</h1>

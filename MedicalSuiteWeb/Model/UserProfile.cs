@@ -2,7 +2,7 @@
 
 namespace MedicalSuiteWeb.Model
 {
-    public class UserProfile : UserProfileBase
+    public class UserProfile
     {
 
         public int PersonId { get; set; }
