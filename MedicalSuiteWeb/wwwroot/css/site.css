@@ -19,7 +19,6 @@ html {
 
 body {
     margin-bottom: 60px;
-    background: linear-gradient(130deg, #103bfc, #10ffff );
 }
 
 
@@ -27,14 +26,30 @@ body {
 .form-label, form-control {
     color: white;
 }
-
-.text-danger {
-    color: yellow !important;
+.jumbotron {
+    background-color: #f8f9fa;
+    padding: 4rem 2rem;
+    margin-bottom: 2rem;
+    border-radius: 0.3rem;
 }
-.btn{
+
+h1 {
+    color: #007bff;
+    font-size: 3rem;
+}
+
+p {
+    font-size: 1.25rem;
+    line-height: 1.6;
+}
+
+.btn-primary {
     background-color: purple;
+    border-color: purple;
 }
 
-#btnLogin {
-    background-color: green;
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
 }
+

@@ -15,7 +15,7 @@ namespace MedicalSuiteWeb.Pages.Account
     public class ProfileModel : PageModel
     {
         [BindProperty]
-        public UserProfile profile { get; set; }
+        public required UserProfile profile { get; set; } = new UserProfile();
         public void OnGet()
         {
             PopulateProfile();
@@ -29,7 +29,7 @@ namespace MedicalSuiteWeb.Pages.Account
             string email = HttpContext.User.FindFirstValue(ClaimValueTypes.Email);
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-                string cmdText = "SELECT FirstName, LastName, Email, Telephone, LastLoginTime FROM Person WHERE Email=@email";
+                string cmdText = "SELECT FirstName, LastName, Email, Telephone, LasLoginTime FROM Person WHERE Email=@email";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 cmd.Parameters.AddWithValue("@email", email);
                 conn.Open();
