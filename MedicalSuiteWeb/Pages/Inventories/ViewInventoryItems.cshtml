@@ -4,6 +4,14 @@
 }
 <form method="post" class="form-group">
     <div class="row m-2">
+        <div class="col-1">
+            <a asp-page="AddInventoryItem" class="btn btn-primary">Add to Inventory</a>
+        </div>
+        <div class="col-1">
+            <a asp-page="EditInventoryItem" class="btn btn-primary">Edit Inventory</a>
+        </div>
+    </div>
+    <div class="row m-3">
         <div class="col-2">
             <label class="form-label">Category</label>
         </div>
@@ -14,7 +22,13 @@
             <button class="btn btn-primary" id="btnView">Display</button>
         </div>
     </div>
-    @foreach(var inventoryItem in Model.InventoryItems)
+
+    @if (Model.InventoryItems.Count == 0)
+    {
+        <p>No items found in the selected category.</p>
+    }
+    else{
+        @foreach(var inventoryItem in Model.InventoryItems)
     {
         <div class="row m-2 border">
             <div class="row m-2">
@@ -63,5 +77,6 @@
                 </div>
             </div>
         </div>
+    }
     }
 </form>
