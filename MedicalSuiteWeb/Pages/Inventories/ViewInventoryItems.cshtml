@@ -22,8 +22,13 @@
             <button class="btn btn-primary" id="btnView">Display</button>
         </div>
     </div>
-    
-    @foreach(var inventoryItem in Model.InventoryItems)
+    @if (Model.InventoryItems.Count == 0)
+    {
+        <p>No items found in the selected category.</p>
+    }
+    else
+    {
+        @foreach(var inventoryItem in Model.InventoryItems)
     {
         <div class="row m-2 border">
             <div class="row m-2">
@@ -72,5 +77,6 @@
                 </div>
             </div>
         </div>
+    }
     }
 </form>
