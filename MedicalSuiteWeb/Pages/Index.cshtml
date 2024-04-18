@@ -6,14 +6,55 @@
 }
 
 <style>
-    
-    h1{
-        color: white;
-        font-weight:bold;
-        font-size:x-large;
+    .jumbotron {
+        background-color: #f8f9fa;
+        padding: 4rem 2rem;
+        margin-bottom: 2rem;
+        border-radius: 0.3rem;
     }
+
+    h1 {
+        color: #007bff;
+        font-size: 3rem;
+    }
+
+    p {
+        font-size: 1.25rem;
+        line-height: 1.6;
+    }
+
+    .btn-primary {
+        background-color: purple;
+        border-color: purple;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
 </style>
 
-<div class="text-center">
-    <h1 class="display-4">Hello, Welcome to the Medical Suite</h1>
+<div class="jumbotron">
+    <div class="container">
+        <h1 class="display-4">Welcome to Medical Suite</h1>
+        <p class="lead">Your health is our priority. We are committed to providing high-quality healthcare services to our patients.</p>
+        <hr class="my-4">
+        <p>Contact us today to schedule an appointment or learn more about our services.</p>
+        <a class="btn btn-primary btn-lg" asp-area="" asp-page="/Appointments" role="button">Schedule an Appointment</a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>About Us</h2>
+            <p>Our team of dedicated healthcare professionals includes experienced doctors, nurses, and support staff who are committed to delivering personalized care to each patient.</p>
+            <a  class="btn btn-primary" asp-area="" asp-page="/AboutUs">Learn More</a>
+        </div>
+        <div class="col-md-6">
+            <h2>Our Services</h2>
+            <p>Our practice offers a comprehensive range of services to meet the healthcare needs of our patients. Whether you need a routine check-up or treatment for a specific condition, our team is here to provide you with the care you need.</p>
+            <a class="btn btn-primary" asp-area="" asp-page="/AboutUs">View Services</a>
+        </div>
+    </div>
 </div>
