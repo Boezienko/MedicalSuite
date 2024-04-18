@@ -25,7 +25,6 @@ namespace MedicalSuiteWeb.Pages.Account
         private void PopulateProfile()
         {
             // query the person table to populate "profile" object
-            //profile = new UserProfile();
 
             string email = HttpContext.User.FindFirstValue(ClaimValueTypes.Email);
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
