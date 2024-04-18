@@ -3,6 +3,43 @@
 @{
     Layout = HttpContext.User.Identity.IsAuthenticated ? "_LayoutAuthenticated" : "_Layout";
 }
+<style>
+    .profile-container {
+        max-width: 600px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    .profile-header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .profile-label {
+        font-weight: bold;
+    }
+
+    .profile-section {
+        margin-bottom: 20px;
+    }
+
+    .prescription-section {
+        margin-top: 30px;
+    }
+
+    .prescription-header {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .prescription-item {
+        margin-bottom: 10px;
+    }
+</style>
 <div class="row m-2">
     <div class="col-2">
         First Name:
@@ -19,6 +56,33 @@
     <div class="col-2">
         Email:
         <label>@Model.profile.Email</label>
+<div class="profile-container">
+    <div class="profile-header">
+        <h2>Your Profile</h2>
+    </div>
+    <div class="profile-section">
+        <div class="row m-2">
+           <div class="col-2">
+                First Name:
+                <label asp-for="profile.FirstName"></label>
+            </div>
+        </div>
+        <div class="row m-2">
+            <div class="col-2">
+                Last Name:
+                <label asp-for="profile.LastName"></label>
+            </div>
+        </div>
+        <div class="row m-2">
+            <div class="col-2">
+                Email:
+                <label asp-for="profile.Email"></label>
+            </div>
+        </div>
+    </div>
+    <div class="prescription-section">
+        <div class="prescription-header">Prescriptions</div>
+        
     </div>
 </div>
 

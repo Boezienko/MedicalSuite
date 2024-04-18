@@ -16,7 +16,7 @@ namespace MedicalSuiteWeb.Pages.Account
         public void OnGet()
         {
         }
-        public ActionResult OnPost()
+        public IActionResult OnPost()
         {
             if (ModelState.IsValid)
             {
