@@ -15,7 +15,7 @@ namespace MedicalSuiteWeb.Pages.Account
     public class ProfileModel : PageModel
     {
         [BindProperty]
-        public UserProfile profile { get; set; }
+        public required UserProfile profile { get; set; } = new UserProfile();
         public void OnGet()
         {
             PopulateProfile();
