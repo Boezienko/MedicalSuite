@@ -77,7 +77,7 @@ namespace MedicalSuiteWeb.Pages.Inventories
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-                string cmdText = "SELECT InventoryItemId, InventoryItemCode, InventoryItemName, InventoryItemDescription, InventoryItemPrice, CategoryId WHERE InventoryItem = @itemId";
+                string cmdText = "SELECT InventoryItemId, InventoryItemCode, InventoryItemName, InventoryItemDescription, InventoryItemPrice, CategoryId FROM InventoryItem WHERE InventoryItemId = @itemId";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 cmd.Parameters.AddWithValue("@itemId", id);
                 conn.Open();
