@@ -2,8 +2,9 @@
 
 namespace MedicalSuiteWeb.Model
 {
-    public class UserProfile : UserProfileBase
+    public class UserProfile
     {
+
         public int PersonId { get; set; }
         [Display(Name = "First Name: ")]
         public string FirstName { get; set; }
@@ -22,5 +23,6 @@ namespace MedicalSuiteWeb.Model
         public int RoleId { get; set; }
         public DateTime LastLoginTime { get; set; }
         public int prescriptionId { get; set; }
+
     }
 }

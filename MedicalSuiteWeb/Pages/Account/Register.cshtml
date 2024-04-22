@@ -3,57 +3,81 @@
 @{
 }
 
+<style>
+    form {
+        max-width: 400px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid black;
+        border-radius: 5px;
+        background-color: transparent;
+    }
+
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        font-weight: bold;
+    }
+
+    .form-control {
+        margin-bottom: 10px;
+    }
+
+    .btn-register {
+        width: 100%;
+    }
+
+    .text-danger {
+        color: red;
+    }
+</style>
+
+<h2>Register</h2>
+
 <form method="post">
     <div class="row text-danger" asp-validation-summary="All"></div>
-    <div class=" row m-2">
-        <div class="col-2">
-            <label asp-for="NewPerson.FirstName" class="form-label"></label>
-        </div>
-        <div class="col-5">
-            <input asp-for="NewPerson.FirstName" type="text" class="form-control" />
+    <div class="row m-2">
+        <div class="col-12">
+            <label class="form-label" asp-for="NewPerson.FirstName">First Name</label>
+            <input type="text" class="form-control" asp-for="NewPerson.FirstName" placeholder="Enter your first name" />
             <span asp-validation-for="NewPerson.FirstName" class="text-danger"></span>
         </div>
     </div>
-    <div class=" row m-2">
-        <div class="col-2">
-            <label asp-for="NewPerson.LastName" class="form-label"></label>
-        </div>
-        <div class="col-5">
-            <input asp-for="NewPerson.LastName" type="text" class="form-control" />
+    <div class="row m-2">
+        <div class="col-12">
+            <label class="form-label" asp-for="NewPerson.LastName">Last Name</label>
+            <input type="text" class="form-control" asp-for="NewPerson.LastName" placeholder="Enter your last name" />
             <span asp-validation-for="NewPerson.LastName" class="text-danger"></span>
         </div>
     </div>
-    <div class=" row m-2">
-        <div class="col-2">
-            <label asp-for="NewPerson.Email" class="form-label"></label>
-        </div>
-        <div class="col-5">
-            <input asp-for="NewPerson.Email" type="email" class="form-control" />
+    <div class="row m-2">
+        <div class="col-12">
+            <label class="form-label" asp-for="NewPerson.Email">Email</label>
+            <input type="email" class="form-control" asp-for="NewPerson.Email" placeholder="Enter your email" />
             <span asp-validation-for="NewPerson.Email" class="text-danger"></span>
         </div>
     </div>
-    <div class=" row m-2">
-        <div class="col-2">
-            <label asp-for="NewPerson.Password" class="form-label"></label>
-        </div>
-        <div class="col-5">
-            <input asp-for="NewPerson.Password" type="password" class="form-control" />
+    <div class="row m-2">
+        <div class="col-12">
+            <label class="form-label" asp-for="NewPerson.Password">Password</label>
+            <input type="password" class="form-control" asp-for="NewPerson.Password" placeholder="Enter your password" />
             <span asp-validation-for="NewPerson.Password" class="text-danger"></span>
         </div>
     </div>
-    <div class=" row m-2">
-        <div class="col-2">
-            <label asp-for="NewPerson.Telephone" class="form-label"></label>
-        </div>
-        <div class="col-5">
-            <input asp-for="NewPerson.Telephone" type="tel" class="form-control" />
+    <div class="row m-2">
+        <div class="col-12">
+            <label class="form-label" asp-for="NewPerson.Telephone">Telephone</label>
+            <input type="tel" class="form-control" asp-for="NewPerson.Telephone" placeholder="Enter your telephone number" />
             <span asp-validation-for="NewPerson.Telephone" class="text-danger"></span>
         </div>
     </div>
     <div class="row m-2">
-        <div class="col-2">
-            <button id="btnRegister" class="btn btn-primary">Register</button>
+        <div class="col-12">
+            <button id="btnRegister" class="btn btn-primary btn-register">Register</button>
         </div>
     </div>
-
 </form>

@@ -14,41 +14,42 @@ namespace MedicalSuiteWeb.Pages.Inventories
 
         public List<SelectListItem> Categories { get; set; } = new List<SelectListItem>();
 
-        public IActionResult onPost()
+        public IActionResult OnPost()
         {
-            using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
+            if (ModelState.IsValid)
             {
-                string cmdText = "INSERT INTO Inventories(InventoryItemCode, InventoryItemName, InventoryItemDescription, InventoryItemPrice, CategoryId) " + "VALUES (@itemCode, @itemName, @itemDescription, @itemPrice, @categoryId)";
-                SqlCommand cmd = new SqlCommand(cmdText, conn);
-                cmd.Parameters.AddWithValue("@itemCode", newInventoryItem.InventoryItemCode);
-                cmd.Parameters.AddWithValue("@itemName", newInventoryItem.InventoryItemName);
-                cmd.Parameters.AddWithValue("@itemDescription", newInventoryItem.InventoryItemDescription);
-                cmd.Parameters.AddWithValue("@itemPrice", newInventoryItem.InventoryItemPrice);
-                cmd.Parameters.AddWithValue("@categoryId", newInventoryItem.CategoryId);
+                using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
+                {
+                    string cmdText = "INSERT INTO Inventory(InventoryItemCode, InventoryItemName, InventoryItemDescription, InventoryItemPrice, CategoryId) " + 
+                        "VALUES (@itemCode, @itemName, @itemDescription, @itemPrice, @categoryId)";
+                    SqlCommand cmd = new SqlCommand(cmdText, conn);
+                    cmd.Parameters.AddWithValue("@itemCode", newInventoryItem.InventoryItemCode);
+                    cmd.Parameters.AddWithValue("@itemName", newInventoryItem.InventoryItemName);
+                    cmd.Parameters.AddWithValue("@itemDescription", newInventoryItem.InventoryItemDescription);
+                    cmd.Parameters.AddWithValue("@itemPrice", newInventoryItem.InventoryItemPrice);
+                    cmd.Parameters.AddWithValue("@categoryId", newInventoryItem.CategoryId);
 
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                return RedirectToAction("InventoryViewer");
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    return RedirectToPage("ViewInventoryItems");
 
+                }
+            }
+            else
+            {
+                return Page();
             }
         }
         public void OnGet()
         {
             PopulateCategoryDDL();
         }
-        public void OnPost()
-        {
-            using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
-            {
-                string cmdText = "INSERT INTO Inventory(Id, InventoryItemCode, InventoryItemName, InventoryItemDescription, InventoryItemPrice, CategoryId) " + "VALUES (@itemId, doctorsOfficeId, @itemName, @itemDescription, "
-            }
-        }
 
         private void PopulateCategoryDDL()
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-                string cmdText = "SELECT CategoryId, CategoryName FROM Category";
+                string cmdText = "SELECT CategoryId, CategoryName FROM Category ORDER BY CategoryName";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();

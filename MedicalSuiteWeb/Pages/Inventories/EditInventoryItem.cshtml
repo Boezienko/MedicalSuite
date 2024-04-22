@@ -1,0 +1,57 @@
+﻿@page
+@model MedicalSuiteWeb.Pages.Inventories.EditInventoryItemModel
+@{
+}
+<form method=" post" class=" form-group">
+    <div class="row m-2">
+        <div class="col-4">
+            <h2>Edit Inventory Item</h2>
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class=" col-2">
+            <label asp-for="Item.InventoryItemCode"></label>
+        </div>
+        <div class="col-10">
+            <input type="text" class="formcontrol" asp-for="Item.InventoryItemCode" />
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class=" col-2">
+            <label asp-for="Item.InventoryItemName"></label>
+        </div>
+        <div class="col-10">
+            <input type="text" class="formcontrol" asp-for="Item.InventoryItemName" />
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class=" col-2">
+            <label asp-for="Item.InventoryItemDescription"></label>
+        </div>
+        <div class="col-10">
+            <textarea class="formcontrol" asp-for="Item.InventoryItemDescription"></textarea>
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class=" col-2">
+            <label asp-for="Item.InventoryItemPrice"></label>
+        </div>
+        <div class="col-10">
+            <input type="text" class="formcontrol" asp-for="Item.InventoryItemPrice" />
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class=" col-2">
+            <label asp-for="Item.CategoryId"></label>
+        </div>
+        <div class="col-10">
+            @* we use 'select' to make a dropdown, its contents are the asp-items, which are poopulated from the @Model.Categories *@
+            <select asp-for="Item.CategoryId" asp-items="@Model.Categories"></select>
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col-2">
+            <input type="submit" value="Update" class="btn btn-primary" />
+        </div>
+    </div>
+</form>

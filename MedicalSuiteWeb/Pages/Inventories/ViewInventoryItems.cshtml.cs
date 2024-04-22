@@ -8,36 +8,36 @@ using Microsoft.Data.SqlClient;
 namespace MedicalSuiteWeb.Pages.Inventories
 {
     [BindProperties]
-    public class InventoryViewerModel : PageModel
+    public class ViewInventoryItemsModel : PageModel
     {
         public List<SelectListItem> Categories { get; set; } = new List<SelectListItem>();
 
         public List<InventoryItem> InventoryItems { get; set; } = new List<InventoryItem>();
 
         public int SelectedCategoryId { get; set; }
-
-
         public void OnGet()
         {
             PopulateCategoryDDL();
         }
 
-        public void onPost()
+        public void OnPost()
         {
             PopulateInventoryItem(SelectedCategoryId);
+            PopulateCategoryDDL();
         }
 
         private void PopulateInventoryItem(int id)
         {
-            using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString())) {
-                string cmdText = "SELECT InventoryItemCode, InventoryItemName, InventoryItemDescription, InventoryItemPrice, InventoryItemId FROM InventoryItem WHERE CategoryId=@itemId";
+            using(SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
+            {
+                string cmdText = "SELECT InventoryItemId, InventoryItemCode, InventoryItemName, InventoryItemDescription, InventoryItemPrice FROM InventoryItem WHERE CategoryId = @categoryId";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
-                cmd.Parameters.AddWithValue("@itemId", id);
+                cmd.Parameters.AddWithValue("@categoryId", id);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.HasRows)
+                if(reader.HasRows)
                 {
-                    while (reader.Read())
+                    while(reader.Read())
                     {
                         var item = new InventoryItem();
                         item.InventoryItemCode = reader.GetString(0);
@@ -46,6 +46,7 @@ namespace MedicalSuiteWeb.Pages.Inventories
                         item.InventoryItemPrice = reader.GetDecimal(3);
                         item.InventoryItemId = reader.GetInt32(4);
                         InventoryItems.Add(item);
+
                     }
                 }
             }
@@ -55,7 +56,7 @@ namespace MedicalSuiteWeb.Pages.Inventories
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-                string cmdText = "SELECT CategoryId, CategoryName FROM Category";
+                string cmdText = "SELECT CategoryId, CategoryName FROM Category ORDER BY CategoryName";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -66,12 +67,13 @@ namespace MedicalSuiteWeb.Pages.Inventories
                         var category = new SelectListItem();
                         category.Value = reader.GetInt32(0).ToString();
                         category.Text = reader.GetString(1).ToString();
-                        if (category.Value == SelectedCategoryId.ToString())
+                        if(category.Value == SelectedCategoryId.ToString())
                         {
                             category.Selected = true;
                         }
                         Categories.Add(category);
                     }
+
                 }
             }
         }
