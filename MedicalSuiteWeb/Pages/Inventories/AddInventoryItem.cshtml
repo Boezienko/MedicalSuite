@@ -2,17 +2,17 @@
 @model MedicalSuiteWeb.Pages.Inventories.AddInventoryItemModel
 @{
 }
-<form method=" post" class=" form-group">
+<form method="post" class="form-group">
     <div class="row m-2">
-        <div class=" col-2">
+        <div class="col-2">
             <label asp-for="newInventoryItem.InventoryItemCode"></label>
         </div>
         <div class="col-10">
-            <input type="text" class="formcontrol" asp-for = "newInventoryItem.InventoryItemCode"/>
+            <input type="text" class="formcontrol" asp-for="newInventoryItem.InventoryItemCode" />
         </div>
     </div>
     <div class="row m-2">
-        <div class=" col-2">
+        <div class="col-2">
             <label asp-for="newInventoryItem.InventoryItemName"></label>
         </div>
         <div class="col-10">
@@ -44,7 +44,7 @@
             <select asp-for="newInventoryItem.CategoryId" asp-items="@Model.Categories"></select>
         </div>
     </div>
-    <div class="row m-2"> 
+    <div class="row m-2">
         <div class="col-2">
             <button id="btnAdd" class="btn btn-primary">Add Inventory Item</button>
         </div>

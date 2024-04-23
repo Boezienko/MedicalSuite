@@ -55,7 +55,7 @@ namespace MedicalSuiteWeb.Pages.Account
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-                string cmdText = "SELECT PasswordHash, PersonId, FirstName, Email FROM Person " +
+                string cmdText = "SELECT PasswordHash, PersonId, FirstName, RoleName FROM Person " +
                     " INNER JOIN [Role] ON Person.RoleId = [Role].RoleId WHERE Email=@email";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
 
