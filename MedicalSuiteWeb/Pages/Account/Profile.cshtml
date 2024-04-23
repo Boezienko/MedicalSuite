@@ -41,6 +41,23 @@
     }
 </style>
 
+
+<div class="row m-2">
+    <div class="col-2">
+        First Name:
+        <label>@Model.profile.FirstName</label>
+    </div>
+</div>
+<div class="row m-2">
+    <div class="col-2">
+        Last Name:
+        <label>@Model.profile.LastName</label>
+    </div>
+</div>
+<div class="row m-2">
+    <div class="col-2">
+        Email:
+        <label>@Model.profile.Email</label>
 <div class="profile-container">
     <div class="profile-header">
         <h2>Your Profile</h2>
@@ -52,8 +69,6 @@
                 <label asp-for="profile.FirstName"></label>
             </div>
         </div>
-
-
         <div class="row m-2">
             <div class="col-2">
                 Last Name:
@@ -67,6 +82,7 @@
             </div>
         </div>
     </div>
+
     <div class="prescription-section">
         <div class="prescription-header">Prescriptions</div>
         

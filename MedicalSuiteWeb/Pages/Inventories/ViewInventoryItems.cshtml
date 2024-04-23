@@ -7,6 +7,7 @@
         <div class="col-1">
             <a class="btn btn-primary" asp-area="" asp-page="/Inventories/AddInventoryItem">Add</a>
         </div>
+
     </div>
     <div class="row m-3">
         <div class="col-2">
@@ -19,7 +20,9 @@
             <button class="btn btn-primary" id="btnView">Display</button>
         </div>
     </div>
+
     @if (Model.InventoryItems.Count == 0)
+
     {
         <p>No items found in the selected category.</p>
     }

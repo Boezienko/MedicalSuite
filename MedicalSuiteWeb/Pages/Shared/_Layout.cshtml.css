@@ -46,15 +46,4 @@ button.accept-policy {
     width: 100%;
     white-space: nowrap;
     line-height: 60px;
-    mix-blend-mode: difference;
-    color: wheat;
 }
-
-.text-danger {
-    color: yellow !important;
-}
-
-body {
-    background: linear-gradient(130deg, #103bfc, #10ffff ) !important;
-}
-
