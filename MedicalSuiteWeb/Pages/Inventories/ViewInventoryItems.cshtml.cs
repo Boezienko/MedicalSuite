@@ -1,5 +1,7 @@
 using MedicalSuiteBusiness;
 using MedicalSuiteWeb.Model;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -7,6 +9,8 @@ using Microsoft.Data.SqlClient;
 
 namespace MedicalSuiteWeb.Pages.Inventories
 {
+    [Authorize(Roles = "Doctor, Nurse")]
+    
     [BindProperties]
     public class ViewInventoryItemsModel : PageModel
     {
@@ -30,7 +34,7 @@ namespace MedicalSuiteWeb.Pages.Inventories
         {
             using(SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-                string cmdText = "SELECT InventoryItemId, InventoryItemCode, InventoryItemName, InventoryItemDescription, InventoryItemPrice FROM InventoryItem WHERE CategoryId = @categoryId";
+                string cmdText = "SELECT  InventoryItemCode, InventoryItemName, InventoryItemDescription, InventoryItemPrice, InventoryItemId FROM InventoryItem WHERE CategoryId = @categoryId";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 cmd.Parameters.AddWithValue("@categoryId", id);
                 conn.Open();
