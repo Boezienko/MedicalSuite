@@ -45,7 +45,6 @@ namespace MedicalSuiteWeb.Pages.Inventories
             PopulateCategoryDDL();
         }
 
-
         private void PopulateCategoryDDL()
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))

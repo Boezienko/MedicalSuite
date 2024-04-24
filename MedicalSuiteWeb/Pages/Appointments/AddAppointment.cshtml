@@ -1,0 +1,27 @@
+﻿@page
+@model MedicalSuiteWeb.Pages.Appointments.AddAppointmentModel
+@{
+<form method="post" class="form-group">
+    <div class="container mt-5">
+        <h1>Appointments</h1>
+        <p>Welcome to the appointments page. Here you can view and manage your upcoming appointments.</p>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <h2>Schedule a New Appointment</h2>
+                <div class="mb-3">
+                    <label for="date" class="form-label">Date</label>
+                    <input type="date" class="form-control" asp-for="newAppointment.AppointmentDate" id="AppointmentDate" required>
+                </div>
+                <div class="mb-3">
+                    <label for="time" class="form-label">Time</label>
+                    <input type="time" class="form-control" asp-for="newAppointment.AppointmentTime" id="AppointmentTime" required>
+                </div>
+                <div class="mb-3">
+                    <label for="doctor" class="form-label">Doctor</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Schedule Appointment</button>
+            </div>
+        </div>
+    </div>
+</form>
+}
