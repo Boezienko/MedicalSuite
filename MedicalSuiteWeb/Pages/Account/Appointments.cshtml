@@ -3,6 +3,9 @@
 @{
     ViewData["Title"] = "Appointments";
 }
+@{
+    Layout = HttpContext.User.Identity.IsAuthenticated ? "_LayoutAuthenticated" : "_Layout";
+}
 
 <div class="container mt-5">
     <h1>Appointments</h1>
