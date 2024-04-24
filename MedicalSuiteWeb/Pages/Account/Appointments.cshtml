@@ -1,7 +1,10 @@
 ﻿@page
-@model MedicalSuiteWeb.Pages.AppointmentsModel
+@model AppointmentsModel
 @{
     ViewData["Title"] = "Appointments";
+}
+@{
+    Layout = HttpContext.User.Identity.IsAuthenticated ? "_LayoutAuthenticated" : "_Layout";
 }
 
 <div class="container mt-5">
