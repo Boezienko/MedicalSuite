@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[Person] (
-    [PersonId]       INT          NOT NULL,
+    [PersonId]       INT          IDENTITY (1, 1) NOT NULL,
     [FirstName]      VARCHAR (50) NOT NULL,
     [LastName]       VARCHAR (50) NOT NULL,
     [Email]          VARCHAR (50) NOT NULL,
@@ -12,6 +12,8 @@
     CONSTRAINT [FK_Person_Prescription] FOREIGN KEY ([PrescriptionId]) REFERENCES [dbo].[Prescription] ([PrescriptionId]),
     CONSTRAINT [FK_Person_Role] FOREIGN KEY ([RoleId]) REFERENCES [dbo].[Role] ([RoleId])
 );
+
+
 
 
 
