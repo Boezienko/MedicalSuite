@@ -49,6 +49,7 @@ namespace MedicalSuiteWeb.Pages.Account
                                 string roleName = reader.GetString(3);
 
                                 //create a list of claims
+                                Claim personIdClaim = new Claim(ClaimTypes.Actor, personId.ToString());
                                 Claim emailClaim = new Claim(ClaimTypes.Email, LoginUser.Email);
                                 Claim nameClaim = new Claim(ClaimTypes.Name, name);
                                 Claim roleClaim = new Claim(ClaimTypes.Role, roleName);
@@ -78,7 +79,7 @@ namespace MedicalSuiteWeb.Pages.Account
             }
             else
             {
-                ModelState.AddModelError("loginError", "Invalid credentials, please try again bruh.");
+                ModelState.AddModelError("loginError", "MODEL STATE INVALID");
                 return Page();
             }
         }

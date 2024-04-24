@@ -1,0 +1,39 @@
+﻿@page
+@model MedicalSuiteWeb.Pages.Appointments.ViewAppointmentsModel
+@{
+}
+<form method="post" class="form-group">
+    @foreach (var appointment in Model.AppointmentList){
+        <div class="row m-2" border">
+            <div class="row m-2">
+                <div class="col-2">
+                    <label class="form-label" asp-for="@appointment.AppointmentId"></label>
+                </div>
+                <div class="col-10">
+                    <label class="form-label">@appointment.AppointmentId</label>
+                </div>
+            </div>
+            <div class="row m-2">
+                <div class="col-2">
+                    <label class="form-label" asp-for="@appointment.AppointmentDate"></label>
+                </div>
+                <div class="col-10">
+                    <label class="form-label">@appointment.AppointmentDate</label>
+                </div>
+            </div>
+            <div class="row m-2">
+                <div class="col-2">
+                    <label class="form-label" asp-for="@appointment.AppointmentTime"></label>
+                </div>
+                <div class="col-10">
+                    <label class="form-label">@appointment.AppointmentTime</label>
+                </div>
+            </div>
+            <div class="row m-2">
+                <div class="col-2">
+                    <a asp-page="EditAppointment" asp-route-id="@appointment.AppointmentId" class="btn-primary">Edit Appointment</a>
+                </div>
+            </div>
+        </div>
+    }
+</form>

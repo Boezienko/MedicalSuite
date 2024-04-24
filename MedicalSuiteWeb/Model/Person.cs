@@ -18,6 +18,7 @@ namespace MedicalSuiteWeb.Model
         [Display(Name = "Password: ")]
         public string Password {  get; set; }
         [Required(ErrorMessage = "Telephone is required")]
+        [MinLength(10, ErrorMessage = "Password must be a minimum of 10 characters")]
         [Display(Name = "Telephone: ")]
         public string Telephone { get; set; }
         public int RoleId {  get; set; }
