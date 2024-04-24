@@ -1,6 +1,8 @@
 ﻿@page
 @model MedicalSuiteWeb.Pages.Inventories.ViewInventoryItemsModel
 @{
+    Layout = HttpContext.User.Identity.IsAuthenticated ? "_LayoutAuthenticated" : "_Layout";
+
 }
 <form method="post" class="form-group">
     <div class="row m-2">
