@@ -8,10 +8,6 @@
 
             <a class="btn btn-primary" asp-area="" asp-page="/Inventories/AddInventoryItem">Add</a>
         </div>
-        <div class="col-2">
-            <a class="btn btn-primary" asp-area="" asp-page="/Inventories/EditInventoryItem">Edit</a>
-
-        </div>
     </div>
     <div class="row m-3">
         <div class="col-2">
@@ -30,58 +26,53 @@
     {
         <p>No items found in the selected category.</p>
     }
-    else{
-    
-    @foreach(var inventoryItem in Model.InventoryItems)
-
+    else
     {
-        <div class="row m-2 border">
-            <div class="row m-2">
-                <div class="col-2">
-                    <label class="form-lable" asp-for="@inventoryItem.InventoryItemCode"></label>
+        @foreach(var inventoryItem in Model.InventoryItems)
+        {
+            <div class="row m-2 border">
+                <div class="row m-2">
+                    <div class="col-2">
+                        <label class="form-label" asp-for="@inventoryItem.InventoryItemCode"></label>
+                    </div>
+                    <div class="col-10">
+                        <label class="form-label">@inventoryItem.InventoryItemCode</label>
+                    </div>
                 </div>
-                <div class="col-10">
-                    <label class="form-label">@inventoryItem.InventoryItemCode</label>
-                </div>
-            </div>
 
-            <div class="row m-2">
-                <div class="col-2">
-                    <label class="form-lable" asp-for="@inventoryItem.InventoryItemName"></label>
+                <div class="row m-2">
+                    <div class="col-2">
+                        <label class="form-label" asp-for="@inventoryItem.InventoryItemName"></label>
+                    </div>
+                    <div class="col-10">
+                        <label class="form-label">@inventoryItem.InventoryItemName</label>
+                    </div>
                 </div>
-                <div class="col-10">
-                    <label class="form-label">@inventoryItem.InventoryItemName</label>
-                </div>
-            </div>
 
-            <div class="row m-2">
-                <div class="col-2">
-                    <label class="form-lable" asp-for="@inventoryItem.InventoryItemDescription"></label>
+                <div class="row m-2">
+                    <div class="col-2">
+                        <label class="form-label" asp-for="@inventoryItem.InventoryItemDescription"></label>
+                    </div>
+                    <div class="col-10">
+                        <label class="form-label">@inventoryItem.InventoryItemDescription</label>
+                    </div>
                 </div>
-                <div class="col-10">
-                    <label class="form-label">@inventoryItem.InventoryItemDescription</label>
-                </div>
-            </div>
 
-            <div class="row m-2">
-                <div class="col-2">
-                    <label class="form-lable" asp-for="@inventoryItem.InventoryItemPrice"></label>
+                <div class="row m-2">
+                    <div class="col-2">
+                        <label class="form-label" asp-for="@inventoryItem.InventoryItemPrice"></label>
+                    </div>
+                    <div class="col-10">
+                        <label class="form-label">@inventoryItem.InventoryItemPrice</label>
+                    </div>
                 </div>
-                <div class="col-10">
-                    <label class="form-label">@inventoryItem.InventoryItemPrice</label>
+                <div class="row m-2">
+                    <div class="col-2">
+                        <a asp-page="EditInventoryItem" asp-route-id="@inventoryItem.InventoryItemId" class="btn btn-primary">Edit</a>
+                    </div>
                 </div>
+                
             </div>
-            <div class="row m-2">
-                <div class="col-2">
-                    <a asp-page="EditInventoryItem" asp-route-id="@inventoryItem.InventoryItemId" class="btn btn-primary">Edit</a>
-                </div>
-            </div>
-            <div class="row m-2">
-                <div class="col-1">
-                    <a asp-page="AddInventoryItem" asp-route-id="@inventoryItem.InventoryItemId" class="btn btn-primary">Add to Inventory</a>
-                </div>
-            </div>
-        </div>
-    }
+        }
     }
 </form>
