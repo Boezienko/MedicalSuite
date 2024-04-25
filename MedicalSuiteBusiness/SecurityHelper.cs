@@ -16,7 +16,7 @@ namespace MedicalSuiteBusiness
 
         public static string GetDBConnectionString()
         {
-            string connString = "Server=(localdb)\\MSSQLLocalDB;Database=MedicalSuiteDB;Trusted_Connection=true;";
+            string connString = "Server=(localdb)\\MSSQLLocalDB;Database=MedicalDB;Trusted_Connection=true;";
             return connString;
         }
     }

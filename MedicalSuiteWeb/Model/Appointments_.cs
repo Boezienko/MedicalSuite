@@ -2,7 +2,7 @@
 
 namespace MedicalSuiteWeb.Model
 {
-    public class Appointments
+    public class Appointments_
     {
         public int AppointmentId {  get; set; }
         [Required]

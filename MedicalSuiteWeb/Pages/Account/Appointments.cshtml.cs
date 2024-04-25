@@ -11,10 +11,10 @@ namespace MedicalSuiteWeb.Pages.Account
     public class AppointmentsModel : PageModel
     {
         [BindProperty]
-        public Appointments NewAppointment { get; set; }
+        public Appointments_ NewAppointment { get; set; }
 
         // List to store upcoming appointments
-        public List<Appointments> UpcomingAppointments { get; set; } = new List<Appointments>();
+        public List<Appointments_> UpcomingAppointments { get; set; } = new List<Appointments_>();
 
         public IActionResult OnPost() 
         {
@@ -36,7 +36,7 @@ namespace MedicalSuiteWeb.Pages.Account
                 }
 
                 // Clear the form fields
-                NewAppointment = new Appointments();
+                NewAppointment = new Appointments_();
 
                 return RedirectToPage();
             }

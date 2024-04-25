@@ -100,7 +100,7 @@ namespace MedicalSuiteWeb.Pages.Account
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-                string cmdText = "UPDATE Person SET LastLoginTime=@lastLoginTime WHERE PersonId=@personId";
+                string cmdText = "UPDATE Person SET LasLoginTime=@lastLoginTime WHERE PersonId=@personId";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 cmd.Parameters.AddWithValue("@lastLoginTime", DateTime.Now);
                 cmd.Parameters.AddWithValue("@personId", personId);
