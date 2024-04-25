@@ -53,8 +53,8 @@ namespace MedicalSuiteWeb.Pages.Account
                 //SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString());
                 //2. Create a insert command
 
-                string cmdText = "INSERT INTO Person(FirstName, LastName, Email, PasswordHash, Telephone, LastLoginTime, RoleId)" +
-                    "VALUES(@firstName, @lastName, @email, @password, @telephone, @lastLoginTime, 1)";
+                string cmdText = "INSERT INTO Person(FirstName, LastName, Email, PasswordHash, Telephone, LasLoginTime, PrescriptionId, RoleId)" +
+                    "VALUES(@firstName, @lastName, @email, @password, @telephone, @lastLoginTime, 1, 2)";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 cmd.Parameters.AddWithValue("@firstName", NewPerson.FirstName);
                 cmd.Parameters.AddWithValue("@lastName", NewPerson.LastName);
