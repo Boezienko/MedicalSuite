@@ -22,50 +22,57 @@ namespace MedicalSuiteWeb.Pages.Account
             {
                 if (ValidateCredentials())
                 {
-                    string cmdText = "SELECT PasswordHash, PersonId, FirstName, Email FROM Person " +
-                   " INNER JOIN [Role] ON Person.RoleId = [Role].RoleId WHERE Email=@email";
-                    SqlCommand cmd = new SqlCommand(cmdText, conn);
-
-                    // Add the @email parameter
-                    cmd.Parameters.AddWithValue("@email", LoginUser.Email);
-
-                    conn.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    //SqlDataReader reader = ValidateCredentials();
-                    if (reader != null && reader.HasRows)
+                    using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
                     {
-                        reader.Read();
-                        if (!reader.IsDBNull(0))
+                        string cmdText = "SELECT PasswordHash, PersonId, FirstName, Email FROM Person " +
+                                         " INNER JOIN [Role] ON Person.RoleId = [Role].RoleId WHERE Email=@email";
+                        SqlCommand cmd = new SqlCommand(cmdText, conn);
+
+                        // Add the @email parameter
+                        cmd.Parameters.AddWithValue("@email", LoginUser.Email);
+
+                        conn.Open();
+                        SqlDataReader reader = cmd.ExecuteReader();
+
+                        //SqlDataReader reader = ValidateCredentials();
+                        if (reader != null && reader.HasRows)
                         {
-                            string passwordHash = reader.GetString(0);
-                            if (SecurityHelper.verifyPassword(LoginUser.Password, passwordHash))
+                            reader.Read();
+                            if (!reader.IsDBNull(0))
                             {
-                                int personId = reader.GetInt32(1);
-                                UpdatePersonLoginTime(personId);
+                                string passwordHash = reader.GetString(0);
+                                if (SecurityHelper.verifyPassword(LoginUser.Password, passwordHash))
+                                {
+                                    int personId = reader.GetInt32(1);
+                                    UpdatePersonLoginTime(personId);
 
-                                //create a prncipal
-                                string name = reader.GetString(2);
-                                string roleName = reader.GetString(3);
+                                    //create a prncipal
+                                    string name = reader.GetString(2);
+                                    string roleName = reader.GetString(3);
 
-                                //create a list of claims
-                                Claim personIdClaim = new Claim(ClaimTypes.Actor, personId.ToString());
-                                Claim emailClaim = new Claim(ClaimTypes.Email, LoginUser.Email);
-                                Claim nameClaim = new Claim(ClaimTypes.Name, name);
-                                Claim roleClaim = new Claim(ClaimTypes.Role, roleName);
-                                List<Claim> claims = new List<Claim> { emailClaim, nameClaim, roleClaim };
-                                // add list of claims to claimsIdentity
-                                ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                                //add the identity to a ClaimsPrincipal
-                                ClaimsPrincipal principal = new ClaimsPrincipal(identity);
-                                // call httpContext.signInAsync() method to encrypt the principal
-                                HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+                                    //create a list of claims
+                                    Claim personIdClaim = new Claim(ClaimTypes.Actor, personId.ToString());
+                                    Claim emailClaim = new Claim(ClaimTypes.Email, LoginUser.Email);
+                                    Claim nameClaim = new Claim(ClaimTypes.Name, name);
+                                    Claim roleClaim = new Claim(ClaimTypes.Role, roleName);
+                                    List<Claim> claims = new List<Claim> { emailClaim, nameClaim, roleClaim };
+                                    // add list of claims to claimsIdentity
+                                    ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                                    //add the identity to a ClaimsPrincipal
+                                    ClaimsPrincipal principal = new ClaimsPrincipal(identity);
+                                    // call httpContext.signInAsync() method to encrypt the principal
+                                    HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
 
-                                return RedirectToPage("Profile");
+                                    return RedirectToPage("Profile");
+                                }
+                                else
+                                {
+                                    ModelState.AddModelError("LoginError", "Invalid credentials. Try again.");
+                                    return Page();
+                                }
                             }
                             else
                             {
-                                ModelState.AddModelError("LoginError", "Invalid credentials. Try again.");
                                 return Page();
                             }
                         }
@@ -74,6 +81,11 @@ namespace MedicalSuiteWeb.Pages.Account
                             return Page();
                         }
                     }
+                } 
+                else
+                {
+                    ModelState.AddModelError("loginError", "MODEL STATE INVALID");
+                    return Page();
                 }
             }
             else
