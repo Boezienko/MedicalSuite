@@ -1,10 +1,10 @@
 ﻿@page
 @model IndexModel
+@using System.Security.Claims
 @{
     ViewData["Title"] = "Home page";
-    Layout = HttpContext.User.Identity.IsAuthenticated ? "_LayoutAuthenticated" : "_Layout";
+    Layout = LayoutAuthorizer.GetLayoutFromRole(HttpContext.User.FindFirstValue(ClaimTypes.Role).ToString());
 }
-
 <div class="jumbotron">
     <div class="container">
         <h1 class="display-4">Welcome to Medical Suite</h1>

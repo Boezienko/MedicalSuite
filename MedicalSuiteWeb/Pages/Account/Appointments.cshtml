@@ -1,10 +1,11 @@
 ﻿@page
 @model AppointmentsModel
+@using System.Security.Claims
 @{
     ViewData["Title"] = "Appointments";
 }
 @{
-    Layout = HttpContext.User.Identity.IsAuthenticated ? "_LayoutAuthenticated" : "_Layout";
+    Layout = LayoutAuthorizer.GetLayoutFromRole(HttpContext.User.FindFirstValue(ClaimTypes.Role).ToString());
 }
 
 <div class="container mt-5">

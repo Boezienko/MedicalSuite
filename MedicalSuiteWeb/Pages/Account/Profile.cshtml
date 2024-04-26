@@ -1,6 +1,7 @@
 ﻿@page
 @model MedicalSuiteWeb.Pages.Account.ProfileModel
 @{
+    HttpContext httpContext = this.HttpContext;
     Layout = HttpContext.User.Identity.IsAuthenticated ? "_LayoutAuthenticated" : "_Layout";
 }
 

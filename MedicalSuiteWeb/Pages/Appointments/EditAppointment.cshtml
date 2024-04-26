@@ -1,4 +1,6 @@
 ﻿@page
+@using System.Security.Claims
 @model MedicalSuiteWeb.Pages.Appointments.EditAppointmentModel
 @{
+    Layout = LayoutAuthorizer.GetLayoutFromRole(HttpContext.User.FindFirstValue(ClaimTypes.Role).ToString());
 }

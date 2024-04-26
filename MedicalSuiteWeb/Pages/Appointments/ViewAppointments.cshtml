@@ -1,6 +1,8 @@
 ﻿@page
 @model MedicalSuiteWeb.Pages.Appointments.ViewAppointmentsModel
+@using System.Security.Claims
 @{
+    Layout = LayoutAuthorizer.GetLayoutFromRole(HttpContext.User.FindFirstValue(ClaimTypes.Role).ToString());
 }
 <form method="post" class="form-group">
     @foreach (var appointment in Model.AppointmentList){
