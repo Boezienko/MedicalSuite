@@ -2,6 +2,7 @@
 @model MedicalSuiteWeb.Pages.AboutUsModel
 @{
     ViewData["Title"] = "About Us";
+    Layout = HttpContext.User.Identity.IsAuthenticated ? "_LayoutAuthenticated" : "_Layout";
 }
 <div class="container mt-5">
     <div class="row">

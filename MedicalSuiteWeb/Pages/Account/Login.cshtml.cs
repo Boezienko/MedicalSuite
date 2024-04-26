@@ -86,6 +86,7 @@ namespace MedicalSuiteWeb.Pages.Account
                             string roleName = reader.GetString(3);
 
                             //create a list of claims
+                            //Claim personIdClaim = new Claim(ClaimTypes.Actor, personId.ToString());//making this for later
                             Claim emailClaim = new Claim(ClaimTypes.Email, LoginUser.Email);
                             Claim nameClaim = new Claim(ClaimTypes.Name, name);
                             Claim roleClaim = new Claim(ClaimTypes.Role, roleName);
