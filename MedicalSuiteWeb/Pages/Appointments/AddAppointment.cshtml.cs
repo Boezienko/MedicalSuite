@@ -20,7 +20,7 @@ namespace MedicalSuiteWeb.Pages.Appointments
         }
         public IActionResult OnPost()
         {
-            int personId = 1; // int.Parse(HttpContext.User.FindFirstValue(ClaimTypes.Actor));
+            int personId = int.Parse(HttpContext.User.FindFirstValue(ClaimTypes.Actor));
             
             if (ModelState.IsValid)
             {

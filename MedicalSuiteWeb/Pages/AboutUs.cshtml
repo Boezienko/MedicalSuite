@@ -1,8 +1,31 @@
 ﻿@page
+@using System.Security.Claims
 @model MedicalSuiteWeb.Pages.AboutUsModel
 @{
     ViewData["Title"] = "About Us";
-    Layout = HttpContext.User.Identity.IsAuthenticated ? "_LayoutAuthenticated" : "_Layout";
+
+    string layout = "_Layout"; // Default layout
+
+    if (HttpContext.User.FindFirstValue(ClaimTypes.Role) != null){
+        string userRole = HttpContext.User.FindFirstValue(ClaimTypes.Role).ToString(); //store the role 
+
+        if (User.Identity.IsAuthenticated)
+        {
+            if (userRole.Equals("Patient"))
+            {
+                layout = "_LayoutPatient"; // Layout for patients
+            }
+            else if (userRole.Equals("Nurse"))
+            {
+                layout = "_LayoutNurse"; // Layout for nurses
+            }
+            else if (userRole.Equals("Doctor"))
+            {
+                layout = "_LayoutDoctor"; // Layout for doctors
+            }
+        }
+    }
+    Layout = layout;
 }
 <div class="container mt-5">
     <div class="row">
