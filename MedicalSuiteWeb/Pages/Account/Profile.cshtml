@@ -1,8 +1,16 @@
 ﻿@page
 @model MedicalSuiteWeb.Pages.Account.ProfileModel
+@using System.Security.Claims
 @{
     HttpContext httpContext = this.HttpContext;
-    Layout = HttpContext.User.Identity.IsAuthenticated ? "_LayoutAuthenticated" : "_Layout";
+    if (HttpContext.User.FindFirstValue(ClaimTypes.Role) != null)
+    {
+        Layout = LayoutAuthorizer.GetLayoutFromRole(this.HttpContext);
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
 }
 
 <div class="profile-container">

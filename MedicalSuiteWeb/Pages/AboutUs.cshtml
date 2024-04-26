@@ -4,26 +4,14 @@
 @{
     ViewData["Title"] = "About Us";
 
-    string layout = "_Layout"; // Default layout
-
-    string userRole = HttpContext.User.FindFirstValue(ClaimTypes.Role).ToString(); //store the role 
-
-    if (User.Identity.IsAuthenticated)
+    if (HttpContext.User.FindFirstValue(ClaimTypes.Role) != null)
     {
-        if (userRole.Equals("Patient"))
-        {
-            layout = "_LayoutPatient"; // Layout for patients
-        }
-        else if (userRole.Equals("Nurse"))
-        {
-            layout = "_LayoutNurse"; // Layout for nurses
-        }
-        else if (userRole.Equals("Doctor"))
-        {
-            layout = "_LayoutDoctor"; // Layout for doctors
-        }
+        Layout = LayoutAuthorizer.GetLayoutFromRole(this.HttpContext);
     }
-    Layout = layout;
+    else
+    {
+        Layout = "_Layout";
+    }
 }
 <div class="container mt-5">
     <div class="row">

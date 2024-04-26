@@ -2,7 +2,14 @@
 @model MedicalSuiteWeb.Pages.Appointments.AddAppointmentModel
 @using System.Security.Claims
 @{
-    Layout = LayoutAuthorizer.GetLayoutFromRole(HttpContext.User.FindFirstValue(ClaimTypes.Role).ToString());
+    if (HttpContext.User.FindFirstValue(ClaimTypes.Role) != null)
+    {
+        Layout = LayoutAuthorizer.GetLayoutFromRole(this.HttpContext);
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
  }
 <form method="post" class="form-group">
     <div class="container mt-5">

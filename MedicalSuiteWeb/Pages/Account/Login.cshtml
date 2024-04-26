@@ -3,7 +3,7 @@
 @using System.Security.Claims
 @{
     if (HttpContext.User.FindFirstValue(ClaimTypes.Role) != null) {
-        Layout = LayoutAuthorizer.GetLayoutFromRole(HttpContext.User.FindFirstValue(ClaimTypes.Role).ToString());
+        Layout = LayoutAuthorizer.GetLayoutFromRole(this.HttpContext);
     }
     else
     {

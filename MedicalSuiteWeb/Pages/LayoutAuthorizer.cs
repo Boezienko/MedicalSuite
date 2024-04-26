@@ -4,9 +4,10 @@ namespace MedicalSuiteWeb.Pages
 {
     public class LayoutAuthorizer
     {
-        static public string GetLayoutFromRole(string userRole)
+        static public string GetLayoutFromRole(HttpContext httpContext)
         {
             string layout = String.Empty;
+            string userRole = httpContext.User.FindFirstValue(ClaimTypes.Role).ToString();
             if (userRole.Equals("Patient"))
             {
                 layout = "_LayoutPatient"; // Layout for patients
