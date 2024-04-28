@@ -6,7 +6,6 @@ namespace MedicalSuiteWeb.Pages
     {
         static public string GetLayoutFromRole(HttpContext httpContext)
         {
-            string layout = String.Empty;
             string userRole = httpContext.User.FindFirstValue(ClaimTypes.Role).ToString();
             if (userRole.Equals("Patient"))
             {
