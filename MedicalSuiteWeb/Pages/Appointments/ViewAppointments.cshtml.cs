@@ -4,9 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
+using System.Security.Claims;
 
 namespace MedicalSuiteWeb.Pages.Appointments
 {
+
     [BindProperties]
     public class ViewAppointmentsModel : PageModel
     {
@@ -15,7 +17,7 @@ namespace MedicalSuiteWeb.Pages.Appointments
         public void OnGet()
         {
             // Fetch Id of person currently logged in
-            int personId = GetCurrentlyLoggedInPersonId(); // Implement this method
+            int personId = GetCurrentlyLoggedInPersonId();
 
             // Fetch appointments only for the current user
             AppointmentList = PopulateAppointmentList(personId);
@@ -23,14 +25,14 @@ namespace MedicalSuiteWeb.Pages.Appointments
 
         private int GetCurrentlyLoggedInPersonId()
         {
-            return 1;
+            return int.Parse(HttpContext.User.FindFirstValue(ClaimTypes.Actor));
         }
 
         private List<Appointment> PopulateAppointmentList(int personId)
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-                string cmdText = "SELECT * FROM Appointments WHERE PersonId = @PersonId";
+                string cmdText = "SELECT AppointmentId, AppointmentDate, AppointmentTime FROM Appointments WHERE PersonId = @PersonId";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 cmd.Parameters.AddWithValue("@PersonId", personId);
                 conn.Open();
@@ -39,7 +41,7 @@ namespace MedicalSuiteWeb.Pages.Appointments
                 {
                     while (reader.Read())
                     {
-                        Appointment appointment = new Appointment();
+                        var appointment = new Appointment();
                         appointment.AppointmentId = reader.GetInt32(0);
                         appointment.AppointmentDate = reader.GetDateTime(1);
                         appointment.AppointmentTime = reader.GetTimeSpan(2);
