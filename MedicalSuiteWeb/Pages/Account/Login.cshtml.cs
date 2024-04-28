@@ -91,7 +91,7 @@ namespace MedicalSuiteWeb.Pages.Account
                             Claim nameClaim = new Claim(ClaimTypes.Name, name);
                             Claim roleClaim = new Claim(ClaimTypes.Role, roleName);
 
-                            List<Claim> claims = new List<Claim> { emailClaim, nameClaim, roleClaim };
+                            List<Claim> claims = new List<Claim> { personIdClaim, emailClaim, nameClaim, roleClaim };
 
                             // add list of claims to claimsIdentity
                             ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

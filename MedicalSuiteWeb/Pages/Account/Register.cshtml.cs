@@ -45,14 +45,7 @@ namespace MedicalSuiteWeb.Pages.Account
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-               
-
-                //Insert data into database
-                //1. Creat a database connection string
-                //string connString = "Server=(localdb)\\MSSQLLocalDB;Database=MedicalDB;Trusted_Connection=true;";
-                //SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString());
                 //2. Create a insert command
-
                 string cmdText = "INSERT INTO Person(FirstName, LastName, Email, PasswordHash, Telephone, LastLoginTime, RoleId)" +
                     "VALUES(@firstName, @lastName, @email, @password, @telephone, @lastLoginTime, 1)";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
