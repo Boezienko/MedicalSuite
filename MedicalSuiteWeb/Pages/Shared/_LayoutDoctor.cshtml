@@ -2,7 +2,8 @@
 <!--//THIS PAGE USED AS TEMPLATE-->
 <html lang="en">
 <head>
-    <meta charset="utf-8" />    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - MedicalSuite</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -11,7 +12,7 @@
 
     <style>
         main {
-            margin-bottom: 400px;
+            margin-bottom: 400px; 
         }
     </style>
 
@@ -31,16 +32,25 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/AboutUs">About Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Inventories/AddInventoryItems">Add Inventory</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Appointments/AddAppointment">Add Appointments</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Appointments/ViewAppointments">View Appointments</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Inventories/AddInventoryItem">Add Inventory Items</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Inventories/ViewInventoryItems">View Inventory</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Appointments/AddAppointment">Add Appointments</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Prescriptions/AddPrescriptions">Add Prescriptions</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Account/Logout">Logout</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Prescriptions/ViewPrescriptions">View Prescriptions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark btn btn-primary" asp-area="" asp-page="/Account/Logout">Logout</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav ml-auto">
@@ -76,9 +86,9 @@
                 <div class="col-md-4">
                     <h5>Quick Links</h5>
                     <ul class="list-unstyled">
-                        <li><a asp-area="" asp-page="/Index">Home</a></li>
+                        <li><a asp-area="" asp-page="/Index">Home</a></li>       
                         <li><a asp-area="" asp-page="/AboutUs">About Us</a></li>
-                        <li><a asp-area="" asp-page="/Account/Register">Register</a></li>
+                        <li><a asp-area="" asp-page="/Account/Register">Register</a></li>                       
                     </ul>
                 </div>
             </div>

@@ -33,6 +33,7 @@ namespace MedicalSuiteWeb.Pages.Account
             }
             else
             {
+                ModelState.AddModelError("loginError", "MODEL STATE INVALID");
                 return Page();
             }
 
@@ -42,7 +43,7 @@ namespace MedicalSuiteWeb.Pages.Account
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-                string cmdText = "UPDATE Person SET LasLoginTime=@lastLoginTime WHERE PersonId=@personId";
+                string cmdText = "UPDATE Person SET LastLoginTime=@lastLoginTime WHERE PersonId=@personId";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 cmd.Parameters.AddWithValue("@lastLoginTime", DateTime.Now);
                 cmd.Parameters.AddWithValue("@personId", personId);
@@ -76,7 +77,7 @@ namespace MedicalSuiteWeb.Pages.Account
                         string passwordHash = reader.GetString(0);
                         if (SecurityHelper.verifyPassword(LoginUser.Password, passwordHash))
                         {
-                           
+
                             int personId = reader.GetInt32(1);
                             UpdatePersonLoginTime(personId);
 
@@ -85,11 +86,12 @@ namespace MedicalSuiteWeb.Pages.Account
                             string roleName = reader.GetString(3);
 
                             //create a list of claims
+                            Claim personIdClaim = new Claim(ClaimTypes.Actor, personId.ToString());//making this for later
                             Claim emailClaim = new Claim(ClaimTypes.Email, LoginUser.Email);
                             Claim nameClaim = new Claim(ClaimTypes.Name, name);
                             Claim roleClaim = new Claim(ClaimTypes.Role, roleName);
 
-                            List<Claim> claims = new List<Claim> { emailClaim, nameClaim, roleClaim };
+                            List<Claim> claims = new List<Claim> { personIdClaim, emailClaim, nameClaim, roleClaim };
 
                             // add list of claims to claimsIdentity
                             ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -111,7 +113,7 @@ namespace MedicalSuiteWeb.Pages.Account
                 {
                     return false;
                 }
-                
+
             }
         }
     }

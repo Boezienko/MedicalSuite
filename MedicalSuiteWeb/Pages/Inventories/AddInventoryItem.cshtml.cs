@@ -20,7 +20,7 @@ namespace MedicalSuiteWeb.Pages.Inventories
             {
                 using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
                 {
-                    string cmdText = "INSERT INTO Inventory(InventoryItemCode, InventoryItemName, InventoryItemDescription, InventoryItemPrice, CategoryId) " + 
+                    string cmdText = "INSERT INTO InventoryItem(InventoryItemCode, InventoryItemName, InventoryItemDescription, InventoryItemPrice, CategoryId) " + 
                         "VALUES (@itemCode, @itemName, @itemDescription, @itemPrice, @categoryId)";
                     SqlCommand cmd = new SqlCommand(cmdText, conn);
                     cmd.Parameters.AddWithValue("@itemCode", newInventoryItem.InventoryItemCode);
@@ -44,7 +44,6 @@ namespace MedicalSuiteWeb.Pages.Inventories
         {
             PopulateCategoryDDL();
         }
-
 
         private void PopulateCategoryDDL()
         {

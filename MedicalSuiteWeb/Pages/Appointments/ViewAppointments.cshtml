@@ -1,0 +1,55 @@
+﻿@page
+@model MedicalSuiteWeb.Pages.Appointments.ViewAppointmentsModel
+@using System.Security.Claims
+@{
+    if (HttpContext.User.FindFirstValue(ClaimTypes.Role) != null)
+    {
+        Layout = LayoutAuthorizer.GetLayoutFromRole(this.HttpContext);
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
+}
+<form method="get" class="form-group">
+    @foreach (var appointment in Model.AppointmentList)
+    {
+        <div class="row m-2 border">
+            <div class="row m-2">
+                <div class="col-2">
+                    <label class="form-label" asp-for="@appointment.AppointmentId">Appointment Id: </label>
+                </div>
+                <div class="col-10">
+                    <label class="form-label">@appointment.AppointmentId</label>
+                </div>
+            </div>
+            <div class="row m-2">
+                <div class="col-2">
+                    <label class="form-label" asp-for="@appointment.AppointmentDate">Appointment Date: </label>
+                </div>
+                <div class="col-10">
+                    <label class="form-label">@appointment.AppointmentDate</label>
+                </div>
+            </div>
+            <div class="row m-2">
+                <div class="col-2">
+                    <label class="form-label" asp-for="@appointment.AppointmentTime">Appointment Time: </label>
+                </div>
+                <div class="col-10">
+                    <label class="form-label">@appointment.AppointmentTime</label>
+                </div>
+            </div>
+            <div class="row m-2">
+                <div class="col-2">
+                    <a asp-page="EditAppointment" asp-route-id="@appointment.AppointmentId" class="btn btn-primary">Edit Appointment</a>
+                </div>
+                <div class="col-2">
+                    <a asp-page="DeleteAppointment" asp-route-id="@appointment.AppointmentId" class="btn btn-danger" onclick="return confirm('Are you sure you want to remove this appointment? This cannot be undone!');">Delete Appointment</a>
+                </div>
+                <div class="col-2">
+                    <button class="btn btn-secondary" asp-route-id="@appointment.AppointmentId" asp-page-handler="Delete"onclick="return confirm('Are you sure you want to remove this appointment? This cannot be undone!');"></button>
+                </div>
+            </div>
+        </div>
+    }
+</form>

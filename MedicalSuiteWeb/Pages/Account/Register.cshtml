@@ -1,6 +1,15 @@
 ﻿@page
+@using System.Security.Claims
 @model MedicalSuiteWeb.Pages.Account.RegisterModel
 @{
+    if (HttpContext.User.FindFirstValue(ClaimTypes.Role) != null)
+    {
+        Layout = LayoutAuthorizer.GetLayoutFromRole(this.HttpContext);
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
 }
 
 <style>
