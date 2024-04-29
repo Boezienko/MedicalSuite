@@ -11,10 +11,10 @@ namespace MedicalSuiteWeb.Pages.Account
     public class AppointmentsModel : PageModel
     {
         [BindProperty]
-        public Appointments NewAppointment { get; set; }
+        public Appointment NewAppointment { get; set; }
 
         // List to store upcoming appointments
-        public List<Appointments> UpcomingAppointments { get; set; } = new List<Appointments>();
+        public List<Appointment> UpcomingAppointments { get; set; } = new List<Appointment>();
 
         public IActionResult OnPost() 
         {
@@ -27,8 +27,8 @@ namespace MedicalSuiteWeb.Pages.Account
                     SqlCommand cmd = new SqlCommand(cmdText, conn);
                     cmd.Parameters.AddWithValue("@date", NewAppointment.AppointmentDate);
                     cmd.Parameters.AddWithValue("@time", NewAppointment.AppointmentTime);
-                    cmd.Parameters.AddWithValue("@notes", NewAppointment.AppointmentNotes);
-                    cmd.Parameters.AddWithValue("@doctor", NewAppointment.DoctorsName);
+                    //cmd.Parameters.AddWithValue("@notes", NewAppointment.AppointmentNotes);
+                    //cmd.Parameters.AddWithValue("@doctor", NewAppointment.DoctorsName);
                     cmd.Parameters.AddWithValue("@personId", NewAppointment.PersonId);
 
                     conn.Open();
@@ -36,7 +36,7 @@ namespace MedicalSuiteWeb.Pages.Account
                 }
 
                 // Clear the form fields
-                NewAppointment = new Appointments();
+                NewAppointment = new Appointment();
 
                 return RedirectToPage();
             }

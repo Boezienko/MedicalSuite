@@ -13,9 +13,6 @@
         Layout = "_Layout";
     }
 }
-@{
-    Layout = HttpContext.User.Identity.IsAuthenticated ? "_LayoutAuthenticated" : "_Layout";
-}
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-6">
