@@ -1,11 +1,13 @@
 ﻿CREATE TABLE [dbo].[InventoryItem] (
-    [InventoryItemId]          INT            IDENTITY (1, 1) NOT NULL,
+    [InventoryItemId]          INT            NOT NULL,
     [InventoryItemCode]        VARCHAR (5)    NOT NULL,
-    [InventoryItemName]        VARCHAR (100)  NOT NULL,
-    [InventoryItemDescription] VARCHAR (250)  NOT NULL,
+    [InventoryItemName]        NCHAR (100)    NOT NULL,
+    [InventoryItemDescription] NCHAR (250)    NOT NULL,
     [InventoryItemPrice]       DECIMAL (5, 2) NOT NULL,
     [CategoryId]               INT            NOT NULL,
-    CONSTRAINT [PK_InventoryItem] PRIMARY KEY CLUSTERED ([InventoryItemId] ASC),
-    CONSTRAINT [FK_InventoryItem_InventoryItem] FOREIGN KEY ([CategoryId]) REFERENCES [dbo].[Category] ([CategoryId])
+    CONSTRAINT [PK_Inventory] PRIMARY KEY CLUSTERED ([InventoryItemId] ASC),
+    CONSTRAINT [FK_Inventory_DoctorsOffice] FOREIGN KEY ([InventoryItemCode]) REFERENCES [dbo].[DoctorsOffice] ([DoctorsOfficeId])
 );
+
+
 

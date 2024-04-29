@@ -1,17 +1,24 @@
 ﻿@page
 @model IndexModel
+@using System.Security.Claims
 @{
     ViewData["Title"] = "Home page";
-    Layout = HttpContext.User.Identity.IsAuthenticated ? "_LayoutAuthenticated" : "_Layout";
+    if (HttpContext.User.FindFirstValue(ClaimTypes.Role) != null)
+    {
+        Layout = LayoutAuthorizer.GetLayoutFromRole(this.HttpContext);
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
 }
-
 <div class="jumbotron">
     <div class="container">
         <h1 class="display-4">Welcome to Medical Suite</h1>
         <p class="lead">Your health is our priority. We are committed to providing high-quality healthcare services to our patients.</p>
         <hr class="my-4">
         <p>Contact us today to schedule an appointment or learn more about our services.</p>
-        <a class="btn btn-primary btn-lg" asp-area="" asp-page="/Appointments" role="button">Schedule an Appointment</a>
+        <a class="btn btn-primary btn-lg" asp-area="" asp-page="/Appointments/AddAppointment" role="button">Schedule an Appointment</a>
     </div>
 </div>
 

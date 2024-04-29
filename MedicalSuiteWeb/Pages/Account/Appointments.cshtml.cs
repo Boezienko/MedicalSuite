@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
 using System.Numerics;
 
-namespace MedicalSuiteWeb.Pages
+namespace MedicalSuiteWeb.Pages.Account
 {
 
     public class AppointmentsModel : PageModel

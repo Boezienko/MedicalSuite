@@ -66,7 +66,6 @@
     <Build Include="dbo\Tables\Prescription.sql" />
     <Build Include="dbo\Tables\DoctorsOffice.sql" />
     <Build Include="dbo\Tables\InventoryCategory.sql" />
-    <Build Include="dbo\Tables\Inventory.sql" />
     <Build Include="dbo\Tables\Category.sql" />
     <Build Include="dbo\Tables\Person.sql" />
     <Build Include="dbo\Tables\InventoryItem.sql" />
