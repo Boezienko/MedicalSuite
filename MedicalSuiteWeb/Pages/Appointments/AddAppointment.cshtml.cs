@@ -27,11 +27,13 @@ namespace MedicalSuiteWeb.Pages.Appointments
 
                 using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
                 {
-                    string cmdText = "INSERT INTO Appointments(AppointmentDate, AppointmentTime, PersonId) " +
-                                     "VALUES (@appointmentDate, @appointmentTime, @PersonId)";
+                    string cmdText = "INSERT INTO Appointments(AppointmentDate, AppointmentTime, AppointmentNotes, DoctorsName, PersonId) " +
+                                     "VALUES (@appointmentDate, @appointmentTime, @appointmentNotes, @doctorsName, @PersonId)";
                     SqlCommand cmd = new SqlCommand(cmdText, conn);
                     cmd.Parameters.AddWithValue("@appointmentDate", newAppointment.AppointmentDate);
                     cmd.Parameters.AddWithValue("@appointmentTime", newAppointment.AppointmentTime);
+                    cmd.Parameters.AddWithValue("@appointmentNotes", newAppointment.AppointmentNotes);
+                    cmd.Parameters.AddWithValue("@doctorsName", newAppointment.DoctorsName);
                     cmd.Parameters.AddWithValue("@PersonId", personId);
                     conn.Open();
                     cmd.ExecuteNonQuery();

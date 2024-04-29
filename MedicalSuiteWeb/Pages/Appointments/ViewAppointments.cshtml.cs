@@ -38,7 +38,7 @@ namespace MedicalSuiteWeb.Pages.Appointments
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
 
-                string cmdText = "SELECT AppointmentId, AppointmentDate, AppointmentTime FROM Appointments WHERE PersonId = @PersonId";
+                string cmdText = "SELECT AppointmentId, AppointmentDate, AppointmentTime, AppointmentNotes, DoctorsName FROM Appointments WHERE PersonId = @PersonId";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 cmd.Parameters.AddWithValue("@PersonId", personId);
                 conn.Open();
@@ -51,6 +51,8 @@ namespace MedicalSuiteWeb.Pages.Appointments
                         appointment.AppointmentId = reader.GetInt32(0);
                         appointment.AppointmentDate = reader.GetDateTime(1);
                         appointment.AppointmentTime = reader.GetTimeSpan(2);
+                        appointment.AppointmentNotes = reader.GetString(3);
+                        appointment.DoctorsName = reader.GetString(4);
                         AppointmentList.Add(appointment);
                     }
                 }

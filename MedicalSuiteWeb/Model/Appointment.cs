@@ -16,6 +16,13 @@ namespace MedicalSuiteWeb.Model
         [Display(Name = "Appointment Time: ")]
         public TimeSpan AppointmentTime { get; set; }
 
+        [Display(Name = "Appointment Notes: ")]
+        public string AppointmentNotes { get; set; }
+
+        [Required(ErrorMessage = "Doctor required")]
+        [Display(Name = "Doctor's Name")]
+        public string DoctorsName { get; set; }
+
         [Required]
         [Display(Name = "Person ID: ")]
         public int PersonId { get; set; }

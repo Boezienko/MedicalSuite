@@ -41,6 +41,22 @@
             </div>
             <div class="row m-2">
                 <div class="col-2">
+                    <label class="form-label" asp-for="@appointment.AppointmentNotes">Appointment Notes: </label>
+                </div>
+                <div class="col-10">
+                    <label class="form-label">@appointment.AppointmentNotes</label>
+                </div>
+            </div>
+            <div class="row m-2">
+                <div class="col-2">
+                    <label class="form-label" asp-for="@appointment.DoctorsName">Doctor's Name': </label>
+                </div>
+                <div class="col-10">
+                    <label class="form-label">@appointment.DoctorsName</label>
+                </div>
+            </div>
+            <div class="row m-2">
+                <div class="col-2">
                     <a asp-page="EditAppointment" asp-route-id="@appointment.AppointmentId" class="btn btn-primary">Edit Appointment</a>
                 </div>
                 <div class="col-2">

@@ -26,6 +26,14 @@
                     <label for="time" class="form-label">Time</label>
                     <input type="time" class="form-control" asp-for="newAppointment.AppointmentTime" id="AppointmentTime" required>
                 </div>
+                <div class="mb-3">
+                    <label for="notes" class="form-label">Notes</label>
+                    <textarea class="form-control" id="notes" asp-for="newAppointment.AppointmentNotes" rows="3"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="doctor" class="form-label">DoctorsName</label>
+                    <input type="text" class="form-control" asp-for="newAppointment.DoctorsName" id="DoctorsName" required>
+                </div>
                 <button type="submit" class="btn btn-primary">Schedule Appointment</button>
             </div>
         </div>

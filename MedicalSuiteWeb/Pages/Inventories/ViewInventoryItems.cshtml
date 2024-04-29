@@ -79,6 +79,9 @@
                     <div class="col-2">
                         <a asp-page="EditInventoryItem" asp-route-id="@inventoryItem.InventoryItemId" class="btn btn-primary">Edit</a>
                     </div>
+                    <div class="col-2">
+                        <a asp-page="DeleteInventoryItem" asp-route-id="@inventoryItem.InventoryItemId" class="btn btn-danger" onclick="return confirm('Are you sure you want to remove this appointment? This cannot be undone!');">Delete Item</a>
+                    </div>
                 </div>
                 
             </div>
