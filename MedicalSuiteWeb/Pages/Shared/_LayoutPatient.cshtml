@@ -31,24 +31,37 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/AboutUs">About Us</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Appointments/AddAppointment">Add Appointments</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownAppointments" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Appointments
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownAppointments">
+                                <a class="dropdown-item" asp-area="" asp-page="/Appointments/AddAppointment">Request Appointment</a>
+                                <a class="dropdown-item" asp-area="" asp-page="/Appointments/ViewAppointments">View Your Appointments</a>
+                            </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Appointments/ViewAppointments">View Your Appointments</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Prescriptions/ViewPrescriptions">View Your Prescriptions</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Account/Logout">Logout</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownPrescriptions" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Prescriptions
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownPrescriptions">
+                                <a class="dropdown-item" asp-area="" asp-page="/Prescriptions/ViewPrescriptions">View Your Prescriptions</a>
+                            </div>
                         </li>
                     </ul>
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Account/Profile">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownProfile" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-user-circle"></i> Profile
                             </a>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownProfile">
+                                <a class="dropdown-item" asp-area="" asp-page="/Account/Profile">
+                                    <i class="fas fa-user-circle"></i> Profile
+                                </a>
+                                <a class="dropdown-item" asp-area="" asp-page="/Account/Logout">
+                                    <i class="fas fa-sign-out-alt"></i> Logout
+                                </a>
+                            </div>
                         </li>
                     </ul>
                 </div>

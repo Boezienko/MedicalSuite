@@ -47,12 +47,12 @@ namespace MedicalSuiteWeb.Pages.Account
             {
                 //2. Create a insert command
                 string cmdText = "INSERT INTO Person(FirstName, LastName, Email, PasswordHash, Telephone, LastLoginTime, RoleId)" +
-                    "VALUES(@firstName, @lastName, @email, @password, @telephone, @lastLoginTime, 1)";
+                    "VALUES(@firstName, @lastName, @email, @password, @telephone, @lastLoginTime, 3)";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 cmd.Parameters.AddWithValue("@firstName", NewPerson.FirstName);
                 cmd.Parameters.AddWithValue("@lastName", NewPerson.LastName);
-                cmd.Parameters.AddWithValue("@password", SecurityHelper.generatePasswordHash(NewPerson.Password));
                 cmd.Parameters.AddWithValue("@email", NewPerson.Email);
+                cmd.Parameters.AddWithValue("@password", SecurityHelper.generatePasswordHash(NewPerson.Password));               
                 cmd.Parameters.AddWithValue("@telephone", NewPerson.Telephone);
                 cmd.Parameters.AddWithValue("@lastLoginTime", DateTime.Now.ToString());
                
