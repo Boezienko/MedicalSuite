@@ -44,10 +44,7 @@
                     <a asp-page="EditAppointment" asp-route-id="@appointment.AppointmentId" class="btn btn-primary">Edit Appointment</a>
                 </div>
                 <div class="col-2">
-                    <a asp-page="DeleteAppointment" asp-route-id="@appointment.AppointmentId" class="btn btn-danger" onclick="return confirm('Are you sure you want to remove this appointment? This cannot be undone!');">Delete Appointment</a>
-                </div>
-                <div class="col-2">
-                    <button class="btn btn-secondary" asp-route-id="@appointment.AppointmentId" asp-page-handler="Delete"onclick="return confirm('Are you sure you want to remove this appointment? This cannot be undone!');"></button>
+                    <a asp-page="DeleteAppointment" asp-route-id="@appointment.AppointmentId" class="btn btn-danger">Delete Appointment</a>
                 </div>
             </div>
         </div>

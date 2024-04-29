@@ -1,7 +1,16 @@
 ﻿@page
+@using System.Security.Claims
 @model PrivacyModel
 @{
     ViewData["Title"] = "Privacy Policy";
+    if (HttpContext.User.FindFirstValue(ClaimTypes.Role) != null)
+    {
+        Layout = LayoutAuthorizer.GetLayoutFromRole(this.HttpContext);
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
 }
 
 <h1>@ViewData["Title"]</h1>

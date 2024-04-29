@@ -10,24 +10,18 @@ namespace MedicalSuiteWeb.Pages.Appointments
     public class DeleteAppointmentModel : PageModel
     {
        
-        public IActionResult OnGet(int? id)
+        public IActionResult OnGet(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
             // Delete appointment from the database
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
                 string cmdText = "DELETE FROM Appointments WHERE AppointmentId = @AppointmentId";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
-                cmd.Parameters.AddWithValue("@AppointmentId", id.Value);
+                cmd.Parameters.AddWithValue("@AppointmentId", id);
                 conn.Open();
                 cmd.ExecuteNonQuery();
+                return RedirectToPage("ViewAppointments");
             }
-
-            return RedirectToPage("ViewAppointments");
         }
     }
 }

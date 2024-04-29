@@ -2,45 +2,23 @@ using MedicalSuiteBusiness;
 using MedicalSuiteWeb.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
-using System.Security.Claims;
 
 namespace MedicalSuiteWeb.Pages.Appointments
 {
-
-    [BindProperties]
-    public class ViewAppointmentsModel : PageModel
+    public class ViewAllAppointmentsModel : PageModel
     {
         public List<Appointment> AppointmentList { get; set; } = new List<Appointment>();
-
         public void OnGet()
         {
-            // Fetch Id of person currently logged in
-            int personId = GetCurrentlyLoggedInPersonId();
-
-            // Fetch appointments only for the current user
-            AppointmentList = PopulateAppointmentList(personId);
+            PopulateAppointmentList();
         }
-
-        public void OnPostDelete(int id)
-        {
-            // Delete logic is the same as the DeleteAppointments.cshtml.cs logic
-        }
-
-        private int GetCurrentlyLoggedInPersonId()
-        {
-            return int.Parse(HttpContext.User.FindFirstValue(ClaimTypes.Actor));
-        }
-
-        private List<Appointment> PopulateAppointmentList(int personId)
+        private List<Appointment> PopulateAppointmentList()
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-
-                string cmdText = "SELECT AppointmentId, AppointmentDate, AppointmentTime FROM Appointments WHERE PersonId = @PersonId";
+                string cmdText = "SELECT AppointmentId, AppointmentDate, AppointmentTime FROM Appointments";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
-                cmd.Parameters.AddWithValue("@PersonId", personId);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.HasRows)
@@ -57,6 +35,5 @@ namespace MedicalSuiteWeb.Pages.Appointments
             }
             return AppointmentList;
         }
-
     }
 }
