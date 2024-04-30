@@ -1,5 +1,6 @@
 using MedicalSuiteBusiness;
 using MedicalSuiteWeb.Model;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -19,8 +20,10 @@ namespace MedicalSuiteWeb.Pages.Appointments
             // Fetch Id of person currently logged in
             int personId = GetCurrentlyLoggedInPersonId();
 
+            string userRole = HttpContext.User.FindFirstValue(ClaimTypes.Role).ToString();
+
             // Fetch appointments only for the current user
-            AppointmentList = PopulateAppointmentList(personId);
+            AppointmentList = PopulateAppointmentList(personId, userRole);
         }
 
         public void OnPostDelete(int id)
@@ -33,12 +36,11 @@ namespace MedicalSuiteWeb.Pages.Appointments
             return int.Parse(HttpContext.User.FindFirstValue(ClaimTypes.Actor));
         }
 
-        private List<Appointment> PopulateAppointmentList(int personId)
+        private List<Appointment> PopulateAppointmentList(int personId, string role)
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-
-                string cmdText = "SELECT AppointmentId, AppointmentDate, AppointmentTime, AppointmentNotes, DoctorsName FROM Appointments WHERE PersonId = @PersonId";
+                string cmdText = (role.Equals("Patient")) ? "SELECT AppointmentId, AppointmentDate, AppointmentTime, AppointmentNotes, DoctorsName FROM Appointments WHERE PersonId = @PersonId" : "SELECT AppointmentId, AppointmentDate, AppointmentTime, AppointmentNotes, DoctorsName FROM Appointments";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 cmd.Parameters.AddWithValue("@PersonId", personId);
                 conn.Open();
