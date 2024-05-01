@@ -21,6 +21,7 @@ namespace MedicalSuiteWeb.Pages.Inventories
         public int SelectedCategoryId { get; set; }
         public void OnGet()
         {
+            PopulateInventoryItem(SelectedCategoryId);
             PopulateCategoryDDL();
         }
 
