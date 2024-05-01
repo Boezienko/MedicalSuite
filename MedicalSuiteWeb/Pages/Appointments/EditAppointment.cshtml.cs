@@ -21,11 +21,13 @@ namespace MedicalSuiteWeb.Pages.Appointments
             {
                 using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
                 {
-                    string cmdText = "UPDATE Appointments SET AppointmentId = @appointmentId, AppointmentDate = @appointmentDate, AppointmentTime = @appointmentTime WHERE AppointmentId=@appointmentId";
-                    SqlCommand cmd = new SqlCommand(cmdText, conn);
-                    cmd.Parameters.AddWithValue("@appointmentId", id);
+                    string cmdText = "UPDATE Appointments SET AppointmentDate = @appointmentDate, AppointmentTime = @appointmentTime, AppointmentNotes = @appointmentNotes, DoctorsName = @doctorsName WHERE AppointmentId = @appointmentId";
+                    SqlCommand cmd = new SqlCommand(cmdText, conn);                   
                     cmd.Parameters.AddWithValue("@appointmentDate", specifiedAppointment.AppointmentDate);
                     cmd.Parameters.AddWithValue("@appointmentTime", specifiedAppointment.AppointmentTime);
+                    cmd.Parameters.AddWithValue("@appointmentNotes", specifiedAppointment.AppointmentNotes);
+                    cmd.Parameters.AddWithValue("@doctorsName", specifiedAppointment.DoctorsName);
+                    cmd.Parameters.AddWithValue("@appointmentId", id);
                     conn.Open();
                     cmd.ExecuteNonQuery();
                     return RedirectToPage("ViewAppointments");
@@ -47,7 +49,7 @@ namespace MedicalSuiteWeb.Pages.Appointments
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-                string cmdText = "SELECT AppointmentId, AppointmentDate, AppointmentTime FROM Appointments WHERE AppointmentId=@appointmentId";
+                string cmdText = "SELECT AppointmentId, AppointmentDate, AppointmentTime, AppointmentNotes, DoctorsName FROM Appointments WHERE AppointmentId=@appointmentId";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 cmd.Parameters.AddWithValue("@appointmentId", id);
                 conn.Open();
@@ -60,6 +62,8 @@ namespace MedicalSuiteWeb.Pages.Appointments
                         specifiedAppointment.AppointmentId = id;
                         specifiedAppointment.AppointmentDate = reader.GetDateTime(1);
                         specifiedAppointment.AppointmentTime = reader.GetTimeSpan(2);
+                        specifiedAppointment.AppointmentNotes = reader.GetString(3);
+                        specifiedAppointment.DoctorsName = reader.GetString(4);
                     }
                 }
             }
