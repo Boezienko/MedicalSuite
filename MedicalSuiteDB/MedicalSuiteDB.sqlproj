@@ -70,8 +70,12 @@
     <Build Include="dbo\Tables\Person.sql" />
     <Build Include="dbo\Tables\InventoryItem.sql" />
     <Build Include="dbo\Tables\Appointments.sql" />
+    <Build Include="dbo\Tables\Inventory.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\PopulateDatabase.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="PopulateDatabase2.sql" />
   </ItemGroup>
 </Project>
