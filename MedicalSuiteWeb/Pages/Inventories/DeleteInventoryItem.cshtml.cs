@@ -14,7 +14,7 @@ namespace MedicalSuiteWeb.Pages.Inventories
             // Delete appointment from the database
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-                string cmdText = "DELETE FROM InverntoryItem WHERE InventoryItemId = @InventoryItemId";
+                string cmdText = "DELETE FROM InventoryItem WHERE InventoryItemId = @InventoryItemId";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 cmd.Parameters.AddWithValue("@InventoryItemId", id);
                 conn.Open();
