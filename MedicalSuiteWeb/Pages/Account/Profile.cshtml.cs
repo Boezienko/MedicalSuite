@@ -11,7 +11,7 @@ using Microsoft.Data.SqlClient;
 
 namespace MedicalSuiteWeb.Pages.Account
 {
-    [Authorize]
+    [Authorize(Roles = "Doctor, Nurse, Patient")]
     public class ProfileModel : PageModel
     {
         [BindProperty]

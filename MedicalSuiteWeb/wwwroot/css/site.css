@@ -21,6 +21,11 @@ body {
     margin-bottom: 60px;
 }
 
+.iconHolder {
+    margin: auto;
+    height: 50%;
+    width: 50%;
+}
 
 /*.form-label, form-control {
     color: black;

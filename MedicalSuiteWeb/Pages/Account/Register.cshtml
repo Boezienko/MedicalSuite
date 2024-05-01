@@ -22,7 +22,6 @@
         background-color: transparent;
     }
 
-
     h2 {
         text-align: center;
         margin-bottom: 20px;
@@ -42,6 +41,16 @@
 
     .text-danger {
         color: red;
+    }
+
+    /* New CSS for inline button */
+    .password-container {
+        display: flex;
+        align-items: center;
+    }
+
+    #togglePassword {
+        margin-left: 10px;
     }
 </style>
 
@@ -73,7 +82,10 @@
     <div class="row m-2">
         <div class="col-12">
             <label class="form-label" asp-for="NewPerson.Password">Password</label>
-            <input type="password" class="form-control" asp-for="NewPerson.Password" placeholder="Enter your password" />
+            <div class="password-container">
+                <input type="password" class="form-control" asp-for="NewPerson.Password" placeholder="Enter your password" id="password" />
+                <button type="button" id="togglePassword" onclick="togglePasswordVisibility()"><i id="eyeIcon" class="bi bi-eye"></i></button>
+            </div>
             <span asp-validation-for="NewPerson.Password" class="text-danger"></span>
         </div>
     </div>
@@ -90,3 +102,19 @@
         </div>
     </div>
 </form>
+
+<script>
+    function togglePasswordVisibility() {
+        var passwordInput = document.getElementById("password");
+        var eyeIcon = document.getElementById("eyeIcon");
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            eyeIcon.className = "bi bi-eye-slash";
+        } else {
+            passwordInput.type = "password";
+            eyeIcon.className = "bi bi-eye";
+        }
+
+    }
+</script>
