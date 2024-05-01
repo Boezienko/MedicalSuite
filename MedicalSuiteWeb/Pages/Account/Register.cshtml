@@ -2,6 +2,9 @@
 @using System.Security.Claims
 @model MedicalSuiteWeb.Pages.Account.RegisterModel
 @{
+    ViewData["Title"] = "Register";
+}
+@{
     if (HttpContext.User.FindFirstValue(ClaimTypes.Role) != null)
     {
         Layout = LayoutAuthorizer.GetLayoutFromRole(this.HttpContext);
@@ -50,6 +53,8 @@
     }
 
     #togglePassword {
+        margin: auto;
+        margin-bottom: 10px;
         margin-left: 10px;
     }
 </style>
@@ -84,7 +89,7 @@
             <label class="form-label" asp-for="NewPerson.Password">Password</label>
             <div class="password-container">
                 <input type="password" class="form-control" asp-for="NewPerson.Password" placeholder="Enter your password" id="password" />
-                <button type="button" id="togglePassword" onclick="togglePasswordVisibility()"><i id="eyeIcon" class="bi bi-eye"></i></button>
+                <button type="button" id="togglePassword" class="btn btn-secondary" onclick="togglePasswordVisibility()"><i id="eyeIcon" class="bi bi-eye"></i></button>
             </div>
             <span asp-validation-for="NewPerson.Password" class="text-danger"></span>
         </div>

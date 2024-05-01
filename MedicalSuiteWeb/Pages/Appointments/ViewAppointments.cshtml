@@ -2,6 +2,9 @@
 @model MedicalSuiteWeb.Pages.Appointments.ViewAppointmentsModel
 @using System.Security.Claims
 @{
+    ViewData["Title"] = "View_Appointments";
+}
+@{
     if (HttpContext.User.FindFirstValue(ClaimTypes.Role) != null)
     {
         Layout = LayoutAuthorizer.GetLayoutFromRole(this.HttpContext);
@@ -11,6 +14,7 @@
         Layout = "_Layout";
     }
 }
+
 <form method="get" class="form-group">
     @foreach (var appointment in Model.AppointmentList)
     {
@@ -62,9 +66,11 @@
                 <div class="col-2">
                     <a asp-page="DeleteAppointment" asp-route-id="@appointment.AppointmentId" class="btn btn-danger" onclick="return confirm('Are you sure you want to remove this appointment? This cannot be undone!');">Delete Appointment</a>
                 </div>
+                <!--
                 <div class="col-2">
                     <button class="btn btn-secondary" asp-route-id="@appointment.AppointmentId" asp-page-handler="Delete"onclick="return confirm('Are you sure you want to remove this appointment? This cannot be undone!');"></button>
                 </div>
+                -->
             </div>
         </div>
     }

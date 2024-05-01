@@ -2,6 +2,9 @@
 @using System.Security.Claims
 @model MedicalSuiteWeb.Pages.Appointments.EditAppointmentModel
 @{
+    ViewData["Title"] = "Edit_Appointment";
+}
+@{
     if (HttpContext.User.FindFirstValue(ClaimTypes.Role) != null)
     {
         Layout = LayoutAuthorizer.GetLayoutFromRole(this.HttpContext);

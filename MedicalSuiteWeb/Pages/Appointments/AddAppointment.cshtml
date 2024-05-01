@@ -2,6 +2,9 @@
 @model MedicalSuiteWeb.Pages.Appointments.AddAppointmentModel
 @using System.Security.Claims
 @{
+    ViewData["Title"] = "Add_Appointment";
+}
+@{
     if (HttpContext.User.FindFirstValue(ClaimTypes.Role) != null)
     {
         Layout = LayoutAuthorizer.GetLayoutFromRole(this.HttpContext);

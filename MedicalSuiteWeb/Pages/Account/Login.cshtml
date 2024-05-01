@@ -2,6 +2,9 @@
 @model MedicalSuiteWeb.Pages.Account.LoginModel
 @using System.Security.Claims
 @{
+    ViewData["Title"] = "Login";
+}
+@{
     if (HttpContext.User.FindFirstValue(ClaimTypes.Role) != null) {
         Layout = LayoutAuthorizer.GetLayoutFromRole(this.HttpContext);
     }

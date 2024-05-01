@@ -1,7 +1,62 @@
 ﻿@page
 @model MedicalSuiteWeb.Pages.Prescription.AddPrescriptionModel
+@using System.Security.Claims
 @{
-    
-   
+    ViewData["Title"] = "View_Inventory";
 }
-<h1>Nothing here yet</h1>
+@{
+    if (HttpContext.User.FindFirstValue(ClaimTypes.Role) != null)
+    {
+        Layout = LayoutAuthorizer.GetLayoutFromRole(this.HttpContext);
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
+}
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4">Add Prescription to User</h2>
+        <form>
+            <div class="mb-3">
+                <label for="user-name" class="form-label">User Name:</label>
+                <input type="text" id="user-name" name="user-name" value="John Doe" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label for="prescription-date" class="form-label">Prescription Date:</label>
+                <input type="date" id="prescription-date" name="prescription-date" value="2024-05-01" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label for="drug-name" class="form-label">Drug Name:</label>
+                <input type="text" id="drug-name" name="drug-name" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label for="dispensed-amount" class="form-label">Dispensed Amount:</label>
+                <input type="number" id="dispensed-amount" name="dispensed-amount" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label for="instructions" class="form-label">Instructions:</label>
+                <textarea id="instructions" name="instructions" rows="4" class="form-control"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="refills" class="form-label">Refills:</label>
+                <input type="number" id="refills" name="refills" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label for="provider" class="form-label">Provider:</label>
+                <select id="provider" name="provider" class="form-select">
+                    <option value="Dr. Smith">Dr. Smith</option>
+                    <option value="Dr. Johnson">Dr. Johnson</option>
+                    <!-- Add more options as needed -->
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Add Prescription</button>
+        </form>
+</body>
