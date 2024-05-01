@@ -1,5 +1,6 @@
 using MedicalSuiteBusiness;
 using MedicalSuiteWeb.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -8,6 +9,8 @@ using Microsoft.Data.SqlClient;
 namespace MedicalSuiteWeb.Pages.Inventories
 {
     [BindProperties]
+
+    [Authorize(Roles = "Doctor, Nurse")]
     public class AddInventoryItemModel : PageModel
     {
         public InventoryItem newInventoryItem { get; set; } = new InventoryItem();

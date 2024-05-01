@@ -1,5 +1,6 @@
 using MedicalSuiteBusiness;
 using MedicalSuiteWeb.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -9,6 +10,8 @@ using System.Security.Claims;
 namespace MedicalSuiteWeb.Pages.Appointments
 {
     [BindProperties]
+
+    [Authorize(Roles = "Doctor, Nurse, Patient")]
     public class AddAppointmentModel : PageModel
     {
         public Appointment newAppointment { get; set; } = new Appointment();

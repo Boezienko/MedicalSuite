@@ -1,5 +1,6 @@
 using MedicalSuiteBusiness;
 using MedicalSuiteWeb.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
@@ -7,6 +8,7 @@ using System;
 
 namespace MedicalSuiteWeb.Pages.Appointments
 {
+    [Authorize(Roles = "Doctor, Nurse, Patient")]
     public class DeleteAppointmentModel : PageModel
     {
        
