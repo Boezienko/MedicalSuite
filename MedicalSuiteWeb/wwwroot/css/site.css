@@ -144,3 +144,45 @@ p {
 main {
     margin-bottom: 400px;
 }
+
+form {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.form-control {
+    margin-bottom: 10px;
+}
+
+.btn-register {
+    width: 100%;
+}
+
+.text-danger {
+    color: red;
+}
+
+/* New CSS for inline button */
+.password-container {
+    display: flex;
+    align-items: center;
+}
+
+#togglePassword {
+    margin: auto;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
