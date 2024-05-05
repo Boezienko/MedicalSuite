@@ -2,7 +2,7 @@
 
 namespace MedicalSuiteWeb.Model
 {
-    public class Prescription
+    public class Prescription2
     {
         public int PrescriptionId { get; set; }
         [Required(ErrorMessage = "Name is required")]
@@ -13,7 +13,7 @@ namespace MedicalSuiteWeb.Model
         public string PrescriptionStrength { get; set; }
         [Required(ErrorMessage = "Quantity is required")]
         [Display(Name = "Prescription Quantity: ")]
-        public string PrescriptionQuantity {  get; set; }
+        public string PrescriptionQuantity { get; set; }
         [Required(ErrorMessage = "Direction are required")]
         [Display(Name = "Prescription Directions: ")]
         public string PrescriptionDirections { get; set; }

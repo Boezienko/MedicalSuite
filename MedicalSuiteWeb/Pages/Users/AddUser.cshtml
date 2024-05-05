@@ -1,0 +1,62 @@
+﻿@page
+@using System.Security.Claims
+@model MedicalSuiteWeb.Pages.Users.AddUserModel
+@{
+    ViewData["Title"] = "Add_Users";
+}
+@{
+    if (HttpContext.User.FindFirstValue(ClaimTypes.Role) != null)
+    {
+        Layout = LayoutAuthorizer.GetLayoutFromRole(this.HttpContext);
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
+}
+<form method="post">
+    <div class="row text-danger" asp-validation-summary="All"></div>
+    <div class="row m-2">
+        <div class="col-12">
+            <label class="form-label" asp-for="newUser.FirstName">First Name</label>
+            <input type="text" class="form-control" asp-for="newUser.FirstName" placeholder="Enter users first name" />
+            <span asp-validation-for="newUser.FirstName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col-12">
+            <label class="form-label" asp-for="newUser.LastName">Last Name</label>
+            <input type="text" class="form-control" asp-for="newUser.LastName" placeholder="Enter users last name" />
+            <span asp-validation-for="newUser.LastName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col-12">
+            <label class="form-label" asp-for="newUser.Email">Email</label>
+            <input type="email" class="form-control" asp-for="newUser.Email" placeholder="Enter users email" />
+            <span asp-validation-for="newUser.Email" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col-12">
+            <label class="form-label" asp-for="newUser.Password">Password</label>
+            <div class="password-container">
+                <input type="password" class="form-control" asp-for="newUser.Password" placeholder="Enter users password" id="password" />
+                <button type="button" id="togglePassword" class="btn btn-secondary" onclick="togglePasswordVisibility()"><i id="eyeIcon" class="bi bi-eye"></i></button>
+            </div>
+            <span asp-validation-for="newUser.Password" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col-12">
+            <label class="form-label" asp-for="newUser.Telephone">Telephone</label>
+            <input type="tel" class="form-control" asp-for="newUser.Telephone" placeholder="Enter users telephone number" />
+            <span asp-validation-for="newUser.Telephone" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col-12">
+            <button id="btnRegister" class="btn btn-primary btn-register">Create User</button>
+        </div>
+    </div>
+</form>

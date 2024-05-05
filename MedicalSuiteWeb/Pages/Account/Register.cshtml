@@ -16,47 +16,7 @@
 }
 
 <style>
-    form {
-        max-width: 400px;
-        margin: auto;
-        padding: 20px;
-        border: 1px solid black;
-        border-radius: 5px;
-        background-color: transparent;
-    }
-
-    h2 {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    .form-label {
-        font-weight: bold;
-    }
-
-    .form-control {
-        margin-bottom: 10px;
-    }
-
-    .btn-register {
-        width: 100%;
-    }
-
-    .text-danger {
-        color: red;
-    }
-
-    /* New CSS for inline button */
-    .password-container {
-        display: flex;
-        align-items: center;
-    }
-
-    #togglePassword {
-        margin: auto;
-        margin-bottom: 10px;
-        margin-left: 10px;
-    }
+    
 </style>
 
 <h2>Register</h2>
@@ -107,19 +67,3 @@
         </div>
     </div>
 </form>
-
-<script>
-    function togglePasswordVisibility() {
-        var passwordInput = document.getElementById("password");
-        var eyeIcon = document.getElementById("eyeIcon");
-
-        if (passwordInput.type === "password") {
-            passwordInput.type = "text";
-            eyeIcon.className = "bi bi-eye-slash";
-        } else {
-            passwordInput.type = "password";
-            eyeIcon.className = "bi bi-eye";
-        }
-
-    }
-</script>
