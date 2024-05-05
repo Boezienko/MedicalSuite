@@ -19,42 +19,43 @@
         <h2 class="mb-4">Add Prescription to User</h2>
         <form>
             <div class="mb-3">
-                <label for="user-name" class="form-label">User Name:</label>
-                <input type="text" id="user-name" name="user-name" value="John Doe" class="form-control">
+                <label asp-for="newPrescription.PrescriptionName" class="form-label"></label>
+                <input type="text" id="user-name" asp-for="newPrescription.PrescriptionName" name="user-name" class="form-control">
             </div>
 
             <div class="mb-3">
-                <label for="prescription-date" class="form-label">Prescription Date:</label>
-                <input type="date" id="prescription-date" name="prescription-date" value="2024-05-01" class="form-control">
+                <label asp-for="newPrescription.PrescriptionStrength" class="form-label"></label>
+                <input type="text" id="user-name" asp-for="newPrescription.PrescriptionStrength" name="prescription-strength" class="form-control">
             </div>
 
             <div class="mb-3">
-                <label for="drug-name" class="form-label">Drug Name:</label>
-                <input type="text" id="drug-name" name="drug-name" class="form-control">
+                <label asp-for="newPrescription.PrescriptionQuantity" class="form-label"></label>
+                <input type="text" id="prescription-quantity" name="prescription-quantity" asp-for="newPrescription.PrescriptionQuantity" class="form-control">
             </div>
 
             <div class="mb-3">
-                <label for="dispensed-amount" class="form-label">Dispensed Amount:</label>
-                <input type="number" id="dispensed-amount" name="dispensed-amount" class="form-control">
+                <label asp-for="newPrescription.PrescriptionDirections" class="form-label"></label>
+                <input type="text" id="prescription-date" name="prescription-date" asp-for="newPrescription.PrescriptionDirections" class="form-control">
             </div>
 
             <div class="mb-3">
-                <label for="instructions" class="form-label">Instructions:</label>
-                <textarea id="instructions" name="instructions" rows="4" class="form-control"></textarea>
+                <label asp-for="newPrescription.WrittenDate" class="form-label"></label>
+                <input type="date" id="prescription-date" name="prescription-date" asp-for="newPrescription.WrittenDate" class="form-control">
+            </div
+
+            <div class="mb-3">
+                <label asp-for="newPrescription.ExpirationDate" class="form-label"></label>
+                <input type="text" id="prescription-date" name="prescription-date" asp-for="newPrescription.ExpirationDate" class="form-control">
             </div>
 
             <div class="mb-3">
-                <label for="refills" class="form-label">Refills:</label>
-                <input type="number" id="refills" name="refills" class="form-control">
+                <label asp-for="newPrescription.Notes" class="form-label"></label>
+                <input type="text" id="prescription-date" name="prescription-date" asp-for="newPrescription.Notes" class="form-control">
             </div>
 
             <div class="mb-3">
-                <label for="provider" class="form-label">Provider:</label>
-                <select id="provider" name="provider" class="form-select">
-                    <option value="Dr. Smith">Dr. Smith</option>
-                    <option value="Dr. Johnson">Dr. Johnson</option>
-                    <!-- Add more options as needed -->
-                </select>
+                <label asp-for="newPrescription.CategoryId" class="form-label"></label>
+                <input type="text" id="prescription-date" name="prescription-date" asp-for="newPrescription.CategoryId" class="form-control">
             </div>
 
             <button type="submit" class="btn btn-primary">Add Prescription</button>
