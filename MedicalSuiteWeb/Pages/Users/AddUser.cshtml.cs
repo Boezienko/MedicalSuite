@@ -1,21 +1,19 @@
 using MedicalSuiteBusiness;
 using MedicalSuiteWeb.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
-
-
-namespace MedicalSuiteWeb.Pages.Account
+namespace MedicalSuiteWeb.Pages.Users
 {
-    public class RegisterModel : PageModel
-    {
-        [BindProperty]
-        public Person NewPerson { get; set; }
-        public void OnGet()
-        {
-            //NewPerson.FirstName = "Please enter your first name";
-        }      
+    [BindProperties]
 
+    [Authorize(Roles = "Doctor, Nurse")]
+
+    public class AddUserModel : PageModel
+    {
+        public Person newUser { get; set; } = new Person();
         public IActionResult OnPost()
 
         {
@@ -23,10 +21,10 @@ namespace MedicalSuiteWeb.Pages.Account
             {
                 // Check if email already exists in DB
 
-                if (EmailDNE(NewPerson.Email)) //DNE - Does Not Exist
+                if (EmailDNE(newUser.Email)) //DNE - Does Not Exist
                 {
                     RegisterUser();
-                    return RedirectToPage("Login");
+                    return RedirectToPage("ViewUsers");
                 }
                 else
                 {
@@ -40,7 +38,6 @@ namespace MedicalSuiteWeb.Pages.Account
                 return Page();
             }
         }
-
         private void RegisterUser()
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
@@ -49,11 +46,11 @@ namespace MedicalSuiteWeb.Pages.Account
                 string cmdText = "INSERT INTO Person(FirstName, LastName, Email, PasswordHash, Telephone, LastLoginTime, RoleId)" +
                     "VALUES(@firstName, @lastName, @email, @password, @telephone, @lastLoginTime, 1)";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
-                cmd.Parameters.AddWithValue("@firstName", NewPerson.FirstName);
-                cmd.Parameters.AddWithValue("@lastName", NewPerson.LastName);
-                cmd.Parameters.AddWithValue("@email", NewPerson.Email);
-                cmd.Parameters.AddWithValue("@password", SecurityHelper.generatePasswordHash(NewPerson.Password));               
-                cmd.Parameters.AddWithValue("@telephone", NewPerson.Telephone);
+                cmd.Parameters.AddWithValue("@firstName", newUser.FirstName);
+                cmd.Parameters.AddWithValue("@lastName", newUser.LastName);
+                cmd.Parameters.AddWithValue("@email", newUser.Email);
+                cmd.Parameters.AddWithValue("@password", SecurityHelper.generatePasswordHash(newUser.Password));               
+                cmd.Parameters.AddWithValue("@telephone", newUser.Telephone);
                 cmd.Parameters.AddWithValue("@lastLoginTime", DateTime.Now.ToString());
                
                 //3. Open the database 
@@ -86,3 +83,4 @@ namespace MedicalSuiteWeb.Pages.Account
         }
     }
 }
+
