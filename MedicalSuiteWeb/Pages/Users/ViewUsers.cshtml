@@ -1,0 +1,56 @@
+﻿@page
+@using System.Security.Claims
+@model MedicalSuiteWeb.Pages.Users.ViewUsersModel
+@{
+    ViewData["Title"] = "View_Users";
+}
+@{
+    if (HttpContext.User.FindFirstValue(ClaimTypes.Role) != null)
+    {
+        Layout = LayoutAuthorizer.GetLayoutFromRole(this.HttpContext);
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
+}
+
+@foreach (var user in Model.Users){
+    <div class="row m-2 border">
+        <div class="row m-2">
+            <div class="col-2">
+                <label class="form-label" asp-for="@user.FirstName"></label>
+            </div>
+            <div class="col-10">
+                <label class="form-label">@user.FirstName</label>
+            </div>
+        </div>
+
+        <div class="row m-2">
+            <div class="col-2">
+                <label class="form-label" asp-for="@user.LastName"></label>
+            </div>
+            <div class="col-10">
+                <label class="form-label">@user.LastName</label>
+            </div>
+        </div>
+
+        <div class="row m-2">
+            <div class="col-2">
+                <label class="form-label" asp-for="@user.Email"></label>
+            </div>
+            <div class="col-10">
+                <label class="form-label">@user.Email</label>
+            </div>
+        </div>
+
+        <div class="row m-2">
+            <div class="col-2">
+                <label class="form-label" asp-for="@user.Telephone"></label>
+            </div>
+            <div class="col-10">
+                <label class="form-label">@user.Telephone</label>
+            </div>
+        </div>
+    </div>
+}
