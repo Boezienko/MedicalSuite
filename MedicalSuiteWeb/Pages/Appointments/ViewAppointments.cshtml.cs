@@ -39,13 +39,13 @@ namespace MedicalSuiteWeb.Pages.Appointments
             return int.Parse(HttpContext.User.FindFirstValue(ClaimTypes.Actor));
         }
 
-        private List<Appointment> PopulateAppointmentList(int personId, string role)
+        private List<Appointment> PopulateAppointmentList(int userId, string role)
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
                 string cmdText = (role.Equals("Patient")) ? "SELECT AppointmentId, AppointmentDate, AppointmentTime, AppointmentNotes, DoctorsName FROM Appointments WHERE PersonId = @PersonId" : "SELECT AppointmentId, AppointmentDate, AppointmentTime, AppointmentNotes, DoctorsName FROM Appointments";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
-                cmd.Parameters.AddWithValue("@PersonId", personId);
+                cmd.Parameters.AddWithValue("@PersonId", userId);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.HasRows)
