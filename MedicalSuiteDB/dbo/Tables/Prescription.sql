@@ -8,10 +8,13 @@
     [ExpirationDate]         DATE          NOT NULL,
     [PrescriptionScheduleId] INT           NOT NULL,
     [PersonId]               INT           NOT NULL,
+    [DoctorsName]            VARCHAR (50)  NOT NULL,
     CONSTRAINT [PK_Prescription] PRIMARY KEY CLUSTERED ([PrescriptionId] ASC),
     CONSTRAINT [FK_Prescription_Person] FOREIGN KEY ([PersonId]) REFERENCES [dbo].[Person] ([PersonId]),
     CONSTRAINT [FK_Prescription_PrescriptionSchedule] FOREIGN KEY ([PrescriptionScheduleId]) REFERENCES [dbo].[PrescriptionSchedule] ([PrescriptionScheduleId])
 );
+
+
 
 
 

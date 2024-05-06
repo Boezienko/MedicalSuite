@@ -23,8 +23,13 @@ namespace MedicalSuiteWeb.Model
         [Required(ErrorMessage = "Expiration Date is required")]
         [Display(Name = "Expiration Date: ")]
         public DateTime ExpirationDate { get; set; }
-        public String Notes { get; set; }
-        public int CategoryId { get; set; }
+        [Required(ErrorMessage = "Prescription Schedule is required")]
+        [Display(Name = "Prescription Schedule: ")]
+        public int PrescriptionScheduleId { get; set; }
+        [Required(ErrorMessage = "PersonId is required")]
+        public int PersonId { get; set; }
+        [Required(ErrorMessage = "DoctorsName is required")]
+        public string DoctorsName { get; set; }
 
     }
 }

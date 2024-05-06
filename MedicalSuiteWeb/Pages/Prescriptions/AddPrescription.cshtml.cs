@@ -27,8 +27,8 @@ namespace MedicalSuiteWeb.Pages.Prescriptions
             {
                 using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
                 {
-                    string cmdText = "INSERT INTO Prescription(PrescriptionName, PrescriptionStrength, PrescriptionQuantity, PrescriptionDirections, WrittenDate, ExpirationDate, Notes, PrescriptionScheduleId, PersonId) " +
-                        "VALUES (@name, @strength, @quantity, @directions, @writtenDate, @expirationDate, @notes, @categoryId)";
+                    string cmdText = "INSERT INTO Prescription(PrescriptionName, PrescriptionStrength, PrescriptionQuantity, PrescriptionDirections, WrittenDate, ExpirationDate, PrescriptionScheduleId, PersonId, DoctorsName) " +
+                        "VALUES (@name, @strength, @quantity, @directions, @writtenDate, @expirationDate, @scheduleId, @personId, @doctorsName)";
                     SqlCommand cmd = new SqlCommand(cmdText, conn);
                     cmd.Parameters.AddWithValue("@name", newPrescription.PrescriptionName);
                     cmd.Parameters.AddWithValue("@strength", newPrescription.PrescriptionStrength);
@@ -36,12 +36,12 @@ namespace MedicalSuiteWeb.Pages.Prescriptions
                     cmd.Parameters.AddWithValue("@directions", newPrescription.PrescriptionDirections);
                     cmd.Parameters.AddWithValue("@writtenDate", newPrescription.WrittenDate);
                     cmd.Parameters.AddWithValue("@expirationDate", newPrescription.ExpirationDate);
-                    cmd.Parameters.AddWithValue("@notes", newPrescription.Notes);
-                    cmd.Parameters.AddWithValue("@categoryId", newPrescription.CategoryId);
-
+                    cmd.Parameters.AddWithValue("@scheduleId", newPrescription.PrescriptionScheduleId);
+                    cmd.Parameters.AddWithValue("@personId", newPrescription.PersonId);
+                    cmd.Parameters.AddWithValue("@doctorsName", newPrescription.DoctorsName);
                     conn.Open();
                     cmd.ExecuteNonQuery();
-                    return RedirectToPage("ViewPrescription");
+                    return RedirectToPage("ViewPrescriptions");
 
                 }
             }
@@ -85,7 +85,7 @@ namespace MedicalSuiteWeb.Pages.Prescriptions
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-                string cmdText = "SELECT PrescriptionSchedules FROM PrescriptionSchedule ORDER BY PrescriptionSchedules";
+                string cmdText = "SELECT PrescriptionScheduleId, PrescriptionSchedules FROM PrescriptionSchedule ORDER BY PrescriptionSchedules";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -94,7 +94,8 @@ namespace MedicalSuiteWeb.Pages.Prescriptions
                     while (reader.Read())
                     {
                         var schedule = new SelectListItem();
-                        schedule.Text= reader.GetString(0).ToString();
+                        schedule.Value = reader.GetInt32(0).ToString();
+                        schedule.Text= reader.GetString(1).ToString();
                         listOfSchedules.Add(schedule);
                     }
                 }
@@ -105,7 +106,7 @@ namespace MedicalSuiteWeb.Pages.Prescriptions
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-                string cmdText = "SELECT FirstName, LastName FROM Person WHERE RoleId = 1";
+                string cmdText = "SELECT PersonId, FirstName, LastName FROM Person WHERE RoleId = 1";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -114,7 +115,8 @@ namespace MedicalSuiteWeb.Pages.Prescriptions
                     while (reader.Read())
                     {
                         var doctor = new SelectListItem();
-                        doctor.Text = $"{reader.GetString(0)} {reader.GetString(1)}";
+                        doctor.Value = reader.GetInt32(0).ToString();
+                        doctor.Text = $"{reader.GetString(1)} {reader.GetString(2)}";
                         listOfDoctors.Add(doctor);
                     }
                 }

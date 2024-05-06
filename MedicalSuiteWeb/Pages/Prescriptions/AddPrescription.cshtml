@@ -19,12 +19,12 @@
 <form method="post" class="container mt-4">
     <div class="row mb-3">
         <div class="col-md-6">
-            <label asp-for="newPrescription.PrescriptionName" class="form-label">Name</label>
-            <input type="text" class="form-control" asp-for="newPrescription.PrescriptionName" />
+            <label asp-for="newPrescription.PersonId" class="form-label">Patient</label>
+            <select class="form-control" asp-for="newPrescription.PersonId" asp-items="@Model.listOfPatients"></select>
         </div>
         <div class="col-md-6">
-            <label asp-for="newPrescription.WrittenDate" class="form-label">Written Date</label>
-            <input type="date" class="form-control" asp-for="newPrescription.WrittenDate" />
+            <label asp-for="newPrescription.PrescriptionName" class="form-label">Prescription Name</label>
+            <input type="text" class="form-control" asp-for="newPrescription.PrescriptionName" />
         </div>
         
     </div>
@@ -34,19 +34,18 @@
             <input type="text" class="form-control" asp-for="newPrescription.PrescriptionStrength" />
         </div>
         <div class="col-md-6">
-            <label asp-for="newPrescription.ExpirationDate" class="form-label">Expiration Date</label>
-            <input type="date" class="form-control" asp-for="newPrescription.ExpirationDate" />
+            <label asp-for="newPrescription.WrittenDate" class="form-label">Written Date</label>
+            <input type="date" class="form-control" asp-for="newPrescription.WrittenDate" />
         </div>
-        
     </div>
     <div class="row mb-3">
         <div class="col-md-6">
             <label asp-for="newPrescription.PrescriptionQuantity" class="form-label">Quantity</label>
-            <input type="text" class="form-control" asp-for="newPrescription.PrescriptionQuantity" />
+            <input type="text" class="form-control" asp-for="newPrescription.PrescriptionQuantity"/>
         </div>
         <div class="col-md-6">
-            <label asp-for="newPrescription.CategoryId" class="form-label">Patient</label>
-            <select class="form-control" asp-for="newPrescription.CategoryId" asp-items="@Model.listOfPatients"></select>
+            <label asp-for="newPrescription.ExpirationDate" class="form-label">Expiration Date</label>
+            <input type="date" class="form-control" asp-for="newPrescription.ExpirationDate" />
         </div>
     </div>
     <div class="row mb-3">
@@ -55,11 +54,10 @@
             <textarea class="form-control" asp-for="newPrescription.PrescriptionDirections" style="width: 100%; height: 200px;"></textarea>
         </div>
         <div class="col-md-6">
-            <label asp-for="newPrescription.CategoryId" class="form-label">Drug Schedule</label>
-            <select class="form-control" asp-for="newPrescription.CategoryId" asp-items="@Model.listOfSchedules"></select>
-            <br/>
-            <label asp-for="newPrescription.CategoryId" class="form-label">Doctor</label>
-            <select class="form-control" asp-for="newPrescription.CategoryId" asp-items="@Model.listOfDoctors"></select>
+            <label asp-for="newPrescription.PrescriptionScheduleId" class="form-label">Drug Schedule</label>
+            <select class="form-control" asp-for="newPrescription.PrescriptionScheduleId" asp-items="@Model.listOfSchedules"></select>
+            <label asp-for="newPrescription.DoctorsName" class="form-label">Doctor</label>
+            <select class="form-control" asp-for="newPrescription.DoctorsName" asp-items="@Model.listOfDoctors"></select>
         </div>
     </div>
     <div class="row">
