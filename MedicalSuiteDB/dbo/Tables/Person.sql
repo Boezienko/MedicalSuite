@@ -8,10 +8,10 @@
     [PrescriptionId] INT          NULL,
     [RoleId]         INT          NOT NULL,
     [Telephone]      VARCHAR (20) NOT NULL,
-    CONSTRAINT [PK_Person] PRIMARY KEY CLUSTERED ([PersonId] ASC),
-    CONSTRAINT [FK_Person_Prescription] FOREIGN KEY ([PrescriptionId]) REFERENCES [dbo].[Prescription] ([PrescriptionId]),
-    CONSTRAINT [FK_Person_Role] FOREIGN KEY ([RoleId]) REFERENCES [dbo].[Role] ([RoleId])
+    CONSTRAINT [PK_Person] PRIMARY KEY CLUSTERED ([PersonId] ASC)
 );
+
+
 
 
 
