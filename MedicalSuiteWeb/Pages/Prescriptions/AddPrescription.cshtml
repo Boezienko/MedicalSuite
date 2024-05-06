@@ -19,47 +19,47 @@
 <form method="post" class="container mt-4">
     <div class="row mb-3">
         <div class="col-md-6">
-            <label asp-for="NewPrescription.PrescriptionName" class="form-label">Name</label>
-            <input type="text" class="form-control" asp-for="NewPrescription.PrescriptionName" />
+            <label asp-for="newPrescription.PrescriptionName" class="form-label">Name</label>
+            <input type="text" class="form-control" asp-for="newPrescription.PrescriptionName" />
         </div>
         <div class="col-md-6">
-            <label asp-for="NewPrescription.WrittenDate" class="form-label">Written Date</label>
-            <input type="date" class="form-control" asp-for="NewPrescription.WrittenDate" />
-        </div>
-        
-    </div>
-    <div class="row mb-3">
-        <div class="col-md-6">
-            <label asp-for="NewPrescription.PrescriptionStrength" class="form-label">Strength</label>
-            <input type="text" class="form-control" asp-for="NewPrescription.PrescriptionStrength" />
-        </div>
-        <div class="col-md-6">
-            <label asp-for="NewPrescription.ExpirationDate" class="form-label">Expiration Date</label>
-            <input type="date" class="form-control" asp-for="NewPrescription.ExpirationDate" />
+            <label asp-for="newPrescription.WrittenDate" class="form-label">Written Date</label>
+            <input type="date" class="form-control" asp-for="newPrescription.WrittenDate" />
         </div>
         
     </div>
     <div class="row mb-3">
         <div class="col-md-6">
-            <label asp-for="NewPrescription.PrescriptionQuantity" class="form-label">Quantity</label>
-            <input type="text" class="form-control" asp-for="NewPrescription.PrescriptionQuantity" />
+            <label asp-for="newPrescription.PrescriptionStrength" class="form-label">Strength</label>
+            <input type="text" class="form-control" asp-for="newPrescription.PrescriptionStrength" />
         </div>
         <div class="col-md-6">
-            <label asp-for="NewPrescription.CategoryId" class="form-label">Patient</label>
-            <select class="form-control" asp-for="NewPrescription.CategoryId" asp-items="@Model.People"></select>
+            <label asp-for="newPrescription.ExpirationDate" class="form-label">Expiration Date</label>
+            <input type="date" class="form-control" asp-for="newPrescription.ExpirationDate" />
+        </div>
+        
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label asp-for="newPrescription.PrescriptionQuantity" class="form-label">Quantity</label>
+            <input type="text" class="form-control" asp-for="newPrescription.PrescriptionQuantity" />
+        </div>
+        <div class="col-md-6">
+            <label asp-for="newPrescription.CategoryId" class="form-label">Patient</label>
+            <select class="form-control" asp-for="newPrescription.CategoryId" asp-items="@Model.listOfPatients"></select>
         </div>
     </div>
     <div class="row mb-3">
         <div class="col-md-6">
-            <label asp-for="NewPrescription.PrescriptionDirections" class="form-label">Directions</label>
-            <textarea class="form-control" asp-for="NewPrescription.PrescriptionDirections" style="width: 100%; height: 200px;"></textarea>
+            <label asp-for="newPrescription.PrescriptionDirections" class="form-label">Directions</label>
+            <textarea class="form-control" asp-for="newPrescription.PrescriptionDirections" style="width: 100%; height: 200px;"></textarea>
         </div>
         <div class="col-md-6">
-            <label asp-for="NewPrescription.CategoryId" class="form-label">Drug Schedule</label>
-            <select class="form-control" asp-for="NewPrescription.CategoryId" asp-items="@Model.People"></select>
+            <label asp-for="newPrescription.CategoryId" class="form-label">Drug Schedule</label>
+            <select class="form-control" asp-for="newPrescription.CategoryId" asp-items="@Model.listOfSchedules"></select>
             <br/>
-            <label asp-for="NewPrescription.CategoryId" class="form-label">Doctor</label>
-            <select class="form-control" asp-for="NewPrescription.CategoryId" asp-items="@Model.People"></select>
+            <label asp-for="newPrescription.CategoryId" class="form-label">Doctor</label>
+            <select class="form-control" asp-for="newPrescription.CategoryId" asp-items="@Model.listOfDoctors"></select>
         </div>
     </div>
     <div class="row">
