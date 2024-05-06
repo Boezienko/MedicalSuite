@@ -51,8 +51,6 @@ namespace MedicalSuiteWeb.Pages.Prescriptions
             }
         }
 
-        public List<SelectListItem> patients { get; set; } = new List<SelectListItem>();
-
         public void OnGet()
         {
             PopulatePersonDDL();
@@ -106,7 +104,7 @@ namespace MedicalSuiteWeb.Pages.Prescriptions
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-                string cmdText = "SELECT PersonId, FirstName, LastName FROM Person WHERE RoleId = 1";
+                string cmdText = "SELECT FirstName, LastName FROM Person WHERE RoleId = 1";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -115,46 +113,12 @@ namespace MedicalSuiteWeb.Pages.Prescriptions
                     while (reader.Read())
                     {
                         var doctor = new SelectListItem();
-                        doctor.Value = reader.GetInt32(0).ToString();
-                        doctor.Text = $"{reader.GetString(1)} {reader.GetString(2)}";
+                        doctor.Value = $"Dr. {reader.GetString(0)} {reader.GetString(1)}";
+                        doctor.Text = $"Dr. {reader.GetString(0)} {reader.GetString(1)}";
                         listOfDoctors.Add(doctor);
                     }
                 }
             }
         }
-
-        /*public IActionResult OnPost()
-        {
-            if (ModelState.IsValid)
-            {
-                using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
-                {
-                    string cmdText = "INSERT INTO Prescription(PrescriptionId, PrescriptionName, PrescriptionStrength, PrescriptionQuantity, PrescriptionDirections, WrittenDate, ExpirationDate, Notes, CategoryId) " + 
-                        "VALUES (@prescriptionId, @prescriptionName, @prescriptionStrength, @prescriptionQuantity, @prescriptionDirections, @writtenDate, @expirationDate, @notes, @categoryId)";
-                    SqlCommand cmd = new SqlCommand(cmdText, conn);
-                    cmd.Parameters.AddWithValue("@prescriptionId", newInventoryItem.InventoryItemCode);
-                    cmd.Parameters.AddWithValue("@prescriptionName", newInventoryItem.InventoryItemName);
-                    cmd.Parameters.AddWithValue("@prescriptionStrength", newInventoryItem.InventoryItemDescription);
-                    cmd.Parameters.AddWithValue("@prescriptionQuantity", newInventoryItem.InventoryItemPrice);
-                    cmd.Parameters.AddWithValue("@prescriptionDirections", newInventoryItem.CategoryId);
-                    cmd.Parameters.AddWithValue("@writtenDate", newInventoryItem.CategoryId);
-                    cmd.Parameters.AddWithValue("@expirationDate", newInventoryItem.CategoryId);
-                    cmd.Parameters.AddWithValue("@notes", newInventoryItem.CategoryId);
-                    cmd.Parameters.AddWithValue("@categoryId", newInventoryItem.CategoryId);
-
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    return RedirectToPage("ViewPrescriptions");
-
-                }
-            }
-            else
-            {
-                return Page();
-            }
-        }
-        
-        }
-         */
     }
 }
