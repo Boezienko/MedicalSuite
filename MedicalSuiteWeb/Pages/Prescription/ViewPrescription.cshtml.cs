@@ -9,7 +9,7 @@ using Microsoft.Data.SqlClient;
 
 namespace MedicalSuiteWeb.Pages.Prescriptions
 {
-    [Authorize(Roles = "Doctor, Nurse")]
+    [Authorize(Roles = "Doctor, Nurse, Patient")]
     [BindProperties]
     public class ViewPrescriptionsModel : PageModel
     {
