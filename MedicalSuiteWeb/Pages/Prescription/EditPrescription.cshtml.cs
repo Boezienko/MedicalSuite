@@ -8,6 +8,7 @@ using Microsoft.Data.SqlClient;
 namespace MedicalSuiteWeb.Pages.Prescriptions
 {
     [BindProperties]
+
     [Authorize(Roles = "Doctor, Nurse")]
     public class EditPrescriptionModel : PageModel
     {
@@ -15,23 +16,43 @@ namespace MedicalSuiteWeb.Pages.Prescriptions
 
         public List<SelectListItem> People { get; set; } = new List<SelectListItem>();
 
-        public IActionResult OnGet(int id)
+        public void OnGet(int id)
         {
             PopulatePrescription(id);
             PopulatePersonDDL();
-            return Page();
         }
 
-        public IActionResult OnPost()
+        public IActionResult OnPost(int id)
         {
             if (ModelState.IsValid)
             {
-                UpdatePrescription();
-                return RedirectToPage("ViewPrescriptions");
+                using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
+                {
+                    string cmdText = @"UPDATE Prescription 
+                                    SET PrescriptionName = @name, PrescriptionStrength = @strength, 
+                                        PrescriptionQuantity = @quantity, PrescriptionDirections = @directions, 
+                                        WrittenDate = @writtenDate, ExpirationDate = @expirationDate, 
+                                        Notes = @notes, CategoryId = @categoryId 
+                                    WHERE PrescriptionId = @id";
+                    SqlCommand cmd = new SqlCommand(cmdText, conn);
+                    cmd.Parameters.AddWithValue("@name", EditedPrescription.PrescriptionName);
+                    cmd.Parameters.AddWithValue("@strength", EditedPrescription.PrescriptionStrength);
+                    cmd.Parameters.AddWithValue("@quantity", EditedPrescription.PrescriptionQuantity);
+                    cmd.Parameters.AddWithValue("@directions", EditedPrescription.PrescriptionDirections);
+                    cmd.Parameters.AddWithValue("@writtenDate", EditedPrescription.WrittenDate);
+                    cmd.Parameters.AddWithValue("@expirationDate", EditedPrescription.ExpirationDate);
+                    cmd.Parameters.AddWithValue("@notes", EditedPrescription.Notes);
+                    cmd.Parameters.AddWithValue("@categoryId", EditedPrescription.CategoryId);
+                    cmd.Parameters.AddWithValue("@id", EditedPrescription.PrescriptionId);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    return RedirectToPage("ViewPrescription");
+                }
+                
             }
             else
             {
-                PopulatePersonDDL();
                 return Page();
             }
         }
@@ -40,52 +61,30 @@ namespace MedicalSuiteWeb.Pages.Prescriptions
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-                string cmdText = @"SELECT PrescriptionName, PrescriptionStrength, 
+                string cmdText = @"SELECT PrescriptionId, PrescriptionName, PrescriptionStrength, 
                                            PrescriptionQuantity, PrescriptionDirections, 
                                            WrittenDate, ExpirationDate, Notes, CategoryId 
                                     FROM Prescription 
-                                    WHERE PrescriptionId = @id";
+                                    WHERE PrescriptionId = @prescriptionId";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
-                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@prescriptionId", id);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.HasRows && reader.Read())
+                if (reader.HasRows )
                 {
-                    EditedPrescription.PrescriptionName = reader.GetString(0);
-                    EditedPrescription.PrescriptionStrength = reader.GetString(1);
-                    EditedPrescription.PrescriptionQuantity = reader.GetString(2);
-                    EditedPrescription.PrescriptionDirections = reader.GetString(3);
-                    EditedPrescription.WrittenDate = reader.GetDateTime(4);
-                    EditedPrescription.ExpirationDate = reader.GetDateTime(5);
-                    EditedPrescription.Notes = reader.GetString(6);
-                    EditedPrescription.CategoryId = reader.GetInt32(7);
+                    while (reader.Read()) 
+                    {
+                        var PrescriptionId = id;
+                        EditedPrescription.PrescriptionName = reader.GetString(0);
+                        EditedPrescription.PrescriptionStrength = reader.GetString(1);
+                        EditedPrescription.PrescriptionQuantity = reader.GetString(2);
+                        EditedPrescription.PrescriptionDirections = reader.GetString(3);
+                        EditedPrescription.WrittenDate = reader.GetDateTime(4);
+                        EditedPrescription.ExpirationDate = reader.GetDateTime(5);
+                        EditedPrescription.Notes = reader.GetString(6);
+                        EditedPrescription.CategoryId = reader.GetInt32(7);
+                    }
                 }
-            }
-        }
-
-        private void UpdatePrescription()
-        {
-            using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
-            {
-                string cmdText = @"UPDATE Prescription 
-                                    SET PrescriptionName = @name, PrescriptionStrength = @strength, 
-                                        PrescriptionQuantity = @quantity, PrescriptionDirections = @directions, 
-                                        WrittenDate = @writtenDate, ExpirationDate = @expirationDate, 
-                                        Notes = @notes, CategoryId = @categoryId 
-                                    WHERE PrescriptionId = @id";
-                SqlCommand cmd = new SqlCommand(cmdText, conn);
-                cmd.Parameters.AddWithValue("@name", EditedPrescription.PrescriptionName);
-                cmd.Parameters.AddWithValue("@strength", EditedPrescription.PrescriptionStrength);
-                cmd.Parameters.AddWithValue("@quantity", EditedPrescription.PrescriptionQuantity);
-                cmd.Parameters.AddWithValue("@directions", EditedPrescription.PrescriptionDirections);
-                cmd.Parameters.AddWithValue("@writtenDate", EditedPrescription.WrittenDate);
-                cmd.Parameters.AddWithValue("@expirationDate", EditedPrescription.ExpirationDate);
-                cmd.Parameters.AddWithValue("@notes", EditedPrescription.Notes);
-                cmd.Parameters.AddWithValue("@categoryId", EditedPrescription.CategoryId);
-                cmd.Parameters.AddWithValue("@id", EditedPrescription.PrescriptionId);
-
-                conn.Open();
-                cmd.ExecuteNonQuery();
             }
         }
 
