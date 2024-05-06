@@ -1,0 +1,61 @@
+﻿@page
+@using System.Security.Claims
+@model MedicalSuiteWeb.Pages.Prescriptions.AddPrescriptionModel
+@{
+    ViewData["Title"] = "Add Prescription";
+}
+@{
+    if (HttpContext.User.FindFirstValue(ClaimTypes.Role) != null)
+    {
+        Layout = LayoutAuthorizer.GetLayoutFromRole(this.HttpContext);
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
+}
+
+<form method="post" class="container mt-4">
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label asp-for="NewPrescription.PrescriptionName" class="form-label">Name</label>
+            <input type="text" class="form-control" asp-for="NewPrescription.PrescriptionName" />
+        </div>
+        <div class="col-md-6">
+            <label asp-for="NewPrescription.PrescriptionStrength" class="form-label">Strength</label>
+            <input type="text" class="form-control" asp-for="NewPrescription.PrescriptionStrength" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label asp-for="NewPrescription.WrittenDate" class="form-label">Written Date</label>
+            <input type="date" class="form-control" asp-for="NewPrescription.WrittenDate" />
+        </div>
+        <div class="col-md-6">
+            <label asp-for="NewPrescription.PrescriptionQuantity" class="form-label">Quantity</label>
+            <input type="text" class="form-control" asp-for="NewPrescription.PrescriptionQuantity" />
+        </div>
+        
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label asp-for="NewPrescription.ExpirationDate" class="form-label">Expiration Date</label>
+            <input type="date" class="form-control" asp-for="NewPrescription.ExpirationDate" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label asp-for="NewPrescription.PrescriptionDirections" class="form-label">Directions</label>
+            <textarea class="form-control" asp-for="NewPrescription.PrescriptionDirections"></textarea>
+        </div>
+        <div class="col-md-6">
+            <label asp-for="NewPrescription.CategoryId" class="form-label">Patient</label>
+            <select class="form-control" asp-for="NewPrescription.CategoryId" asp-items="@Model.People"></select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <button id="btnAdd" class="btn btn-primary">Add Prescription</button>
+        </div>
+    </div>
+</form>
