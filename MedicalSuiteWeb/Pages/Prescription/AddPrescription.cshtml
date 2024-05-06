@@ -1,8 +1,8 @@
 ﻿@page
-@model MedicalSuiteWeb.Pages.Prescription.AddPrescriptionModel
 @using System.Security.Claims
+@model MedicalSuiteWeb.Pages.Prescriptions.AddPrescriptionModel
 @{
-    ViewData["Title"] = "View_Inventory";
+    ViewData["Title"] = "Add Prescription";
 }
 @{
     if (HttpContext.User.FindFirstValue(ClaimTypes.Role) != null)
@@ -14,50 +14,75 @@
         Layout = "_Layout";
     }
 }
-<body>
-    <div class="container mt-5">
-        <h2 class="mb-4">Add Prescription to User</h2>
-        <form>
-            <div class="mb-3">
-                <label asp-for="newPrescription.PrescriptionName" class="form-label"></label>
-                <input type="text" id="user-name" asp-for="newPrescription.PrescriptionName" name="user-name" class="form-control">
-            </div>
 
-            <div class="mb-3">
-                <label asp-for="newPrescription.PrescriptionStrength" class="form-label"></label>
-                <input type="text" id="user-name" asp-for="newPrescription.PrescriptionStrength" name="prescription-strength" class="form-control">
-            </div>
-
-            <div class="mb-3">
-                <label asp-for="newPrescription.PrescriptionQuantity" class="form-label"></label>
-                <input type="text" id="prescription-quantity" name="prescription-quantity" asp-for="newPrescription.PrescriptionQuantity" class="form-control">
-            </div>
-
-            <div class="mb-3">
-                <label asp-for="newPrescription.PrescriptionDirections" class="form-label"></label>
-                <input type="text" id="prescription-date" name="prescription-date" asp-for="newPrescription.PrescriptionDirections" class="form-control">
-            </div>
-
-            <div class="mb-3">
-                <label asp-for="newPrescription.WrittenDate" class="form-label"></label>
-                <input type="date" id="prescription-date" name="prescription-date" asp-for="newPrescription.WrittenDate" class="form-control">
-            </div
-
-            <div class="mb-3">
-                <label asp-for="newPrescription.ExpirationDate" class="form-label"></label>
-                <input type="text" id="prescription-date" name="prescription-date" asp-for="newPrescription.ExpirationDate" class="form-control">
-            </div>
-
-            <div class="mb-3">
-                <label asp-for="newPrescription.Notes" class="form-label"></label>
-                <input type="text" id="prescription-date" name="prescription-date" asp-for="newPrescription.Notes" class="form-control">
-            </div>
-
-            <div class="mb-3">
-                <label asp-for="newPrescription.CategoryId" class="form-label"></label>
-                <input type="text" id="prescription-date" name="prescription-date" asp-for="newPrescription.CategoryId" class="form-control">
-            </div>
-
-            <button type="submit" class="btn btn-primary">Add Prescription</button>
-        </form>
-</body>
+<form method="post" class="container mt-4">
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <label asp-for="NewPrescription.PrescriptionName" class="form-label">Name</label>
+        </div>
+        <div class="col-md-9">
+            <input type="text" class="form-control" asp-for="NewPrescription.PrescriptionName" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <label asp-for="NewPrescription.PrescriptionStrength" class="form-label">Strength</label>
+        </div>
+        <div class="col-md-9">
+            <input type="text" class="form-control" asp-for="NewPrescription.PrescriptionStrength" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <label asp-for="NewPrescription.PrescriptionQuantity" class="form-label">Quantity</label>
+        </div>
+        <div class="col-md-9">
+            <input type="text" class="form-control" asp-for="NewPrescription.PrescriptionQuantity" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <label asp-for="NewPrescription.PrescriptionDirections" class="form-label">Directions</label>
+        </div>
+        <div class="col-md-9">
+            <input type="text" class="form-control" asp-for="NewPrescription.PrescriptionDirections" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <label asp-for="NewPrescription.WrittenDate" class="form-label">Written Date</label>
+        </div>
+        <div class="col-md-9">
+            <input type="date" class="form-control" asp-for="NewPrescription.WrittenDate" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <label asp-for="NewPrescription.ExpirationDate" class="form-label">Expiration Date</label>
+        </div>
+        <div class="col-md-9">
+            <input type="date" class="form-control" asp-for="NewPrescription.ExpirationDate" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <label asp-for="NewPrescription.Notes" class="form-label">Notes</label>
+        </div>
+        <div class="col-md-9">
+            <textarea class="form-control" asp-for="NewPrescription.Notes"></textarea>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <label asp-for="NewPrescription.CategoryId" class="form-label">Patient</label>
+        </div>
+        <div class="col-md-9">
+            <select class="form-control" asp-for="NewPrescription.CategoryId" asp-items="@Model.People"></select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <button id="btnAdd" class="btn btn-primary">Add Prescription</button>
+        </div>
+    </div>
+</form>
