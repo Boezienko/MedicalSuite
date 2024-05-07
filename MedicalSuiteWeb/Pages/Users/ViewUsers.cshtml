@@ -52,5 +52,14 @@
                 <label>@user.Telephone</label>
             </div>
         </div>
+        <div class="row m-2">
+            <div class="col-2">
+                <a asp-page="EditUser" asp-route-id="@user.PersonId" class="btn btn-primary">Edit</a>
+            </div>
+            <div class="col-2">
+                <a asp-page="DeleteUser" asp-route-id="@user.PersonId" class="btn btn-danger" onclick="return confirm('Are you sure you want to remove this user? This cannot be undone!');">Delete User</a>
+            </div>
+        </div>
+
     </div>
 }
