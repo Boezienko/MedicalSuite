@@ -4,6 +4,7 @@
     [PrescriptionStrength]   VARCHAR (25)  NOT NULL,
     [PrescriptionQuantity]   VARCHAR (25)  NOT NULL,
     [PrescriptionDirections] VARCHAR (100) NOT NULL,
+
     [WrittenDate]            DATE          NOT NULL,
     [ExpirationDate]         DATE          NOT NULL,
     [PrescriptionScheduleId] INT           NOT NULL,
@@ -13,16 +14,4 @@
     CONSTRAINT [FK_Prescription_Person] FOREIGN KEY ([PersonId]) REFERENCES [dbo].[Person] ([PersonId]),
     CONSTRAINT [FK_Prescription_PrescriptionSchedule] FOREIGN KEY ([PrescriptionScheduleId]) REFERENCES [dbo].[PrescriptionSchedule] ([PrescriptionScheduleId])
 );
-
-
-
-
-
-
-
-
-
-
-
-
 

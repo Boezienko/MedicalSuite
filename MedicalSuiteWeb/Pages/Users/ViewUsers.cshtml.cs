@@ -25,7 +25,7 @@ namespace MedicalSuiteWeb.Pages.Users
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-                string cmdText = "SELECT FirstName, LastName, Email, Telephone, LastLoginTime FROM Person";
+                string cmdText = "SELECT PersonId, FirstName, LastName, Email, Telephone, LastLoginTime FROM Person";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
 
                 conn.Open();
@@ -36,12 +36,12 @@ namespace MedicalSuiteWeb.Pages.Users
                     {
                         var user = new Person();
 
-
-                        user.FirstName = reader.GetString(0);
-                        user.LastName = reader.GetString(1);
-                        user.Email = reader.GetString(2);
-                        user.Telephone = reader.GetString(3);
-                        user.LastLoginTime = reader.GetDateTime(4);
+                        user.PersonId = reader.GetInt32(0);
+                        user.FirstName = reader.GetString(1);
+                        user.LastName = reader.GetString(2);
+                        user.Email = reader.GetString(3);
+                        user.Telephone = reader.GetString(4);
+                        user.LastLoginTime = reader.GetDateTime(5);
 
                         Users.Add(user);
 
