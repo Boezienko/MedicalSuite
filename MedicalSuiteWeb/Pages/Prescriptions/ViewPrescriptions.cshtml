@@ -80,13 +80,6 @@
             <div class="col-md-9">
                 <label class="form-label">@prescription.DoctorsName</label>
             </div>
-
-            <div class="col-md-3">
-                <a class="btn btn-primary" asp-page="EditPrescription" asp-route-id="@prescription.PrescriptionId">Edit</a>
-            </div>
-            <div class="col-md-3">
-                <a class="btn btn-danger" asp-page="DeletePrescription" asp-route-id="@prescription.PrescriptionId" onclick="return confirm('Are you sure you want to delete this prescription? This action cannot be undone!');">Delete</a>
-            </div>
         </div>
     }
 }
