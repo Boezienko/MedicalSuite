@@ -13,7 +13,7 @@ namespace MedicalSuiteWeb.Pages.Prescriptions
     [Authorize(Roles = "Doctor")]
     public class EditPrescriptionModel : PageModel
     {
-        public Prescription specifiedPrescription { get; set; } = new Prescription();
+        public Model.Prescription specifiedPrescription { get; set; } = new Model.Prescription();
 
         public List<SelectListItem> listOfPatients { get; set; } = new List<SelectListItem>();
 
