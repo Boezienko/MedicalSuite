@@ -30,7 +30,7 @@ namespace MedicalSuiteWeb.Pages.Prescriptions
 
         public void OnPost()
         {
-            PopulatePrescriptions(SelectedPersonId, string str);
+            //PopulatePrescriptions(SelectedPersonId, string str);
         }
         private void PopulatePrescriptions(int userId, string role)
         {
