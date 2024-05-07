@@ -14,6 +14,7 @@ namespace MedicalSuiteWeb.Pages.Prescriptions
     [BindProperties]
     public class ViewPrescriptionsModel : PageModel
     {
+
         public List<SelectListItem> listOfPeople { get; set; } = new List<SelectListItem>();
 
         public List<MedicalSuiteWeb.Model.Prescription> listOfPrescriptions { get; set; } = new List<MedicalSuiteWeb.Model.Prescription>();
@@ -24,27 +25,56 @@ namespace MedicalSuiteWeb.Pages.Prescriptions
             // Fetch Id of person currently logged in
             int personId = int.Parse(HttpContext.User.FindFirstValue(ClaimTypes.Actor));
             string userRole = HttpContext.User.FindFirstValue(ClaimTypes.Role).ToString();
-            PopulatePrescriptions(personId, userRole);
-            PopulateListOfPeopleDDL();
+            if (userRole.Equals("Patient"))
+            {
+                PopulatePatientPrescriptions(personId, userRole);
+            }
+            else {
+                PopulateListOfPeopleDDL();
+            }
+           
         }
 
         public void OnPost()
         {
-            //PopulatePrescriptions(SelectedPersonId, string str);
+            PopulateListOfPeopleDDL();
+            PopulatePrescriptionsOfPatient(SelectedPersonId);
         }
-        private void PopulatePrescriptions(int userId, string role)
+        private void PopulatePrescriptionsOfPatient(int selectedId)
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-                string cmdText = string.Empty;
-                if (role.Equals("Doctor") || role.Equals("Nurse"))
+                string cmdText = "SELECT PrescriptionId, PrescriptionName, PrescriptionStrength, PrescriptionQuantity, PrescriptionDirections, WrittenDate, ExpirationDate, PrescriptionScheduleId, PersonId, DoctorsName FROM Prescription WHERE PersonId = @userId";
+                SqlCommand cmd = new SqlCommand(cmdText, conn);
+                cmd.Parameters.AddWithValue("@userId", selectedId);
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
                 {
-                    cmdText = "SELECT PrescriptionId, PrescriptionName, PrescriptionStrength, PrescriptionQuantity, PrescriptionDirections, WrittenDate, ExpirationDate, PrescriptionScheduleId, PersonId, DoctorsName FROM Prescription";
+                    while (reader.Read())
+                    {
+                        var prescription = new MedicalSuiteWeb.Model.Prescription();
+                        prescription.PrescriptionId = reader.GetInt32(0);
+                        prescription.PrescriptionName = reader.GetString(1);
+                        prescription.PrescriptionStrength = reader.GetString(2);
+                        prescription.PrescriptionQuantity = reader.GetString(3);
+                        prescription.PrescriptionDirections = reader.GetString(4);
+                        prescription.WrittenDate = reader.GetDateTime(5);
+                        prescription.ExpirationDate = reader.GetDateTime(6);
+                        prescription.PrescriptionScheduleId = reader.GetInt32(7);
+                        prescription.PersonId = reader.GetInt32(8);
+                        prescription.DoctorsName = reader.GetString(9);
+                        listOfPrescriptions.Add(prescription);
+                    }
                 }
-                else
-                {
-                    cmdText = "SELECT PrescriptionId, PrescriptionName, PrescriptionStrength, PrescriptionQuantity, PrescriptionDirections, WrittenDate, ExpirationDate, PrescriptionScheduleId, PersonId, DoctorsName FROM Prescription WHERE PersonId = @userId";
-                }
+            }
+        }
+
+        private void PopulatePatientPrescriptions(int userId, string role)
+        {
+            using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
+            {
+                string cmdText = "SELECT PrescriptionId, PrescriptionName, PrescriptionStrength, PrescriptionQuantity, PrescriptionDirections, WrittenDate, ExpirationDate, PrescriptionScheduleId, PersonId, DoctorsName FROM Prescription WHERE PersonId = @userId";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 cmd.Parameters.AddWithValue("@userId", userId);
                 conn.Open();
