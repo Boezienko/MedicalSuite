@@ -25,11 +25,12 @@ namespace MedicalSuiteWeb.Pages.Prescriptions
             int personId = int.Parse(HttpContext.User.FindFirstValue(ClaimTypes.Actor));
             string userRole = HttpContext.User.FindFirstValue(ClaimTypes.Role).ToString();
             PopulatePrescriptions(personId, userRole);
-            //PopulatePersonDDL();
+            PopulateListOfPeopleDDL();
         }
 
         public void OnPost()
         {
+            PopulatePrescriptions(SelectedPersonId, string str);
         }
         private void PopulatePrescriptions(int userId, string role)
         {
@@ -69,11 +70,11 @@ namespace MedicalSuiteWeb.Pages.Prescriptions
             }
         }
 
-        /*private void PopulatePersonDDL()
+        private void PopulateListOfPeopleDDL()
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-                string cmdText = "SELECT PersonId, FirstName, LastName FROM Person ORDER BY LastName";
+                string cmdText = "SELECT PersonId, FirstName, LastName FROM Person WHERE RoleId = 3 ORDER BY LastName";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -88,10 +89,10 @@ namespace MedicalSuiteWeb.Pages.Prescriptions
                         {
                             person.Selected = true;
                         }
-                        People.Add(person);
+                        listOfPeople.Add(person);
                     }
                 }
             }
-        }*/
+        }
     }
 }

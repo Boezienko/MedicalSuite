@@ -16,7 +16,7 @@
 }
 
 <form method="post" class="container mt-4">
-    <!--<div class="row mb-3">
+    <div class="row mb-3">
         <div class="col-1">
             <a class="btn btn-primary" asp-area="" asp-page="/Prescriptions/AddPrescription">Add</a>
         </div>
@@ -26,13 +26,12 @@
             <label class="form-label">Person</label>
         </div>
         <div class="col-md-7">
-            <select class="form-control" asp-for="SelectedPersonId" asp-items="Model.People"></select>
+            <select class="form-control" asp-for="SelectedPersonId" asp-items="Model.listOfPeople"></select>
         </div>
         <div class="col-md-2">
             <button class="btn btn-primary">Display</button>
         </div>
     </div>
-    -->
     @if (Model.listOfPrescriptions.Count == 0)
     {
         <p>No prescriptions found for the selected person.</p>

@@ -66,11 +66,10 @@
     <div class="row m-2">
         <div class="col-12">
             <label class="form-label" asp-for="LoginUser.Password">Password</label>
-            <input type="password" class="form-control" asp-for="LoginUser.Password" placeholder="Enter your password" />
-            <button type="button" id="togglePassword" class="btn btn-secondary" onclick="togglePasswordVisibility()">
-                <i id="eyeIcon" class="bi bi-eye"></i>
-            </button>
-
+            <div class="password-container">
+                <input type="password" class="form-control" asp-for="LoginUser.Password" placeholder="Enter your password" id="password" />
+                <button type="button" id="togglePassword" class="btn btn-secondary" onclick="togglePasswordVisibility()"><i id="eyeIcon" class="bi bi-eye"></i></button>
+            </div>
             <span asp-validation-for="LoginUser.Password" class="text-danger"></span>
         </div>
     </div>
@@ -80,18 +79,3 @@
         </div>
     </div>
 </form>
-
-<script>
-    function togglePasswordVisibility() {
-        var passwordInput = document.getElementById("LoginUser_Password");
-        var eyeIcon = document.getElementById("eyeIcon");
-
-        if (passwordInput.type === "password") {
-            passwordInput.type = "text";
-            eyeIcon.className = "bi bi-eye-slash";
-        } else {
-            passwordInput.type = "password";
-            eyeIcon.className = "bi bi-eye";
-        }
-    }
-</script>
