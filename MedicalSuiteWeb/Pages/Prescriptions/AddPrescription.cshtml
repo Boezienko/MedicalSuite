@@ -56,6 +56,7 @@
         <div class="col-md-6">
             <label asp-for="newPrescription.PrescriptionScheduleId" class="form-label">Drug Schedule</label>
             <select class="form-control" asp-for="newPrescription.PrescriptionScheduleId" asp-items="@Model.listOfSchedules"></select>
+            <br />
             <label asp-for="newPrescription.DoctorsName" class="form-label">Doctor</label>
             <select class="form-control" asp-for="newPrescription.DoctorsName" asp-items="@Model.listOfDoctors"></select>
         </div>

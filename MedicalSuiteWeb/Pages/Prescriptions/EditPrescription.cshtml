@@ -17,6 +17,7 @@
 
 
 <form method="post" class="container mt-4">
+    <h2>Edit Prescription</h2>
     <div class="row mb-3">
         <div class="col-md-6">
             <label asp-for="specifiedPrescription.PersonId" class="form-label">Patient</label>
@@ -62,7 +63,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <button id="btnAdd" class="btn btn-primary" >Update Prescription</button>
+            <button id="btnAdd" class="btn btn-primary" asp-page-handler="Edit"asp-route-id="@Model.specifiedPrescription.PrescriptionId">Update Prescription</button>
         </div>
     </div>
 </form>

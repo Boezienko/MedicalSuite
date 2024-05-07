@@ -1,5 +1,6 @@
 using MedicalSuiteBusiness;
 using MedicalSuiteWeb.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -7,6 +8,9 @@ using Microsoft.Data.SqlClient;
 
 namespace MedicalSuiteWeb.Pages.Prescriptions
 {
+    [BindProperties]
+
+    [Authorize(Roles = "Doctor")]
     public class EditPrescriptionModel : PageModel
     {
         public Prescription specifiedPrescription { get; set; } = new Prescription();
@@ -30,7 +34,7 @@ namespace MedicalSuiteWeb.Pages.Prescriptions
             {
                 using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
                 {
-                    string cmdText = "UPDATE Prescription SET PrescriptionName = @name, PrescriptionStrength = @strength, PrescriptionQuantity = @quantity, PrescriptionDirections = @directions, WrittenDate = @writtenDate, ExpirationDate = @expirationDate, PrescriptionScheduleId = @scheduleId, PersonId = @personId, DoctorsName FROM  Prescription WHERE PrescriptionId = @prescriptionId";
+                    string cmdText = "UPDATE Prescription SET PrescriptionName = @name, PrescriptionStrength = @strength, PrescriptionQuantity = @quantity, PrescriptionDirections = @directions, WrittenDate = @writtenDate, ExpirationDate = @expirationDate, PrescriptionScheduleId = @scheduleId, PersonId = @personId, DoctorsName = @doctorsName FROM Prescription WHERE PrescriptionId = @prescriptionId";
                     SqlCommand cmd = new SqlCommand(cmdText, conn);
                     cmd.Parameters.AddWithValue("@name", specifiedPrescription.PrescriptionName);
                     cmd.Parameters.AddWithValue("@strength", specifiedPrescription.PrescriptionStrength);
@@ -41,6 +45,7 @@ namespace MedicalSuiteWeb.Pages.Prescriptions
                     cmd.Parameters.AddWithValue("@scheduleId", specifiedPrescription.PrescriptionScheduleId);
                     cmd.Parameters.AddWithValue("@personId", specifiedPrescription.PersonId);
                     cmd.Parameters.AddWithValue("@doctorsName", specifiedPrescription.DoctorsName);
+                    cmd.Parameters.AddWithValue("@prescriptionId", id);
                     conn.Open();
                     cmd.ExecuteNonQuery();
                     return RedirectToPage("ViewPrescriptions");
