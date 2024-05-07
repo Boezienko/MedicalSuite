@@ -75,9 +75,6 @@
     <Build Include="dbo\Tables\Inventory.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="dbo\PopulateDatabase.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <PostDeploy Include="PopulateDatabase2.sql" />
+    <PostDeploy Include="PopulateDB.sql" />
   </ItemGroup>
 </Project>
