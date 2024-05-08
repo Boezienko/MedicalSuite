@@ -1,10 +1,18 @@
 ﻿@page
+@using System.Security.Claims
 @model MedicalSuiteWeb.Pages.Account.EditProfileModel
 @{
     ViewData["Title"] = "Edit_Users";
 }
 @{
-    Layout = "_Layout";
+    if (HttpContext.User.FindFirstValue(ClaimTypes.Role) != null)
+    {
+        Layout = LayoutAuthorizer.GetLayoutFromRole(this.HttpContext);
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
 }
 
 <form method="post" class="form-group">
