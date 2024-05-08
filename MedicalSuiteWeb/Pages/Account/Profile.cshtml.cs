@@ -29,7 +29,7 @@ namespace MedicalSuiteWeb.Pages.Account
             string email = HttpContext.User.FindFirstValue(ClaimValueTypes.Email);
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-                string cmdText = "SELECT FirstName, LastName, Email, Telephone, LastLoginTime FROM Person WHERE Email=@email";
+                string cmdText = "SELECT FirstName, LastName, Email, Telephone, LastLoginTime, PersonId FROM Person WHERE Email=@email";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 cmd.Parameters.AddWithValue("@email", email);
                 conn.Open();
@@ -42,6 +42,7 @@ namespace MedicalSuiteWeb.Pages.Account
                     profile.Email = reader.GetString(2);
                     profile.Telephone = reader.GetString(3);
                     profile.LastLoginTime = reader.GetDateTime(4);
+                    profile.PersonId = reader.GetInt32(5);
                 }
             }
         }

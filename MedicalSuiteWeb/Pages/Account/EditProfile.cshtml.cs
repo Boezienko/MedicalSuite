@@ -3,39 +3,40 @@ using MedicalSuiteWeb.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
-using System.Diagnostics;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Security.Claims;
 
-namespace MedicalSuiteWeb.Pages.Users
+namespace MedicalSuiteWeb.Pages.Account
 {
     [BindProperties]
 
-    [Authorize(Roles = "Doctor, Nurse")]
-    public class EditUserModel : PageModel
+    [Authorize(Roles = "Doctor, Nurse, Patient")]
+    public class EditProfileModel : PageModel
     {
         public EditPerson user { get; set; } = new EditPerson();
-        public void OnGet(int id)
+        public void OnGet()
         {
-            PopulateUser(id);
+            PopulateUser();
         }
 
-        public IActionResult OnPost(int id) {
+        public IActionResult OnPost()
+        {
             if (ModelState.IsValid)
             {
+                string email = HttpContext.User.FindFirstValue(ClaimValueTypes.Email);
                 using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
                 {
-                    string cmdText = "UPDATE PERSON SET FirstName = @firstName, LastName = @lastName, Email = @email, Telephone = @telephone WHERE PersonId = @personId ";
+                    string cmdText = "UPDATE PERSON SET FirstName = @firstName, LastName = @lastName, Email = @email, Telephone = @telephone WHERE Email = @email ";
                     SqlCommand cmd = new SqlCommand(cmdText, conn);
                     cmd.Parameters.AddWithValue("@firstName", user.FirstName);
                     cmd.Parameters.AddWithValue("@lastName", user.LastName);
                     cmd.Parameters.AddWithValue("@email", user.Email);
                     cmd.Parameters.AddWithValue("@telephone", user.Telephone);
-                    cmd.Parameters.AddWithValue("@personId", id);
 
                     conn.Open();
                     cmd.ExecuteNonQuery();
-                    return RedirectToPage("ViewUsers");
+                    return RedirectToPage("Profile");
                 }
             }
             else
@@ -44,26 +45,25 @@ namespace MedicalSuiteWeb.Pages.Users
             }
         }
 
-        private void PopulateUser(int id)
+        private void PopulateUser()
         {
+            // query the person table to populate "profile" object
+
+            string email = HttpContext.User.FindFirstValue(ClaimValueTypes.Email);
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-                string cmdText = "SELECT FirstName, LastName, Email, Telephone FROM Person WHERE PersonId = @personId";
+                string cmdText = "SELECT FirstName, LastName, Email, Telephone FROM Person WHERE Email=@email";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
-                cmd.Parameters.AddWithValue("@personId", id);
-
+                cmd.Parameters.AddWithValue("@email", email);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
-                    while (reader.Read())
-                    {
-                        user.FirstName = reader.GetString(0);
-                        user.LastName = reader.GetString(1);
-                        user.Email = reader.GetString(2);
-                        user.Telephone = reader.GetString(3);
-                    }
-                }
+                    reader.Read();
+                    user.FirstName = reader.GetString(0);
+                    user.LastName = reader.GetString(1);
+                    user.Email = reader.GetString(2);
+                    user.Telephone = reader.GetString(3);                }
             }
         }
     }

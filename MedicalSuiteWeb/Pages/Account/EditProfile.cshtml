@@ -1,0 +1,54 @@
+﻿@page
+@model MedicalSuiteWeb.Pages.Account.EditProfileModel
+@{
+    ViewData["Title"] = "Edit_Users";
+}
+@{
+    Layout = "_Layout";
+}
+
+<form method="post" class="form-group">
+    <div class="row m-2">
+        <div class="col-4">
+            <h2>Edit Profile</h2>
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col-2">
+            <label asp-for="user.FirstName"></label>
+        </div>
+        <div class="col-10">
+            <input type="text" class="form-control" asp-for="user.FirstName" />
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col-2">
+            <label asp-for="user.LastName"></label>
+        </div>
+        <div class="col-10">
+            <input type="text" class="form-control" asp-for="user.LastName" />
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col-2">
+            <label asp-for="user.Email"></label>
+        </div>
+        <div class="col-10">
+            <input type="text" class="form-control" asp-for="user.Email" />
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col-2">
+            <label asp-for="user.Telephone"></label>
+        </div>
+        <div class="col-10">
+            <input type="text" class="form-control" asp-for="user.Telephone" />
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col-2"></div>
+        <div class="col-10">
+            <input type="submit" value="Update" class="btn btn-primary" />
+        </div>
+    </div>
+</form>

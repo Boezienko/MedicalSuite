@@ -14,44 +14,6 @@
     }
 }
 
-<style>
-    form {
-        max-width: 400px;
-        margin: auto;
-        padding: 20px;
-        border: 1px solid black;
-        border-radius: 5px;
-        background-color: transparent;
-    }
-
-    h2 {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    .form-label {
-        font-weight: bold;
-    }
-
-    .form-control {
-        margin-bottom: 10px;
-    }
-
-    .btn-login {
-        width: 100%;
-    }
-
-    .text-danger {
-        color: red;
-    }
-
-    #togglePassword {
-        margin: auto;
-        margin-bottom: 10px;
-        margin-left: 10px;
-    }
-</style>
-
 <h2>Login</h2>
 
 <form method="post">
@@ -76,6 +38,11 @@
     <div class="row m-2">
         <div class="col-12">
             <button id="btnLogin" class="btn btn-primary btn-login">Login</button>
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col-12">
+            <a asp-page="ForgotPassword">Forgot Password</a>
         </div>
     </div>
 </form>
