@@ -44,7 +44,7 @@ namespace MedicalSuiteWeb.Pages.Users
             {
                 //2. Create a insert command
                 string cmdText = "INSERT INTO Person(FirstName, LastName, Email, PasswordHash, Telephone, LastLoginTime, RoleId)" +
-                    "VALUES(@firstName, @lastName, @email, @password, @telephone, @lastLoginTime, 1)";
+                    "VALUES(@firstName, @lastName, @email, @password, @telephone, @lastLoginTime, 3)";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 cmd.Parameters.AddWithValue("@firstName", newUser.FirstName);
                 cmd.Parameters.AddWithValue("@lastName", newUser.LastName);
