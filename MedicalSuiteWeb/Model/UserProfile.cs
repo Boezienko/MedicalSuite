@@ -6,6 +6,7 @@ namespace MedicalSuiteWeb.Model
     {
 
         public int PersonId { get; set; }
+        [Required(ErrorMessage = "First Name is required")]
         [Display(Name = "First Name: ")]
         public string FirstName { get; set; }
         [Required(ErrorMessage = "Last Name is required")]
