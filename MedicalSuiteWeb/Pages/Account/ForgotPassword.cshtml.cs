@@ -12,7 +12,7 @@ namespace MedicalSuiteWeb.Pages.Account
 
     public class ForgotPasswordModel : PageModel
     {
-        public EditPerson user { get; set; } = new EditPerson();
+        public PasswordChangePerson user { get; set; } = new PasswordChangePerson();
         public void OnGet()
         {
             
@@ -20,7 +20,8 @@ namespace MedicalSuiteWeb.Pages.Account
 
         public IActionResult OnPost()
         {
-           
+            if (ModelState.IsValid)
+            {
                 Debug.WriteLine("Password entered: " + user.Password);
                 //string email = HttpContext.User.FindFirstValue(ClaimValueTypes.Email);
                 using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
@@ -34,8 +35,11 @@ namespace MedicalSuiteWeb.Pages.Account
                     cmd.ExecuteNonQuery();
                     return RedirectToPage("Login");
                 }
-            
-           
+            }
+            else
+            {
+                return (Page());
+            }           
         }
     }
 }
