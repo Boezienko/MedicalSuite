@@ -30,6 +30,19 @@
             <span asp-validation-for="newUser.LastName" class="text-danger"></span>
         </div>
     </div>
+
+    <div class="row m-2">
+        <div class=" col-12">
+            <strong>
+                <label asp-for="newUser.RoleId"></label>
+            </strong>
+        </div>
+        <div class="col-10">
+            @* we use 'select' to make a dropdown, its contents are the asp-items, which are poopulated from the @Model.Categories *@
+            <select asp-for="newUser.RoleId" asp-items="@Model.Roles"></select>
+        </div>
+    </div>
+
     <div class="row m-2">
         <div class="col-12">
             <label class="form-label" asp-for="newUser.Email">Email</label>

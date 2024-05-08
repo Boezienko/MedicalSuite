@@ -21,6 +21,7 @@ namespace MedicalSuiteWeb.Model
         [Required(ErrorMessage = "Telephone is required")]
         [Display(Name = "Telephone: ")]
         public string Telephone { get; set; }
+        [Display(Name = "Role")]
         public int RoleId {  get; set; }
         public DateTime LastLoginTime { get; set; }
     }
