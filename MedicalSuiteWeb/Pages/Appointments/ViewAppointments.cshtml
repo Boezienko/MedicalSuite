@@ -2,7 +2,7 @@
 @model MedicalSuiteWeb.Pages.Appointments.ViewAppointmentsModel
 @using System.Security.Claims
 @{
-    ViewData["Title"] = "View_Appointments";
+    ViewData["Title"] = "View Appointments";
 }
 @{
     if (HttpContext.User.FindFirstValue(ClaimTypes.Role) != null)
@@ -54,7 +54,7 @@
             </div>
             <div class="row m-2">
                 <div class="col-2">
-                    <label class="form-label" asp-for="@appointment.DoctorsName">Doctor's Name': </label>
+                    <label class="form-label" asp-for="@appointment.DoctorsName">Doctor's Name: </label>
                 </div>
                 <div class="col-10">
                     <label class="form-label">@appointment.DoctorsName</label>

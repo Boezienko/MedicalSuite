@@ -9,7 +9,7 @@ namespace MedicalSuiteWeb.Pages.Appointments
 {
     [BindProperties]
 
-    [Authorize(Roles = "Doctor, Nurse")]
+    [Authorize(Roles = "Doctor, Nurse, Patient")]
     public class EditAppointmentModel : PageModel
     {
         public Appointment specifiedAppointment { get; set; } = new Appointment();

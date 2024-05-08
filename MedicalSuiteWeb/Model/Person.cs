@@ -23,7 +23,5 @@ namespace MedicalSuiteWeb.Model
         public string Telephone { get; set; }
         public int RoleId {  get; set; }
         public DateTime LastLoginTime { get; set; }
-        public int prescriptionId {  get; set; }
-
     }
 }
