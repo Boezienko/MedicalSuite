@@ -15,3 +15,30 @@ function togglePasswordVisibility() {
     }
 
 }
+// Define a function to set default date values
+function setDefaultDateValues() {
+    // Get today's date
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+    var yyyy = today.getFullYear();
+
+    today = yyyy + '-' + mm + '-' + dd;
+
+    // Set today's date as the default value for the Written Date input
+    document.getElementById('writtenDate').value = today;
+
+    // Calculate one month from today
+    var expirationDate = new Date(today);
+    expirationDate.setMonth(expirationDate.getMonth() + 1);
+
+    // Format expiration date
+    var exp_dd = String(expirationDate.getDate()).padStart(2, '0');
+    var exp_mm = String(expirationDate.getMonth() + 1).padStart(2, '0');
+    var exp_yyyy = expirationDate.getFullYear();
+
+    var expiration = exp_yyyy + '-' + exp_mm + '-' + exp_dd;
+
+    // Set one month from today as the default value for the Expiration Date input
+    document.getElementById('expirationDate').value = expiration;
+}
